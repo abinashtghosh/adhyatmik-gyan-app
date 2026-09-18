@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d97706">
+  <meta name="description" content="Adhyatmik Gyan – Puja, Vastu, Dharmik Upay, Vrat, Mantra और Festival Calendar.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <title>अध्यात्मिक ज्ञान | Puja, Vastu & Dharmik Upay</title>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><img src="assets/logo.png" alt="Adhyatmik Gyan logo"><div><h1>अध्यात्मिक ज्ञान</h1><p>Puja • Vastu • Dharmik Upay</p></div></div>
+  <button class="lang" id="langBtn" aria-label="Change language">EN</button>
+</header>
+<main>
+  <section class="hero">
+    <div><span class="pill">ॐ • सनातन धर्म</span><h2 id="heroTitle">आज का आध्यात्मिक संदेश</h2><p id="heroText">श्रद्धा, सेवा और सकारात्मक कर्म को अपने जीवन का हिस्सा बनाएं।</p></div>
+  </section>
+
+  <section class="section"><div class="sectionHead"><h2>आज की जानकारी</h2></div>
+    <div class="grid cards">
+      <button class="card" data-modal="puja"><span>🪔</span><b>Today's Puja</b><small>आज की पूजा विधि</small></button>
+      <button class="card" data-modal="vrat"><span>🌙</span><b>Today's Vrat</b><small>व्रत एवं धार्मिक जानकारी</small></button>
+      <button class="card" data-modal="calendar"><span>📅</span><b>Festival Calendar</b><small>पर्व और व्रत</small></button>
+      <button class="card" data-modal="vastu"><span>🏠</span><b>Vastu Tips</b><small>घर के लिए वास्तु सुझाव</small></button>
+    </div>
+  </section>
+
+  <section class="section"><div class="sectionHead"><h2>पूजा एवं साधना</h2></div>
+    <div class="chips"><button data-modal="ganesh">गणेश</button><button data-modal="lakshmi">लक्ष्मी</button><button data-modal="shiv">शिव</button><button data-modal="hanuman">हनुमान</button><button data-modal="krishna">कृष्ण</button><button data-modal="durga">दुर्गा</button><button data-modal="vishnu">विष्णु</button><button data-modal="tulsi">तुलसी</button><button data-modal="mantra">मंत्र</button>
+    </div>
+  </section>
+
+  <section class="section youtube"><div><span class="pill">▶ Latest Videos</span><h2>हमारे YouTube चैनल से जुड़ें</h2><p>नई पूजा, व्रत, वास्तु और धार्मिक वीडियो देखें।</p></div><a class="primary" href="https://www.youtube.com/@AdhyatmikGyan24x7" target="_blank" rel="noopener">YouTube देखें</a></section>
+
+  <section class="section astrology"><div class="sectionHead"><h2>🔮 Free Kundali Consultation</h2></div><p class="muted">अपनी जन्म जानकारी भेजें। विस्तृत Kundali analysis को मैन्युअली तैयार करके आपके दिए गए ईमेल पर भेजा जाएगा।</p>
+    <form id="kundaliForm">
+      <input required name="name" placeholder="पूरा नाम / Full Name">
+      <input required type="email" name="email" placeholder="ईमेल / Email">
+      <input required name="dob" type="date" aria-label="Date of birth">
+      <input required name="tob" type="time" aria-label="Time of birth">
+      <input required name="pob" placeholder="जन्म स्थान / Place of Birth">
+      <textarea name="question" rows="3" placeholder="आपका एक मुख्य प्रश्न / Your main question"></textarea>
+      <button class="primary" type="submit">Get Free Kundali</button>
+    </form>
+    <p class="tiny">नोट: यह ऐप सामान्य आध्यात्मिक/ज्योतिषीय जानकारी के लिए है। व्यक्तिगत निर्णयों के लिए उचित विशेषज्ञ सलाह लें।</p>
+  </section>
+
+  <section class="section contact"><div class="sectionHead"><h2>संपर्क करें</h2></div><div class="contactGrid"><a href="mailto:buzzjamshedpur@gmail.com">📧 Email</a><a id="phoneLink" href="#">📞 Phone</a><a id="waLink" href="#">💬 WhatsApp</a></div><p class="tiny">Phone और WhatsApp नंबर Admin Panel में बाद में जोड़े जा सकते हैं।</p></section>
+</main>
+<nav class="bottom"><button class="active" data-scroll="top">⌂<span>Home</span></button><button data-modal="puja">🪔<span>Puja</span></button><button data-modal="mantra">🕉️<span>Mantra</span></button><button data-scroll="astrology">🔮<span>Kundali</span></button></nav>
+<div class="modal" id="modal" aria-hidden="true"><div class="modalBox"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<script src="app.js"></script>
+</body>
+</html>
