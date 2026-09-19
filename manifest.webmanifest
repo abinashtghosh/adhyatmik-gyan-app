@@ -1,8 +1,11 @@
 {
+  "id": "com.adhyatmik.gyan.app",
   "name": "Adhyatmik Gyan",
   "short_name": "Adhyatmik",
+  "description": "Adhyatmik Gyan – Puja, Vastu, Dharmik Upay, Vrat, Mantra aur Festival Calendar.",
   "start_url": "./index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#d97706",
   "icons": [
