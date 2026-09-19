@@ -1,1 +1,22 @@
-{"name":"Adhyatmik Gyan – Puja, Vastu & Dharmik Upay","short_name":"Adhyatmik Gyan","start_url":"./","display":"standalone","background_color":"#fff8e7","theme_color":"#d97706","description":"Puja, Vastu, Dharmik Upay, Vrat, Mantra and Festival Calendar.","icons":[{"src":"assets/logo.png","sizes":"192x192","type":"image/png"},{"src":"assets/logo.png","sizes":"512x512","type":"image/png"}]}
+{
+  "name": "Adhyatmik Gyan",
+  "short_name": "Adhyatmik",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d97706",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
