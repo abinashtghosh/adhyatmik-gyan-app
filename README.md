@@ -26,3 +26,4 @@ Do not put passwords, API keys, private email credentials, or customer data into
 
 ## Next upgrade
 A simple admin panel can later be connected through a backend such as Firebase so content can be updated without editing code.
+.
