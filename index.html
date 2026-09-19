@@ -54,5 +54,10 @@
 <nav class="bottom"><button class="active" data-scroll="top">⌂<span>Home</span></button><button data-modal="puja">🪔<span>Puja</span></button><button data-modal="mantra">🕉️<span>Mantra</span></button><button data-scroll="astrology">🔮<span>Kundali</span></button></nav>
 <div class="modal" id="modal" aria-hidden="true"><div class="modalBox"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
 <script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
+</script>
 </body>
 </html>
