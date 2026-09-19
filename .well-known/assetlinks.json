@@ -1,8 +1,10 @@
 [{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.adhyatmik.gyan.app",
-        "sha256_cert_fingerprints": ["B4:35:D4:4A:0F:90:E3:12:E3:22:64:C3:0D:2C:53:80:29:04:F3:41:63:89:32:DD:76:1B:09:AA:A4:1F:7D:A2"]
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.adhyatmik.gyan.app",
+    "sha256_cert_fingerprints": ["B4:35:D4:4A:0F:90:E3:12:E3:22:64:C3:0D:2C:53:80:29:04:F3:41:63:89:32:DD:76:1B:09:AA:A4:1F:7D:A2"]
       }
-    }]
+    ]
+  }
+}]
