@@ -22,9 +22,9 @@
 
   <section class="section"><div class="sectionHead"><h2>आज की जानकारी</h2></div>
     <div class="grid cards">
-      <button class="card" data-modal="puja"><span>🪔</span><b>Today's Puja</b><small>आज की पूजा विधि</small></button>
-      <button class="card" data-modal="vrat"><span>🌙</span><b>Today's Vrat</b><small>व्रत एवं धार्मिक जानकारी</small></button>
-      <button class="card" data-modal="calendar"><span>📅</span><b>Festival Calendar</b><small>पर्व और व्रत</small></button>
+      <button class="card" id="pujaCardBtn" data-modal="puja"><span>🪔</span><b>Today's Puja</b><small id="todayPujaSubText">आज की पूजा विधि</small></button>
+      <button class="card" id="vratCardBtn" data-modal="vrat"><span>🌙</span><b>Today's Vrat</b><small id="todayVratSubText">व्रत एवं धार्मिक जानकारी</small></button>
+      <button class="card" id="calendarCardBtn" data-modal="calendar"><span>📅</span><b>Festival Calendar</b><small>पर्व और व्रत</small></button>
       <button class="card" data-modal="vastu"><span>🏠</span><b>Vastu Tips</b><small>घर के लिए वास्तु सुझाव</small></button>
     </div>
   </section>
@@ -53,8 +53,103 @@
 </main>
 <nav class="bottom"><button class="active" data-scroll="top">⌂<span>Home</span></button><button data-modal="puja">🪔<span>Puja</span></button><button data-modal="mantra">🕉️<span>Mantra</span></button><button data-scroll="astrology">🔮<span>Kundali</span></button></nav>
 <div class="modal" id="modal" aria-hidden="true"><div class="modalBox"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+
 <script src="app.js"></script>
+
 <script>
+  // 1. Festival & Vrat Calendar Data (Aap isme aur dates bhi add kar sakte hain)
+  const festivalCalendarData = {
+    "2026-09-20": {
+      vratTitle: "इन्द्रा एकादशी व्रत (Indira Ekadashi)",
+      vratDesc: "आज इन्द्रा एकादशी का पावन व्रत है। यह व्रत पितरों की शांति और मोक्ष प्राप्ति के लिए रखा जाता है।",
+      pujaTitle: "भगवान विष्णु एवं शालिग्राम पूजा",
+      pujaDesc: "आज के दिन पीले फूल, तुलसी दल, और पंचामृत से भगवान विष्णु और शालिग्राम जी की पूजा करें। 'ॐ नमो भगवते वासुदेवाय' का जप करें।"
+    },
+    "2026-09-21": {
+      vratTitle: "सोमवार व्रत / प्रदोष व्रत तैयारी",
+      vratDesc: "आज सोमवार का दिन भगवान शिव की भक्ति के लिए विशेष उत्तम है।",
+      pujaTitle: "शिवलिंग जलाभिषेक एवं बेलपत्र पूजा",
+      pujaDesc: "प्रातःकाल स्नान के पश्चात शिवलिंग पर जल, दूध और बेलपत्र अर्पित करें। महामृत्युंजय मंत्र का 108 बार जप करें।"
+    },
+    "2026-09-22": {
+      vratTitle: "भौम प्रदोष व्रत",
+      vratDesc: "आज मंगलवार प्रदोष व्रत है। यह व्रत ऋण मुक्ति और संकट निवारण के लिए अत्यंत फलदायी है।",
+      pujaTitle: "हनुमान जी एवं शिव संध्या पूजा",
+      pujaDesc: "संध्या समय भगवान शिव का अभिषेक करें और हनुमान चालीसा का पाठ करें।"
+    },
+    "2026-09-25": {
+      vratTitle: "अनंत चतुर्दशी व्रत",
+      vratDesc: "आज अनंत चतुर्दशी है। 14 गांठों वाला अनंत सूत्र धारण करने से समस्त दुखों का नाश होता है।",
+      pujaTitle: "भगवान अनंत (विष्णु) पूजा एवं गणेश विसर्जन",
+      pujaDesc: "श्री हरि के अनंत रूप की पूजा करें और गणेश जी की विसर्जन आरती श्रद्धापूर्वक संपन्न करें।"
+    }
+  };
+
+  // 2. Date Checking Logic
+  function autoUpdateDailyInfo() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    const pujaSub = document.getElementById("todayPujaSubText");
+    const vratSub = document.getElementById("todayVratSubText");
+
+    if (festivalCalendarData[todayStr]) {
+      const data = festivalCalendarData[todayStr];
+      if (vratSub) vratSub.innerText = data.vratTitle;
+      if (pujaSub) pujaSub.innerText = data.pujaTitle;
+    } else {
+      if (vratSub) vratSub.innerText = "आज का नित्य व्रत एवं नियम";
+      if (pujaSub) pujaSub.innerText = "नित्य संध्या एवं प्रातः पूजा विधि";
+    }
+  }
+
+  // Run on page load
+  document.addEventListener("DOMContentLoaded", function() {
+    autoUpdateDailyInfo();
+
+    // 3. Dynamic Modal Content Interceptor
+    const modalContent = document.getElementById("modalContent");
+    const modal = document.getElementById("modal");
+
+    document.addEventListener("click", function(e) {
+      const btn = e.target.closest("[data-modal]");
+      if (!btn) return;
+
+      const modalType = btn.getAttribute("data-modal");
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayStr = `${yyyy}-${mm}-${dd}`;
+      const currentData = festivalCalendarData[todayStr];
+
+      if (modalType === "puja") {
+        if (currentData) {
+          modalContent.innerHTML = `<h2>🪔 ${currentData.pujaTitle}</h2><p style="margin-top:10px;">${currentData.pujaDesc}</p>`;
+        } else {
+          modalContent.innerHTML = `<h2>🪔 आज की पूजा विधि</h2><p style="margin-top:10px;">आज प्रातः स्नान के बाद सूर्य देव को जल अर्पित करें, तदोपरांत अपने इष्ट देव का ध्यान कर आरती उतारें।</p>`;
+        }
+      } else if (modalType === "vrat") {
+        if (currentData) {
+          modalContent.innerHTML = `<h2>🌙 ${currentData.vratTitle}</h2><p style="margin-top:10px;">${currentData.vratDesc}</p>`;
+        } else {
+          modalContent.innerHTML = `<h2>🌙 आज का व्रत एवं नियम</h2><p style="margin-top:10px;">आज सात्विक आहार ग्रहण करें, असत्य भाषण से बचें और संध्या काल में प्रभु स्मरण करें।</p>`;
+        }
+      } else if (modalType === "calendar") {
+        let calHtml = `<h2>📅 पर्व एवं व्रत कैलेंडर</h2><ul style="list-style:none; padding:0; margin-top:15px;">`;
+        for (let dateKey in festivalCalendarData) {
+          const item = festivalCalendarData[dateKey];
+          calHtml += `<li style="padding:10px 0; border-bottom:1px solid #eee;"><b>${dateKey}:</b> ${item.vratTitle}</li>`;
+        }
+        calHtml += `</ul>`;
+        modalContent.innerHTML = calHtml;
+      }
+    });
+  });
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js');
   }
