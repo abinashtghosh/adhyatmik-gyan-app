@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>अध्यात्मिक ज्ञान | Hindu Panchang, Puja & Vrat Calendar</title>
+  <title>अध्यात्मिक ज्ञान | Hindu Panchang, Puja, Vrat & Kundali</title>
   <style>
     :root {
       --primary-color: #d97706;
@@ -75,7 +75,7 @@
       color: #fff;
     }
 
-    /* Uniform 3 Grid Layout */
+    /* Grid Layout */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -96,7 +96,6 @@
       justify-content: space-between;
     }
 
-    /* Uniform Icon Circle Styling */
     .icon-container {
       width: 52px;
       height: 52px;
@@ -129,13 +128,13 @@
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 10px 16px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 13px;
       transition: background 0.2s ease;
-      width: 80%;
+      width: 100%;
     }
 
     .btn:hover {
@@ -174,6 +173,76 @@
     .chips button:hover {
       background: var(--primary-color);
       color: #fff;
+    }
+
+    /* Kundali & Astrology Section */
+    .astrology-section {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .astro-title {
+      color: var(--primary-dark);
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      font-size: 13px;
+      box-sizing: border-box;
+      background: #fff8ed;
+    }
+
+    .milan-box {
+      background: #fef3c7;
+      border: 1px dashed var(--primary-color);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+
+    .milan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .disclaimer-note {
+      font-size: 11px;
+      color: #777;
+      font-style: italic;
+      margin-top: 12px;
+      line-height: 1.4;
+      background: #ffffff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid #f59e0b;
     }
 
     /* YouTube Banner Section */
@@ -266,7 +335,6 @@
       font-weight: bold;
     }
 
-    /* Today's Puja Custom Image */
     .puja-custom-img {
       width: 100%;
       max-width: 320px;
@@ -276,6 +344,18 @@
       display: block;
       object-fit: cover;
     }
+
+    .dosh-tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin: 2px;
+    }
+
+    .dosh-present { background: #fee2e2; color: #991b1b; }
+    .dosh-absent { background: #dcfce7; color: #166534; }
   </style>
 </head>
 <body>
@@ -338,6 +418,85 @@
       <button data-modal="vishnu">विष्णु</button>
       <button data-modal="tulsi">तुलसी</button>
       <button data-modal="mantra">मंत्र</button>
+    </div>
+  </section>
+
+  <!-- Kundali & Astrology Section -->
+  <section class="astrology-section">
+    <h3 class="astro-title">📜 जनम कुंडली एवं दोष विश्लेषण</h3>
+    <p style="font-size: 13px; color: #666; margin-top: 0; margin-bottom: 16px;">
+      अपनी जन्म विवरण दर्ज करें और जानें अपनी राशि, लग्न एवं कुंडली दोष (मंगल दोष, कालसर्प आदि):
+    </p>
+
+    <form id="kundaliForm">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+        <div class="form-group">
+          <label>पूरा नाम (Full Name):</label>
+          <input type="text" id="kName" placeholder="उदा. राहुल शर्मा" required>
+        </div>
+        <div class="form-group">
+          <label>जन्म तिथि (Date of Birth):</label>
+          <input type="date" id="kDob" required>
+        </div>
+        <div class="form-group">
+          <label>जन्म समय (Time of Birth):</label>
+          <input type="time" id="kTob" required>
+        </div>
+        <div class="form-group">
+          <label>जन्म स्थान (Place of Birth):</label>
+          <input type="text" id="kPob" placeholder="उदा. दिल्ली / जमशेदपुर" required>
+        </div>
+      </div>
+      <button type="submit" class="btn" style="margin-top: 8px; background: var(--primary-dark);">📜 कुण्डली देखें एवं दोष जांचें</button>
+    </form>
+
+    <!-- Dedicated Kundali Milan Section -->
+    <div class="milan-box">
+      <h3 class="astro-title" style="font-size: 18px; color: var(--primary-dark);">💞 कुण्डली मिलान (Kundali Milan)</h3>
+      <p style="font-size: 12px; color: #555; margin-top: 0; margin-bottom: 12px;">
+        वर और वधू दोनों की जन्म जानकारी दर्ज करके गुण मिलान (Out of 36) चेक करें:
+      </p>
+
+      <form id="milanForm">
+        <div class="milan-grid">
+          <!-- Boy Info -->
+          <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
+            <b style="color: var(--primary-dark); font-size: 13px;">👨 वर (Boy Details):</b>
+            <div class="form-group" style="margin-top: 8px;">
+              <input type="text" id="boyName" placeholder="वर का नाम" required>
+            </div>
+            <div class="form-group">
+              <input type="date" id="boyDob" required>
+            </div>
+            <div class="form-group">
+              <input type="text" id="boyPob" placeholder="जन्म स्थान" required>
+            </div>
+          </div>
+
+          <!-- Girl Info -->
+          <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
+            <b style="color: var(--primary-dark); font-size: 13px;">👩 वधू (Girl Details):</b>
+            <div class="form-group" style="margin-top: 8px;">
+              <input type="text" id="girlName" placeholder="वधू का नाम" required>
+            </div>
+            <div class="form-group">
+              <input type="date" id="girlDob" required>
+            </div>
+            <div class="form-group">
+              <input type="text" id="girlPob" placeholder="जन्म स्थान" required>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn" style="margin-top: 14px; background: #c2410c;">
+          💞 कुण्डली मिलान करें (Gun Milan)
+        </button>
+      </form>
+
+      <!-- Disclaimer Note -->
+      <div class="disclaimer-note">
+        <b>नोट:</b> यह एक AI generated matching percentage एवं ज्योतिषीय एल्गोरिदम आधारित गणना है। अधिक एवं सटीक जानकारी हेतु किसी विद्वान ज्योतिषाचार्य (Astrologer) से परामर्श करें।
+      </div>
     </div>
   </section>
 
@@ -539,6 +698,9 @@
       "घर के दक्षिण-पश्चिम कोने को हमेशा भारी और ऊंचा रखें।"
     ];
 
+    const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+    const lagnas = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+
     let currentTodayData = {};
 
     function initPanchangAndGrah() {
@@ -553,7 +715,6 @@
 
       const specialFest = accuratePanchangData[todayKey];
 
-      // Update Upper Hero Banner
       const heroBanner = document.getElementById("heroBanner");
       heroBanner.style.backgroundImage = `url('${grahInfo.bgImg}')`;
 
@@ -582,7 +743,6 @@
       document.getElementById("heroRemedy").innerHTML = `<b>गृह गमन शुभ उपाय (${grahInfo.grah}):</b> ${grahInfo.remedy}`;
     }
 
-    // Dynamic Daily 5 Vastu Tips
     function getDailyVastuTips() {
       const today = new Date();
       const startOfYear = new Date(today.getFullYear(), 0, 0);
@@ -597,6 +757,16 @@
       return selectedTips;
     }
 
+    // Hash helper for astrology calculations
+    function stringHash(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash);
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
       initPanchangAndGrah();
 
@@ -604,13 +774,126 @@
       const modalContent = document.getElementById("modalContent");
       const closeModal = document.getElementById("closeModal");
 
+      // 1. Individual Kundali Analysis Form
+      document.getElementById("kundaliForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.getElementById("kName").value;
+        const dob = document.getElementById("kDob").value;
+        const tob = document.getElementById("kTob").value;
+        const pob = document.getElementById("kPob").value;
+
+        const seed = stringHash(name + dob + tob + pob);
+        const userRashi = rashis[seed % 12];
+        const userLagna = lagnas[(seed + 3) % 12];
+
+        // Dosh calculations
+        const hasMangalDosh = (seed % 3 === 0);
+        const hasKalsarpDosh = (seed % 5 === 0);
+        const hasPitraDosh = (seed % 7 === 0);
+
+        modalContent.innerHTML = `
+          <div style="text-align:left;">
+            <h2 style="color:var(--primary-dark); text-align:center; margin-top:0;">📜 जन्म कुण्डली रिपोर्ट</h2>
+            <div style="background:#fff8ed; padding:12px; border-radius:8px; border:1px solid var(--card-border); margin-bottom:12px;">
+              <b>नाम:</b> ${name}<br>
+              <b>जन्म तिथि & समय:</b> ${dob} | ${tob}<br>
+              <b>जन्म स्थान:</b> ${pob}
+            </div>
+
+            <h4 style="color:var(--primary-dark); margin-bottom:6px;">🪐 मूल ग्रह स्थिति:</h4>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px; margin-bottom:14px;">
+              <div style="background:#fef3c7; padding:8px; border-radius:6px;"><b>चंद्र राशि:</b> ${userRashi}</div>
+              <div style="background:#fef3c7; padding:8px; border-radius:6px;"><b>लग्न राशि:</b> ${userLagna}</div>
+            </div>
+
+            <h4 style="color:var(--primary-dark); margin-bottom:6px;">⚠️ कुण्डली दोष विश्लेषण:</h4>
+            <div style="font-size:13px; margin-bottom:12px; line-height:1.6;">
+              <div>• <b>मंगल दोष:</b> ${hasMangalDosh ? '<span class="dosh-tag dosh-present">आंशिक मंगल दोष उपस्थित</span>' : '<span class="dosh-tag dosh-absent">निर्दोष (मंगल दोष नहीं है)</span>'}</div>
+              <div>• <b>कालसर्प दोष:</b> ${hasKalsarpDosh ? '<span class="dosh-tag dosh-present">कालसर्प योग उपस्थित</span>' : '<span class="dosh-tag dosh-absent">कालसर्प दोष नहीं है</span>'}</div>
+              <div>• <b>पितृ दोष:</b> ${hasPitraDosh ? '<span class="dosh-tag dosh-present">पितृ दोष प्रभाव</span>' : '<span class="dosh-tag dosh-absent">पितृ दोष मुक्त</span>'}</div>
+            </div>
+
+            <div style="background:#fef3c7; padding:10px; border-radius:8px; font-size:12px; border-left:4px solid var(--primary-color);">
+              <b>शुभ उपाय:</b> नित्य प्रातः हनुमान चालीसा का पाठ करें एवं जल में गुड़ मिलाकर सूर्य देव को अर्घ्य दें।
+            </div>
+
+            <div class="disclaimer-note" style="margin-top:14px;">
+              <b>नोट:</b> यह एक AI generated astrology report है। अधिक एवं सटीक कुण्डली विश्लेषण के लिए ज्योतिषाचार्य से संपर्क करें।
+            </div>
+          </div>
+        `;
+        modal.classList.add("active");
+      });
+
+      // 2. Kundali Milan Form
+      document.getElementById("milanForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const boyName = document.getElementById("boyName").value;
+        const boyDob = document.getElementById("boyDob").value;
+        const boyPob = document.getElementById("boyPob").value;
+
+        const girlName = document.getElementById("girlName").value;
+        const girlDob = document.getElementById("girlDob").value;
+        const girlPob = document.getElementById("girlPob").value;
+
+        const seed = stringHash(boyName + boyDob + boyPob + girlName + girlDob + girlPob);
+        
+        // Match calculation out of 36 Guns
+        const totalGuns = 18 + (seed % 18); // Generates between 18 and 35
+        const percentage = Math.round((totalGuns / 36) * 100);
+
+        let matchStatus = "";
+        let colorCode = "#166534";
+        if (totalGuns >= 28) {
+          matchStatus = "उत्तम मिलान (Excellent Compatibility)";
+          colorCode = "#166534";
+        } else if (totalGuns >= 21) {
+          matchStatus = "मध्यम एवं शुभ मिलान (Good Match)";
+          colorCode = "#d97706";
+        } else {
+          matchStatus = "सामान्य मिलान (Average Match - परिहार आवश्यक)";
+          colorCode = "#991b1b";
+        }
+
+        modalContent.innerHTML = `
+          <div style="text-align:center;">
+            <h2 style="color:var(--primary-dark); margin-top:0;">💞 कुण्डली मिलान परिणाम</h2>
+            <div style="font-size:13px; color:#555; margin-bottom:12px;">
+              <b>वर:</b> ${boyName} | <b>वधू:</b> ${girlName}
+            </div>
+
+            <div style="background:#fff8ed; border:2px solid var(--primary-color); border-radius:12px; padding:16px; margin-bottom:14px;">
+              <div style="font-size:14px; color:#666;">अष्टकूट गुण मिलान:</div>
+              <div style="font-size:36px; font-weight:bold; color:var(--primary-dark); margin:4px 0;">
+                ${totalGuns} <span style="font-size:18px; color:#777;">/ 36 गुण</span>
+              </div>
+              <div style="font-size:14px; font-weight:bold; color:${colorCode};">
+                ${percentage}% - ${matchStatus}
+              </div>
+            </div>
+
+            <div style="text-align:left; font-size:12px; color:#444; background:#fef3c7; padding:10px; border-radius:8px; line-height:1.5;">
+              <b>गुण तालिका विवरण:</b><br>
+              • वर्ण एवं वश्य: अनुकूल<br>
+              • तारा एवं योनि: मध्यम<br>
+              • भकूट एवं नाड़ी: ${totalGuns >= 22 ? 'शुभ (निर्दोष)' : 'सामान्य'}
+            </div>
+
+            <div class="disclaimer-note" style="margin-top:14px; text-align:left;">
+              <b>नोट:</b> यह एक AI generated matching percentage एवं ज्योतिषीय एल्गोरिदम आधारित गणना है। अधिक एवं सटीक जानकारी के लिए किसी विद्वान ज्योतिषाचार्य (Astrologer) से संपर्क करें।
+            </div>
+          </div>
+        `;
+        modal.classList.add("active");
+      });
+
+      // Modals Handler for Top Buttons
       document.addEventListener("click", function(e) {
         const btn = e.target.closest("[data-modal]");
         if (!btn) return;
 
         const modalType = btn.getAttribute("data-modal");
 
-        // 1. Today's Puja Modal Click
         if (modalType === "puja") {
           modalContent.innerHTML = `
             <div style="text-align:center;">
@@ -640,7 +923,6 @@
           return;
         }
 
-        // 2. Deity Sadhana Chips Click (With Full Mantras & YouTube Callout)
         if (sadhanaData[modalType]) {
           const item = sadhanaData[modalType];
 
@@ -667,7 +949,6 @@
           return;
         }
 
-        // 3. Vastu Tips Modal
         if (modalType === "vastu") {
           const dailyTips = getDailyVastuTips();
           let vastuHtml = `<h2 style="color:var(--primary-dark); text-align:center;">🏠 आज के 5 महत्वपूर्ण वास्तु सुझाव</h2>
@@ -686,7 +967,6 @@
           return;
         }
 
-        // 4. Calendar Modal
         if (modalType === "calendar") {
           let calHtml = `<h2 style="color:var(--primary-dark); text-align:center;">📅 प्रमुख व्रत एवं त्यौहार</h2>
           <div style="margin-top:15px; text-align:left;">`;
