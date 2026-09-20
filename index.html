@@ -16,8 +16,14 @@
   <button class="lang" id="langBtn" aria-label="Change language">EN</button>
 </header>
 <main>
-  <section class="hero">
-    <div><span class="pill">ॐ • सनातन धर्म</span><h2 id="heroTitle">आज का आध्यात्मिक संदेश</h2><p id="heroText">श्रद्धा, सेवा और सकारात्मक कर्म को अपने जीवन का हिस्सा बनाएं।</p></div>
+  <!-- Dynamic Dynamic Banner Section -->
+  <section class="hero" id="heroBanner" style="background-size: cover; background-position: center; transition: background 0.5s ease; border-radius: 16px; min-height: 200px; display: flex; align-items: center; padding: 20px; position: relative; overflow: hidden;">
+    <div style="background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px); padding: 18px; border-radius: 12px; width: 100%; color: #fff; border: 1px solid rgba(255,255,255,0.2);">
+      <span class="pill" id="heroPill" style="background: rgba(217, 119, 6, 0.85); color: #fff; font-weight: bold;">ॐ • आज का विशेष संदेश</span>
+      <h2 id="heroTitle" style="color: #ffffff; font-size: 22px; margin: 8px 0 4px 0; font-weight: 700;">आज का आध्यात्मिक संदेश</h2>
+      <p id="heroText" style="color: #fff8ed; font-size: 15px; margin: 0 0 8px 0; line-height: 1.4;">श्रद्धा, सेवा और सकारात्मक कर्म को अपने जीवन का हिस्सा बनाएं।</p>
+      <div id="heroMantra" style="font-size: 14px; font-weight: 600; color: #fde68a; background: rgba(0,0,0,0.3); padding: 6px 10px; border-radius: 6px; display: inline-block;"></div>
+    </div>
   </section>
 
   <section class="section"><div class="sectionHead"><h2>आज की जानकारी</h2></div>
@@ -66,265 +72,135 @@
 <script src="app.js"></script>
 
 <script>
-  // 1. Panchang & Festival Calendar Data (Sep 2026 - Dec 2026)
-  const festivalCalendarData = {
-    // September 2026
-    "2026-09-01": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
-    "2026-09-02": { tithi: "कृष्ण पंचमी", festival: "सामान्य पूजा" },
-    "2026-09-03": { tithi: "कृष्ण षष्ठी", festival: "मासिक कार्तिकाई" },
-    "2026-09-04": { tithi: "कृष्ण अष्टमी", festival: "श्रीकृष्ण जन्माष्टमी, कालाष्टमी" },
-    "2026-09-05": { tithi: "कृष्ण नवमी", festival: "कृष्ण पूजा" },
-    "2026-09-06": { tithi: "कृष्ण दशमी", festival: "विष्णु पूजा" },
-    "2026-09-07": { tithi: "कृष्ण एकादशी", festival: "अजा एकादशी व्रत" },
-    "2026-09-08": { tithi: "कृष्ण द्वादशी", festival: "भौम प्रदोष" },
-    "2026-09-09": { tithi: "कृष्ण त्रयोदशी", festival: "प्रदोष पूर्व पूजा" },
-    "2026-09-10": { tithi: "कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि" },
-    "2026-09-11": { tithi: "अमावस्या", festival: "भाद्रपद अमावस्या" },
-    "2026-09-12": { tithi: "शुक्ल प्रतिपदा", festival: "नवचंद्र पूजा" },
-    "2026-09-13": { tithi: "शुक्ल द्वितीया", festival: "सामान्य पूजा" },
-    "2026-09-14": { tithi: "शुक्ल तृतीया/चतुर्थी", festival: "हरितालिका तीज, गणेश चतुर्थी" },
-    "2026-09-15": { tithi: "चतुर्थी/पंचमी", festival: "ऋषि पंचमी" },
-    "2026-09-16": { tithi: "शुक्ल षष्ठी", festival: "स्कंद षष्ठी, बलराम जयंती" },
-    "2026-09-17": { tithi: "शुक्ल षष्ठी", festival: "विश्वकर्मा पूजा, कन्या संक्रांति" },
-    "2026-09-18": { tithi: "शुक्ल सप्तमी", festival: "सप्तमी पूजा" },
-    "2026-09-19": { tithi: "शुक्ल अष्टमी", festival: "राधाष्टमी, दुर्गाष्टमी" },
-    "2026-09-20": { tithi: "शुक्ल नवमी", festival: "परिवर्तिनी एकादशी व्रत" },
-    "2026-09-21": { tithi: "शुक्ल दशमी", festival: "विष्णु/दशमी पूजा" },
-    "2026-09-22": { tithi: "शुक्ल एकादशी", festival: "एकादशी पारण/विष्णु पूजा" },
-    "2026-09-23": { tithi: "शुक्ल द्वादशी", festival: "गुरु प्रदोष व्रत" },
-    "2026-09-24": { tithi: "शुक्ल त्रयोदशी", festival: "अनंत चतुर्दशी, गणेश विसर्जन" },
-    "2026-09-25": { tithi: "शुक्ल चतुर्दशी", festival: "सप्तमी / नवमी पूजा" },
-    "2026-09-26": { tithi: "पूर्णिमा", festival: "भाद्रपद पूर्णिमा" },
-    "2026-09-27": { tithi: "कृष्ण प्रतिपदा", festival: "पितृ पक्ष प्रारंभ" },
-    "2026-09-28": { tithi: "कृष्ण द्वितीया", festival: "पितृ श्राद्ध" },
-    "2026-09-29": { tithi: "कृष्ण तृतीया", festival: "संकष्टी चतुर्थी" },
-    "2026-09-30": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
-
-    // October 2026
-    "2026-10-01": { tithi: "कृष्ण पंचमी", festival: "सामान्य पूजा" },
-    "2026-10-02": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
-    "2026-10-03": { tithi: "कृष्ण सप्तमी", festival: "कालाष्टमी" },
-    "2026-10-04": { tithi: "कृष्ण नवमी", festival: "पितृ पूजा" },
-    "2026-10-05": { tithi: "कृष्ण दशमी", festival: "शिव पूजा" },
-    "2026-10-06": { tithi: "कृष्ण एकादशी", festival: "इंद्रा एकादशी" },
-    "2026-10-07": { tithi: "कृष्ण द्वादशी", festival: "एकादशी पारण" },
-    "2026-10-08": { tithi: "कृष्ण त्रयोदशी", festival: "गुरु प्रदोष" },
-    "2026-10-09": { tithi: "कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि" },
-    "2026-10-10": { tithi: "अमावस्या", festival: "सर्वपितृ अमावस्या / महालया" },
-    "2026-10-11": { tithi: "शुक्ल प्रतिपदा", festival: "शारदीय नवरात्रा प्रारंभ, घटस्थापना" },
-    "2026-10-12": { tithi: "शुक्ल द्वितीया", festival: "नवरात्रा द्वितीया" },
-    "2026-10-13": { tithi: "शुक्ल तृतीया", festival: "दुर्गा पूजा" },
-    "2026-10-14": { tithi: "शुक्ल चतुर्थी", festival: "विनायक चतुर्थी" },
-    "2026-10-15": { tithi: "शुक्ल पंचमी", festival: "नवरात्रा पूजा" },
-    "2026-10-16": { tithi: "शुक्ल षष्ठी", festival: "स्कंद षष्ठी / सरस्वती आवाहन" },
-    "2026-10-17": { tithi: "शुक्ल सप्तमी", festival: "सरस्वती पूजा / दुर्गा सप्तमी" },
-    "2026-10-18": { tithi: "शुक्ल सप्तमी", festival: "महा सप्तमी" },
-    "2026-10-19": { tithi: "शुक्ल अष्टमी", festival: "महाष्टमी / दुर्गाष्टमी" },
-    "2026-10-20": { tithi: "शुक्ल नवमी/दशमी", festival: "महानवमी / विजयादशमी-दशहरा" },
-    "2026-10-21": { tithi: "शुक्ल दशमी", festival: "दशमी पूजा" },
-    "2026-10-22": { tithi: "शुक्ल एकादशी", festival: "पापांकुशा एकादशी" },
-    "2026-10-23": { tithi: "शुक्ल द्वादशी", festival: "शुक्र प्रदोष" },
-    "2026-10-24": { tithi: "शुक्ल त्रयोदशी", festival: "शिव पूजा" },
-    "2026-10-25": { tithi: "शुक्ल चतुर्दशी", festival: "पूर्णिमा पूर्व पूजा" },
-    "2026-10-26": { tithi: "पूर्णिमा", festival: "शरद पूर्णिमा / कोजागरी पूजा" },
-    "2026-10-27": { tithi: "कृष्ण प्रतिपदा", festival: "कार्तिक मास प्रारंभ" },
-    "2026-10-28": { tithi: "कृष्ण तृतीया", festival: "सामान्य पूजा" },
-    "2026-10-29": { tithi: "कृष्ण चतुर्थी", festival: "करवा चौथ / संकष्टी चतुर्थी" },
-    "2026-10-30": { tithi: "कृष्ण पंचमी", festival: "करवा चौथ संबंधित पूजा" },
-    "2026-10-31": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
-
-    // November 2026
-    "2026-11-01": { tithi: "कृष्ण सप्तमी", festival: "कालाष्टमी" },
-    "2026-11-02": { tithi: "कृष्ण अष्टमी", festival: "शिव/कृष्ण पूजा" },
-    "2026-11-03": { tithi: "कृष्ण नवमी", festival: "सामान्य पूजा" },
-    "2026-11-04": { tithi: "कृष्ण दशमी", festival: "विष्णु पूजा" },
-    "2026-11-05": { tithi: "कृष्ण एकादशी", festival: "इंद्रा एकादशी" },
-    "2026-11-06": { tithi: "कृष्ण द्वादशी", festival: "धनतेरस, धन्वंतरि पूजा" },
-    "2026-11-07": { tithi: "कृष्ण त्रयोदशी", festival: "धनतेरस संबंधित पूजा" },
-    "2026-11-08": { tithi: "कृष्ण चतुर्दशी", festival: "दीपावली / लक्ष्मी पूजा / मासिक शिवरात्रि" },
-    "2026-11-09": { tithi: "अमावस्या", festival: "सोमवती अमावस्या" },
-    "2026-11-10": { tithi: "शुक्ल प्रतिपदा", festival: "गोवर्धन पूजा / अन्नकूट" },
-    "2026-11-11": { tithi: "शुक्ल द्वितीया", festival: "भाई दूज" },
-    "2026-11-12": { tithi: "शुक्ल तृतीया", festival: "सामान्य पूजा" },
-    "2026-11-13": { tithi: "शुक्ल चतुर्थी", festival: "विनायक चतुर्थी" },
-    "2026-11-14": { tithi: "शुक्ल पंचमी", festival: "पंचमी पूजा" },
-    "2026-11-15": { tithi: "शुक्ल षष्ठी", festival: "स्कंद षष्ठी / छठ पूजा" },
-    "2026-11-16": { tithi: "शुक्ल सप्तमी", festival: "सूर्य पूजा" },
-    "2026-11-17": { tithi: "शुक्ल अष्टमी", festival: "मासिक दुर्गाष्टमी" },
-    "2026-11-18": { tithi: "शुक्ल नवमी", festival: "नवमी पूजा" },
-    "2026-11-19": { tithi: "शुक्ल नवमी", festival: "विष्णु पूजा" },
-    "2026-11-20": { tithi: "शुक्ल एकादशी", festival: "देवउठनी/प्रबोधनी एकादशी" },
-    "2026-11-21": { tithi: "शुक्ल द्वादशी", festival: "तुलसी विवाह / विष्णु पूजा" },
-    "2026-11-22": { tithi: "शुक्ल त्रयोदशी", festival: "रवि प्रदोष" },
-    "2026-11-23": { tithi: "शुक्ल चतुर्दशी", festival: "शिव पूजा" },
-    "2026-11-24": { tithi: "पूर्णिमा", festival: "कार्तिक पूर्णिमा / देव दीपावली" },
-    "2026-11-25": { tithi: "कृष्ण प्रतिपदा", festival: "कार्तिक मास समापन" },
-    "2026-11-26": { tithi: "कृष्ण द्वितीया", festival: "सामान्य पूजा" },
-    "2026-11-27": { tithi: "कृष्ण तृतीया", festival: "गणाधिप संकष्टी चतुर्थी" },
-    "2026-11-28": { tithi: "कृष्ण पंचमी", festival: "गणेश पूजा" },
-    "2026-11-29": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
-    "2026-11-30": { tithi: "कृष्ण सप्तमी", festival: "शिव पूजा" },
-
-    // December 2026
-    "2026-12-01": { tithi: "कृष्ण अष्टमी", festival: "भैरव / शिव पूजा" },
-    "2026-12-02": { tithi: "कृष्ण नवमी", festival: "कालभैरव जयंती" },
-    "2026-12-03": { tithi: "कृष्ण दशमी", festival: "विष्णु पूजा" },
-    "2026-12-04": { tithi: "कृष्ण एकादशी", festival: "उत्पन्ना एकादशी" },
-    "2026-12-05": { tithi: "कृष्ण द्वादशी", festival: "एकादशी पारण" },
-    "2026-12-06": { tithi: "कृष्ण त्रयोदशी", festival: "रवि प्रदोष" },
-    "2026-12-07": { tithi: "कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि" },
-    "2026-12-08": { tithi: "अमावस्या", festival: "दर्श अमावस्या" },
-    "2026-12-09": { tithi: "शुक्ल प्रतिपदा", festival: "मार्गशीर्ष मास प्रारंभ" },
-    "2026-12-10": { tithi: "शुक्ल प्रतिपदा", festival: "चंद्र दर्शन" },
-    "2026-12-11": { tithi: "शुक्ल द्वितीया", festival: "सामान्य पूजा" },
-    "2026-12-12": { tithi: "शुक्ल तृतीया", festival: "गौरी / देवी पूजा" },
-    "2026-12-13": { tithi: "शुक्ल चतुर्थी", festival: "विनायक चतुर्थी" },
-    "2026-12-14": { tithi: "शुक्ल पंचमी", festival: "विवाह पंचमी" },
-    "2026-12-15": { tithi: "शुक्ल षष्ठी", festival: "चंपा षष्ठी / स्कंद षष्ठी" },
-    "2026-12-16": { tithi: "शुक्ल सप्तमी", festival: "धनु संक्रांति" },
-    "2026-12-17": { tithi: "शुक्ल अष्टमी", festival: "मासिक दुर्गाष्टमी" },
-    "2026-12-18": { tithi: "शुक्ल नवमी", festival: "देवी पूजा" },
-    "2026-12-19": { tithi: "शुक्ल दशमी", festival: "विष्णु पूजा" },
-    "2026-12-20": { tithi: "शुक्ल एकादशी", festival: "गीता जयंती / मोक्षदा एकादशी / वैकुंठ एकादशी" },
-    "2026-12-21": { tithi: "शुक्ल द्वादशी", festival: "सोम प्रदोष" },
-    "2026-12-22": { tithi: "शुक्ल त्रयोदशी", festival: "शिव पूजा" },
-    "2026-12-23": { tithi: "शुक्ल चतुर्दशी", festival: "दत्तात्रेय जयंती" },
-    "2026-12-24": { tithi: "पूर्णिमा", festival: "मार्गशीर्ष पूर्णिमा / सत्यनारायण पूजा" },
-    "2026-12-25": { tithi: "कृष्ण द्वितीया", festival: "सामान्य पूजा" },
-    "2026-12-26": { tithi: "कृष्ण तृतीया", festival: "संकष्टी चतुर्थी" },
-    "2026-12-27": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
-    "2026-12-28": { tithi: "कृष्ण पंचमी", festival: "शिव/गणेश पूजा" },
-    "2026-12-29": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
-    "2026-12-30": { tithi: "कृष्ण सप्तमी", festival: "कालाष्टमी" },
-    "2026-12-31": { tithi: "कृष्ण अष्टमी", festival: "अष्टमी पूजा" }
-  };
-
-  // 2. 50 Vastu Tips Data
-  const vastuTipsData = [
-    { topic: "मुख्य द्वार", tip: "मुख्य प्रवेश द्वार साफ, व्यवस्थित और अच्छी रोशनी वाला रखें।" },
-    { topic: "मुख्य द्वार", tip: "मुख्य दरवाजे के सामने कूड़ा, टूटे सामान या अनावश्यक वस्तुएँ न रखें।" },
-    { topic: "मुख्य द्वार", tip: "मुख्य द्वार का आकार घर के अनुपात में संतुलित और दरवाजा आसानी से खुलने वाला रखें।" },
-    { topic: "उत्तर दिशा", tip: "उत्तर दिशा को यथासंभव खुला, साफ और हल्का रखना वास्तु परंपरा में शुभ माना जाता है।" },
-    { topic: "पूर्व दिशा", tip: "पूर्व दिशा में पर्याप्त प्राकृतिक रोशनी और हवा आने देना अच्छा माना जाता है।" },
-    { topic: "उत्तर-पूर्व", tip: "ईशान कोण को साफ-सुथरा और हल्का रखें; भारी स्टोरेज से बचना पारंपरिक वास्तु सलाह है।" },
-    { topic: "दक्षिण-पश्चिम", tip: "भारी फर्नीचर या स्टोरेज दक्षिण-पश्चिम क्षेत्र में रखना वास्तु परंपरा में उपयुक्त माना जाता है।" },
-    { topic: "बेडरूम", tip: "मुख्य शयनकक्ष के लिए दक्षिण-पश्चिम दिशा को पारंपरिक वास्तु में प्राथमिकता दी जाती है।" },
-    { topic: "सोने की दिशा", tip: "सोते समय सिर दक्षिण या पूर्व की ओर रखने की सलाह कई वास्तु परंपराओं में दी जाती है।" },
-    { topic: "बिस्तर", tip: "बिस्तर को सीधे दरवाजे की लाइन में रखने के बजाय ऐसी जगह रखें जहाँ दरवाजा दिखाई दे लेकिन सीधे सामने न हो।" },
-    { topic: "आईना", tip: "बेड के ठीक सामने बड़ा आईना रखने से बचना पारंपरिक वास्तु सलाह है।" },
-    { topic: "आईना", tip: "ऐसा आईना रखें जिसमें घर का साफ और व्यवस्थित भाग प्रतिबिंबित हो।" },
-    { topic: "रसोई", tip: "रसोई के लिए दक्षिण-पूर्व दिशा को वास्तु में अग्नितत्व से जोड़ा जाता है।" },
-    { topic: "रसोई", tip: "चूल्हे और सिंक के बीच पर्याप्त दूरी रखना उपयोगी और पारंपरिक वास्तु दोनों दृष्टि से उचित है।" },
-    { topic: "रसोई", tip: "रसोई में टूटे, खराब या लंबे समय से अनुपयोगी उपकरण जमा न करें।" },
-    { topic: "गैस/चूल्हा", tip: "चूल्हे के पास पर्याप्त वेंटिलेशन रखें और सुरक्षा को हमेशा प्राथमिकता दें।" },
-    { topic: "पूजा स्थान", tip: "पूजा का स्थान शांत, स्वच्छ और नियमित रूप से साफ रखा जाए।" },
-    { topic: "पूजा स्थान", tip: "पूजा कक्ष या मंदिर में अनावश्यक सामान और पुराने टूटे पूजा-पात्र न जमा करें।" },
-    { topic: "पूजा स्थान", tip: "दीपक जलाते समय अग्नि-सुरक्षा का ध्यान रखें और ज्वलनशील वस्तुओं से दूरी रखें।" },
-    { topic: "बाथरूम", tip: "बाथरूम को सूखा, साफ और अच्छी तरह हवादार रखें।" },
-    { topic: "बाथरूम", tip: "लीकेज या लगातार टपकते नल की मरम्मत जल्द कराएँ; यह व्यावहारिक गृह-रखरखाव भी है।" },
-    { topic: "शौचालय", tip: "शौचालय का दरवाजा उपयोग न होने पर बंद रखने की पारंपरिक वास्तु सलाह दी जाती है।" },
-    { topic: "सीढ़ियाँ", tip: "सीढ़ियों पर पर्याप्त रोशनी और साफ-सफाई रखें तथा रास्ता अवरुद्ध न करें।" },
-    { topic: "सीढ़ियाँ", tip: "सीढ़ियों के नीचे अनावश्यक कबाड़ जमा करने से बचें।" },
-    { topic: "लिविंग रूम", tip: "बैठक कक्ष को हवादार, रोशन और अव्यवस्थित सामान से मुक्त रखें।" },
-    { topic: "फर्नीचर", tip: "बहुत भारी फर्नीचर को घर के मध्य भाग में रखने से बचें और चलने का रास्ता खुला रखें।" },
-    { topic: "घर का केंद्र", tip: "घर के मध्य हिस्से को अत्यधिक भारी सामान से मुक्त रखना वास्तु परंपरा में महत्वपूर्ण माना जाता है।" },
-    { topic: "खिड़कियाँ", tip: "खिड़कियाँ नियमित रूप से साफ रखें ताकि प्राकृतिक रोशनी और हवा का प्रवेश बेहतर हो।" },
-    { topic: "रंग", tip: "कमरे के उपयोग और प्राकृतिक रोशनी के अनुसार हल्के और संतुलित रंगों का चयन करें।" },
-    { topic: "पौधे", tip: "घर में स्वस्थ और अच्छी तरह देखभाल किए गए पौधे रखें; सूखे पौधे तुरंत हटा दें।" },
-    { topic: "काँटेदार पौधे", tip: "काँटेदार पौधों को बेडरूम या अत्यधिक उपयोग वाले स्थानों में रखने से बचना पारंपरिक सलाह है।" },
-    { topic: "तुलसी", tip: "तुलसी के पौधे को साफ और उपयुक्त स्थान पर रखें तथा नियमित देखभाल करें।" },
-    { topic: "पानी", tip: "घर में पानी का रिसाव, टूटे पाइप या लगातार टपकते नल को नजरअंदाज न करें।" },
-    { topic: "प्रवेश क्षेत्र", tip: "प्रवेश क्षेत्र में जूते-चप्पल व्यवस्थित रखें और दरवाजे के सामने अवरोध न बनने दें।" },
-    { topic: "घड़ी", tip: "बंद या खराब घड़ियाँ लंबे समय तक न रखें; खराब वस्तुओं की मरम्मत या उचित निपटान करें।" },
-    { topic: "टूटी वस्तुएँ", tip: "टूटे शीशे, फर्नीचर और सजावटी वस्तुओं को अनावश्यक रूप से घर में जमा न करें।" },
-    { topic: "कबाड़", tip: "पुराने डिब्बे, बेकार इलेक्ट्रॉनिक्स और अनुपयोगी सामान नियमित रूप से छाँटें।" },
-    { topic: "अलमारी", tip: "अलमारी को व्यवस्थित रखें और भारी सामान को स्थिर, सुरक्षित स्थान पर रखें।" },
-    { topic: "तिजोरी", tip: "तिजोरी या महत्वपूर्ण दस्तावेजों का स्थान सुरक्षित, सूखा और आसानी से नियंत्रित होने वाला रखें।" },
-    { topic: "पानी की टंकी", tip: "छत की पानी की टंकी की स्थिति और वजन के लिए स्थानीय इंजीनियरिंग/निर्माण मानकों का पालन करें।" },
-    { topic: "छत", tip: "छत पर अनावश्यक कबाड़ जमा न करें और पानी की निकासी साफ रखें।" },
-    { topic: "बालकनी", tip: "बालकनी में रास्ता खुला रखें और भारी सामान को असुरक्षित किनारों पर न रखें।" },
-    { topic: "वेंटिलेशन", tip: "हर कमरे में पर्याप्त वायु-संचार रखें; यह स्वास्थ्य और आराम के लिए भी महत्वपूर्ण है।" },
-    { topic: "प्राकृतिक रोशनी", tip: "दिन के समय जहाँ संभव हो प्राकृतिक रोशनी का उपयोग करें।" },
-    { topic: "सफाई", tip: "नियमित सफाई और अव्यवस्था कम करना वास्तु से जुड़ी लगभग सभी पारंपरिक सलाहों का व्यावहारिक आधार है।" },
-    { topic: "दिशा ज्ञान", tip: "दिशा तय करते समय अनुमान के बजाय विश्वसनीय कंपास का उपयोग करें।" },
-    { topic: "नया घर", tip: "नए घर में बदलाव करने से पहले भवन की संरचना, बिजली, पानी और सुरक्षा संबंधी विशेषज्ञ सलाह लें।" },
-    { topic: "किराए का घर", tip: "किराए के घर में बड़े संरचनात्मक बदलाव करने से पहले मकान मालिक की अनुमति और विशेषज्ञ सलाह लें।" },
-    { topic: "संतुलन", tip: "वास्तु उपायों को घर की सुरक्षा, स्वच्छता, वेंटिलेशन और व्यावहारिक जरूरतों के साथ संतुलित रखें।" },
-    { topic: "सामान्य नियम", tip: "घर में सकारात्मक ऊर्जा बनाए रखने के लिए प्रतिदिन सुबह-शाम धूप या अगरबत्ती जलाएँ।" }
-  ];
-
-  // 3. YouTube Connected Sadhana Data for Chips
-  const sadhanaYouTubeData = {
-    "ganesh": {
-      title: "श्री गणेश पूजा एवं मंत्र",
-      mantra: "ॐ गं गणपतये नमः",
-      desc: "रिद्धि-सिद्धिदाता भगवान श्री गणेश की उपासना से समस्त विघ्न दूर होते हैं।",
-      ytSearch: "Ganesh"
+  // Dynamic Weekly Devotional Data
+  const dayWiseData = {
+    0: { // Sunday / रविवार
+      pill: "ॐ • रविवार विशेष",
+      title: "भगवान सूर्य देव आराधना",
+      text: "आरोग्यता, तेज और मान-सम्मान प्राप्ति हेतु आज सूर्य देव को अर्घ्य दें।",
+      mantra: "मंत्र: ॐ घृणिः सूर्याय नमः",
+      bgImg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
     },
-    "lakshmi": {
-      title: "मां लक्ष्मी पूजा एवं मंत्र",
-      mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद",
-      desc: "धन, धान्य और समृद्धि प्राप्ति हेतु माता लक्ष्मी की पूजा की जाती है।",
-      ytSearch: "Lakshmi"
+    1: { // Monday / सोमवार
+      pill: "ॐ • सोमवार विशेष",
+      title: "भगवान शिव आराधना",
+      text: "शिव जी की कृपा से जीवन में शांति, समृद्धि और भय से मुक्ति मिलती है।",
+      mantra: "मंत्र: ॐ नमः शिवाय",
+      bgImg: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1000&q=80"
     },
-    "shiv": {
-      title: "भगवान शिव पूजा एवं महामृत्युंजय मंत्र",
-      mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिववर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥",
-      desc: "शिव आराधना से मानसिक शांति और आरोग्यता प्राप्त होती है।",
-      ytSearch: "Shiv"
+    2: { // Tuesday / मंगलवार
+      pill: "ॐ • मंगलवार विशेष",
+      title: "श्री हनुमान जी साधना",
+      text: "संकटमोचन हनुमान जी का ध्यान करने से समस्त भय और बाधायें नष्ट होती हैं।",
+      mantra: "मंत्र: ॐ हं हनुमते नमः",
+      bgImg: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=1000&q=80"
     },
-    "hanuman": {
-      title: "श्री हनुमान साधना एवं पाठ",
-      mantra: "ॐ हं हनुमते नमः",
-      desc: "हनुमान चालीसा और बजरंग बाण का पाठ भय और संकट दूर करता है।",
-      ytSearch: "Hanuman"
+    3: { // Wednesday / बुधवार
+      pill: "ॐ • बुधवार विशेष",
+      title: "प्रथम पूज्य श्री गणेश पूजा",
+      text: "भगवान गणेश जी की उपासना से बुद्धि, विद्या और सिद्धि का आशीर्वाद मिलता है।",
+      mantra: "मंत्र: ॐ गं गणपतये नमः",
+      bgImg: "https://images.unsplash.com/photo-1567591377030-de198b9d5186?auto=format&fit=crop&w=1000&q=80"
     },
-    "krishna": {
-      title: "श्री कृष्ण भक्ति एवं मंत्र",
-      mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे। हरे राम हरे राम, राम राम हरे हरे॥",
-      desc: "भगवान श्रीकृष्ण के ध्यान से जीवन में आनंद और प्रेम का संचार होता है।",
-      ytSearch: "Krishna"
+    4: { // Thursday / गुरुवार
+      pill: "ॐ • गुरुवार विशेष",
+      title: "श्री हरि विष्णु एवं गुरु पूजा",
+      text: "भगवान विष्णु और श्री हरि की कृपा से सुख, समृद्धि और ज्ञान प्राप्त होता है।",
+      mantra: "मंत्र: ॐ नमो भगवते वासुदेवाय",
+      bgImg: "https://images.unsplash.com/photo-1545232979-fbf592320781?auto=format&fit=crop&w=1000&q=80"
     },
-    "durga": {
-      title: "मां दुर्गा साधना एवं मंत्र",
-      mantra: "ॐ दुं दुर्गायै नमः",
-      desc: "दुर्गा शप्तशती पाठ एवं मंत्र जप से शक्ति और सकारात्मक ऊर्जा मिलती है।",
-      ytSearch: "Durga"
+    5: { // Friday / शुक्रवार
+      pill: "ॐ • शुक्रवार विशेष",
+      title: "माता लक्ष्मी एवं दुर्गा साधना",
+      text: "धन, वैभव और शक्ति की प्राप्ति हेतु मां लक्ष्मी और भगवती दुर्गा का ध्यान करें।",
+      mantra: "मंत्र: ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद",
+      bgImg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
     },
-    "vishnu": {
-      title: "भगवान विष्णु एवं सत्यनारायण पूजा",
-      mantra: "ॐ नमो भगवते वासुदेवाय",
-      desc: "श्री हरि विष्णु की भक्ति से मोक्ष और सुख-शांति की प्राप्ति होती है।",
-      ytSearch: "Vishnu"
-    },
-    "tulsi": {
-      title: "तुलसी पूजन विधि एवं महिमा",
-      mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी। आधि व्याधि हरा नित्यं तुलसी त्वं नमोस्तुते॥",
-      desc: "घर में तुलसी सेवा और जल अर्पित करने से वास्तु दोष और नकारात्मकता दूर होती है।",
-      ytSearch: "Tulsi"
-    },
-    "mantra": {
-      title: "दैनिक प्रभावशाली मंत्र संग्रह",
-      mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥",
-      desc: "गायत्री मंत्र और दैनिक प्रभावशाली मंत्रों का शुद्ध उच्चारण के साथ पाठ करें।",
-      ytSearch: "Mantra"
+    6: { // Saturday / शनिवार
+      pill: "ॐ • शनिवार विशेष",
+      title: "श्री शनिदेव एवं हनुमान पूजा",
+      text: "न्याय के देवता शनिदेव की कृपा हेतु पीपल के वृक्ष तले दीप प्रज्वलित करें।",
+      mantra: "मंत्र: ॐ शं शनैश्चराय नमः",
+      bgImg: "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1000&q=80"
     }
   };
 
-  function autoUpdateDailyInfo() {
+  const festivalCalendarData = {
+    "2026-09-01": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
+    "2026-09-04": { tithi: "कृष्ण अष्टमी", festival: "श्रीकृष्ण जन्माष्टमी" },
+    "2026-09-07": { tithi: "कृष्ण एकादशी", festival: "अजा एकादशी व्रत" },
+    "2026-09-14": { tithi: "हरितालिका तीज", festival: "गणेश चतुर्थी" },
+    "2026-09-17": { tithi: "कन्या संक्रांति", festival: "विश्वकर्मा पूजा" },
+    "2026-09-24": { tithi: "अनंत चतुर्दशी", festival: "गणेश विसर्जन" },
+    "2026-10-11": { tithi: "प्रतिपदा", festival: "शारदीय नवरात्रा प्रारंभ" },
+    "2026-10-19": { tithi: "महाष्टमी", festival: "दुर्गाष्टमी" },
+    "2026-10-20": { tithi: "विजयादशमी", festival: "दशहरा" },
+    "2026-10-29": { tithi: "कार्तिक चतुर्थी", festival: "करवा चौथ" },
+    "2026-11-06": { tithi: "त्रयोदशी", festival: "धनतेरस पूजा" },
+    "2026-11-08": { tithi: "अमावस्या", festival: "दीपावली / लक्ष्मी पूजा" },
+    "2026-11-15": { tithi: "षष्ठी", festival: "छठ पूजा" },
+    "2026-11-20": { tithi: "एकादशी", festival: "देवउठनी एकादशी" }
+  };
+
+  const vastuTipsData = [
+    { topic: "मुख्य द्वार", tip: "मुख्य प्रवेश द्वार साफ, व्यवस्थित और अच्छी रोशनी वाला रखें।" },
+    { topic: "उत्तर-पूर्व", tip: "ईशान कोण को साफ-सुथरा और हल्का रखें।" },
+    { topic: "बेडरूम", tip: "मुख्य शयनकक्ष के लिए दक्षिण-पश्चिम दिशा को प्राथमिकता दी जाती है।" },
+    { topic: "रसोई", tip: "रसोई के लिए दक्षिण-पूर्व दिशा (अग्निकोण) सर्वोत्तम मानी जाती है।" },
+    { topic: "पूजा स्थान", tip: "पूजा स्थान हमेशा स्वच्छ, शांत और सकारात्मक ऊर्जा से परिपूर्ण रखें।" }
+  ];
+
+  const sadhanaYouTubeData = {
+    "ganesh": { title: "श्री गणेश पूजा एवं मंत्र", mantra: "ॐ गं गणपतये नमः", desc: "समस्त विघ्न दूर करने हेतु गणेश साधना करें।", ytSearch: "Ganesh" },
+    "lakshmi": { title: "मां लक्ष्मी पूजा एवं मंत्र", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद", desc: "धन, धान्य और समृद्धि हेतु लक्ष्मी पूजन करें।", ytSearch: "Lakshmi" },
+    "shiv": { title: "भगवान शिव पूजा एवं महामृत्युंजय मंत्र", mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिववर्धनम्...", desc: "शिव आराधना से आरोग्यता और शांति मिलती है।", ytSearch: "Shiv" },
+    "hanuman": { title: "श्री हनुमान साधना एवं पाठ", mantra: "ॐ हं हनुमते नमः", desc: "हनुमान चालीसा पाठ से संकट दूर होते हैं।", ytSearch: "Hanuman" },
+    "krishna": { title: "श्री कृष्ण भक्ति एवं मंत्र", mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे...", desc: "भगवान श्रीकृष्ण के ध्यान से आनंद मिलता है।", ytSearch: "Krishna" },
+    "durga": { title: "मां दुर्गा साधना एवं मंत्र", mantra: "ॐ दुं दुर्गायै नमः", desc: "दुर्गा मंत्र से शक्ति और सुरक्षा मिलती है।", ytSearch: "Durga" },
+    "vishnu": { title: "भगवान विष्णु एवं सत्यनारायण पूजा", mantra: "ॐ नमो भगवते वासुदेवाय", desc: "श्री हरि विष्णु की भक्ति से सुख-शांति मिलती है।", ytSearch: "Vishnu" },
+    "tulsi": { title: "तुलसी पूजन विधि एवं महिमा", mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी...", desc: "तुलसी पूजन से घर का वास्तु दोष दूर होता है।", ytSearch: "Tulsi" },
+    "mantra": { title: "दैनिक प्रभावशाली मंत्र संग्रह", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं...", desc: "गायत्री मंत्र का नित्य जप करें।", ytSearch: "Mantra" }
+  };
+
+  function updateDynamicHeroBanner() {
     const today = new Date();
+    const dayOfWeek = today.getDay(); 
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const dd = String(today.getDate()).padStart(2, '0');
     const todayStr = `${yyyy}-${mm}-${dd}`;
 
+    const heroBanner = document.getElementById("heroBanner");
+    const heroPill = document.getElementById("heroPill");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroText = document.getElementById("heroText");
+    const heroMantra = document.getElementById("heroMantra");
+
+    const todayDayInfo = dayWiseData[dayOfWeek];
+
+    // Check if today is a special festival
+    if (festivalCalendarData[todayStr]) {
+      const fest = festivalCalendarData[todayStr];
+      heroPill.innerText = `ॐ • आज का विशेष पर्व (${fest.tithi})`;
+      heroTitle.innerText = fest.festival;
+      heroText.innerText = `आज ${fest.festival} के पावन अवसर पर विशेष पूजन एवं भक्ति भाव से दिन की शुरुआत करें।`;
+      heroMantra.innerText = todayDayInfo.mantra;
+      heroBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('${todayDayInfo.bgImg}')`;
+    } else {
+      // Regular Day Dynamic Data
+      heroPill.innerText = todayDayInfo.pill;
+      heroTitle.innerText = todayDayInfo.title;
+      heroText.innerText = todayDayInfo.text;
+      heroMantra.innerText = todayDayInfo.mantra;
+      heroBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('${todayDayInfo.bgImg}')`;
+    }
+
+    // Update Subtext in cards
     const pujaSub = document.getElementById("todayPujaSubText");
     const vratSub = document.getElementById("todayVratSubText");
-
     if (festivalCalendarData[todayStr]) {
-      const item = festivalCalendarData[todayStr];
-      if (vratSub) vratSub.innerText = `${item.festival} (${item.tithi})`;
-      if (pujaSub) pujaSub.innerText = `आज की पूजा: ${item.festival}`;
+      if (vratSub) vratSub.innerText = `${festivalCalendarData[todayStr].festival}`;
+      if (pujaSub) pujaSub.innerText = `आज की पूजा: ${festivalCalendarData[todayStr].festival}`;
     } else {
       if (vratSub) vratSub.innerText = "आज का नित्य नियम एवं व्रत";
       if (pujaSub) pujaSub.innerText = "नित्य दैनिक पूजा विधि";
@@ -332,7 +208,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-    autoUpdateDailyInfo();
+    updateDynamicHeroBanner();
 
     const modalContent = document.getElementById("modalContent");
 
@@ -341,14 +217,7 @@
       if (!btn) return;
 
       const modalType = btn.getAttribute("data-modal");
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      const todayStr = `${yyyy}-${mm}-${dd}`;
-      const currentData = festivalCalendarData[todayStr];
 
-      // Handle Puja & Sadhana Chips (Ganesh, Shiv, Lakshmi etc.)
       if (sadhanaYouTubeData[modalType]) {
         const item = sadhanaYouTubeData[modalType];
         const ytLink = `https://www.youtube.com/@AdhyatmikGyan24x7/search?query=${encodeURIComponent(item.ytSearch)}`;
@@ -369,19 +238,7 @@
         return;
       }
 
-      if (modalType === "puja") {
-        if (currentData) {
-          modalContent.innerHTML = `<h2>🪔 ${currentData.festival}</h2><p style="margin-top:10px;"><b>तिथि:</b> ${currentData.tithi}</p><p style="margin-top:10px;">आज के दिन स्नान करके संकल्प लें और श्री गणेश, शिव एवं विष्णु जी का ध्यान करते हुए धूप, दीप एवं पुष्प अर्पित करें।</p>`;
-        } else {
-          modalContent.innerHTML = `<h2>🪔 आज की पूजा विधि</h2><p style="margin-top:10px;">आज प्रातः स्नान के बाद सूर्य देव को अर्घ्य दें एवं अपने इष्ट देव की नित्य पूजा करें।</p>`;
-        }
-      } else if (modalType === "vrat") {
-        if (currentData) {
-          modalContent.innerHTML = `<h2>🌙 ${currentData.festival}</h2><p style="margin-top:10px;"><b>तिथि:</b> ${currentData.tithi}</p><p style="margin-top:10px;">आज के पर्व पर सात्विक विचार रखें, उपवास का पालन करें और शाम को आरती के बाद प्रसाद वितरण करें।</p>`;
-        } else {
-          modalContent.innerHTML = `<h2>🌙 आज का व्रत एवं नियम</h2><p style="margin-top:10px;">आज का दिन सात्विक आहार और ईश्वर स्मरण के लिए उत्तम है।</p>`;
-        }
-      } else if (modalType === "calendar") {
+      if (modalType === "calendar") {
         let calHtml = `<h2>📅 पर्व एवं व्रत कैलेंडर (2026)</h2><ul style="list-style:none; padding:0; margin-top:15px; max-height:350px; overflow-y:auto;">`;
         for (let dateKey in festivalCalendarData) {
           const item = festivalCalendarData[dateKey];
@@ -390,7 +247,7 @@
         calHtml += `</ul>`;
         modalContent.innerHTML = calHtml;
       } else if (modalType === "vastu") {
-        let vastuHtml = `<h2>🏠 50 महत्वपूर्ण वास्तु सुझाव</h2><p style="font-size:12px; color:#666; margin-top:5px;">घर, पूजा स्थान, रसोई और शयनकक्ष के लिए महत्वपूर्ण सुझाव:</p><ol style="padding-left:20px; margin-top:15px; max-height:350px; overflow-y:auto;">`;
+        let vastuHtml = `<h2>🏠 महत्वपूर्ण वास्तु सुझाव</h2><ol style="padding-left:20px; margin-top:15px; max-height:350px; overflow-y:auto;">`;
         vastuTipsData.forEach(item => {
           vastuHtml += `<li style="margin-bottom:8px;"><b>[${item.topic}]</b>: ${item.tip}</li>`;
         });
