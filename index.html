@@ -9,7 +9,18 @@
       --primary-color: #d97706;
       --primary-dark: #92400e;
       --bg-cream: #fff8ed;
+      --card-bg: #ffffff;
       --card-border: #fed7aa;
+      --text-color: #333333;
+      --sub-text: #666666;
+    }
+
+    body.dark-mode {
+      --bg-cream: #121212;
+      --card-bg: #1e1e1e;
+      --card-border: #333333;
+      --text-color: #e0e0e0;
+      --sub-text: #aaa;
     }
 
     body {
@@ -17,7 +28,36 @@
       background: var(--bg-cream);
       margin: 0;
       padding: 16px;
-      color: #333;
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Top Bar Header */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .app-logo-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dark-mode-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
     }
 
     /* Top Hero Banner */
@@ -34,7 +74,7 @@
     }
     
     .hero-overlay {
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.68);
       backdrop-filter: blur(4px);
       padding: 18px;
       border-radius: 12px;
@@ -75,6 +115,43 @@
       color: #fff;
     }
 
+    .share-btn-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 12px;
+      text-decoration: none;
+    }
+
+    /* Timings / Muhurat Box */
+    .timings-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .timing-item {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .subh-bg { background: rgba(34, 197, 94, 0.12); border-left: 3px solid #22c55e; }
+    .asubh-bg { background: rgba(239, 68, 68, 0.12); border-left: 3px solid #ef4444; }
+
     /* Grid Layout */
     .grid {
       display: grid;
@@ -84,7 +161,7 @@
     }
 
     .card {
-      background: #fff;
+      background: var(--card-bg);
       padding: 18px 12px;
       border-radius: 14px;
       border: 1px solid var(--card-border);
@@ -119,7 +196,7 @@
 
     .card-desc {
       font-size: 12px;
-      color: #666;
+      color: var(--sub-text);
       margin-bottom: 12px;
       min-height: 28px;
     }
@@ -141,7 +218,7 @@
       background: var(--primary-dark);
     }
 
-    /* Deity Chips Section */
+    /* Deity & Rashifal Chips Section */
     .chips-section {
       margin-bottom: 24px;
     }
@@ -159,7 +236,7 @@
     }
 
     .chips button {
-      background: #fff;
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
       padding: 8px 16px;
       border-radius: 20px;
@@ -177,7 +254,7 @@
 
     /* Kundali & Astrology Section */
     .astrology-section {
-      background: #fff;
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
       padding: 20px;
@@ -204,7 +281,7 @@
       display: block;
       font-size: 12px;
       font-weight: bold;
-      color: #555;
+      color: var(--sub-text);
       margin-bottom: 4px;
     }
 
@@ -215,11 +292,12 @@
       border-radius: 8px;
       font-size: 13px;
       box-sizing: border-box;
-      background: #fff8ed;
+      background: var(--bg-cream);
+      color: var(--text-color);
     }
 
     .milan-box {
-      background: #fef3c7;
+      background: rgba(254, 243, 199, 0.4);
       border: 1px dashed var(--primary-color);
       border-radius: 12px;
       padding: 16px;
@@ -235,11 +313,11 @@
 
     .disclaimer-note {
       font-size: 11px;
-      color: #777;
+      color: var(--sub-text);
       font-style: italic;
       margin-top: 12px;
       line-height: 1.4;
-      background: #ffffff;
+      background: var(--card-bg);
       padding: 8px 12px;
       border-radius: 6px;
       border-left: 3px solid #f59e0b;
@@ -247,7 +325,7 @@
 
     /* YouTube Banner Section */
     .yt-banner {
-      background: #fff;
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
       padding: 16px;
@@ -297,6 +375,38 @@
       border-color: transparent transparent transparent #ff0000;
     }
 
+    /* Jaap Mala Counter Styling */
+    .mala-counter-box {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .mala-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 16px auto;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+      user-select: none;
+      transition: transform 0.1s ease;
+    }
+
+    .mala-circle:active {
+      transform: scale(0.94);
+    }
+
+    .mala-count {
+      font-size: 42px;
+      font-weight: bold;
+    }
+
     /* Modal Styling */
     .modal {
       display: none;
@@ -314,11 +424,12 @@
     }
 
     .modalBox {
-      background: #fff;
+      background: var(--card-bg);
+      color: var(--text-color);
       padding: 20px;
       border-radius: 14px;
       width: 90%;
-      max-width: 440px;
+      max-width: 460px;
       position: relative;
       max-height: 85vh;
       overflow-y: auto;
@@ -361,6 +472,14 @@
 </head>
 <body>
 
+  <!-- App Header -->
+  <div class="header-bar">
+    <div class="app-logo-title">
+      🕉️ अध्यात्मिक ज्ञान
+    </div>
+    <button class="dark-mode-toggle" id="darkModeBtn">🌙 डार्क मोड</button>
+  </div>
+
   <!-- Dynamic Banner Section -->
   <section class="hero" id="heroBanner">
     <div class="hero-overlay">
@@ -369,11 +488,27 @@
       <p class="hero-sub" id="heroText">loading...</p>
       <div id="heroMantra" style="font-size: 14px; font-weight: bold; color: #fde68a;"></div>
       <div class="remedy-box" id="heroRemedy"><b>शुभ उपाय:</b> loading...</div>
+      
+      <button class="share-btn-top" id="whatsappShareBtn">
+        <span>📲 WhatsApp पर शेयर करें</span>
+      </button>
     </div>
   </section>
 
-  <!-- 3 Main Cards Section -->
-  <h3 style="color: var(--primary-dark); margin-bottom: 12px;">आज का दैनिक पंचांग एवं पूजा</h3>
+  <!-- Aaj Ka Subh Muhurat & Rahukal Box -->
+  <div class="timings-box">
+    <div class="timing-item subh-bg">
+      <b style="color: #15803d;">✨ शुभ मुहूर्त (अभिजित):</b>
+      <div id="subhMuhuratTime" style="font-weight: bold; margin-top: 2px;">11:48 AM - 12:36 PM</div>
+    </div>
+    <div class="timing-item asubh-bg">
+      <b style="color: #b91c1c;">⚠️ राहुकाल (अशुभ समय):</b>
+      <div id="rahukalTime" style="font-weight: bold; margin-top: 2px;">04:30 PM - 06:00 PM</div>
+    </div>
+  </div>
+
+  <!-- 4 Main Feature Cards Section -->
+  <h3 style="color: var(--primary-dark); margin-bottom: 12px;">आज का दैनिक पंचांग एवं साधना</h3>
   <div class="grid">
     <!-- Today's Puja Card -->
     <div class="card">
@@ -385,30 +520,48 @@
       <button class="btn" data-modal="puja">विधि देखें</button>
     </div>
 
-    <!-- Month-Wise Panchang Card -->
+    <!-- Jaap Mala Counter Card (NEW) -->
     <div class="card">
-      <div class="icon-container">📅</div>
+      <div class="icon-container">📿</div>
       <div>
-        <div class="card-title">Month-Wise Panchang</div>
-        <div class="card-desc">मासिक पंचांग एवं त्यौहार</div>
+        <div class="card-title">डिजिटल जप माला</div>
+        <div class="card-desc">108 मंत्र जप काउन्टर</div>
       </div>
-      <button class="btn" data-modal="calendar">देखें</button>
+      <button class="btn" data-modal="mala">जप शुरू करें</button>
     </div>
 
-    <!-- Vastu Tips Card -->
+    <!-- Aarti & Chalisa Card (NEW) -->
+    <div class="card">
+      <div class="icon-container">📖</div>
+      <div>
+        <div class="card-title">आरती एवं चालीसा</div>
+        <div class="card-desc">पाठ एवं स्तोत्र संग्रह</div>
+      </div>
+      <button class="btn" data-modal="aarti">पाठ चुनें</button>
+    </div>
+
+    <!-- Vastu & Panchang Card -->
     <div class="card">
       <div class="icon-container">🏠</div>
       <div>
         <div class="card-title">Vastu Tips</div>
-        <div class="card-desc">50 महत्वपूर्ण वास्तु सुझाव</div>
+        <div class="card-desc">महत्वपूर्ण वास्तु सुझाव</div>
       </div>
       <button class="btn" data-modal="vastu">सुझाव देखें</button>
     </div>
   </div>
 
+  <!-- Aaj Ka Rashifal Section (NEW) -->
+  <section class="chips-section">
+    <h3 class="chips-title">🔮 आज का दैनिक राशिफल (12 राशियां)</h3>
+    <div class="chips" id="rashifalChips">
+      <!-- Generated via JS -->
+    </div>
+  </section>
+
   <!-- Puja & Sadhana Deity Chips Section -->
   <section class="chips-section">
-    <h3 class="chips-title">पूजा एवं साधना</h3>
+    <h3 class="chips-title">🚩 पूजा एवं देवी-देवता साधना</h3>
     <div class="chips">
       <button data-modal="ganesh">गणेश</button>
       <button data-modal="lakshmi">लक्ष्मी</button>
@@ -418,14 +571,14 @@
       <button data-modal="durga">दुर्गा</button>
       <button data-modal="vishnu">विष्णु</button>
       <button data-modal="tulsi">तुलसी</button>
-      <button data-modal="mantra">मंत्र</button>
+      <button data-modal="mantra">गायत्री मंत्र</button>
     </div>
   </section>
 
   <!-- Kundali & Astrology Section -->
   <section class="astrology-section">
     <h3 class="astro-title">📜 जनम कुंडली एवं दोष विश्लेषण</h3>
-    <p style="font-size: 13px; color: #666; margin-top: 0; margin-bottom: 16px;">
+    <p style="font-size: 13px; color: var(--sub-text); margin-top: 0; margin-bottom: 16px;">
       अपनी जन्म विवरण दर्ज करें और जानें अपनी राशि, लग्न एवं कुंडली दोष (मंगल दोष, कालसर्प आदि):
     </p>
 
@@ -454,14 +607,14 @@
     <!-- Dedicated Kundali Milan Section -->
     <div class="milan-box">
       <h3 class="astro-title" style="font-size: 18px; color: var(--primary-dark);">💞 कुण्डली मिलान (Kundali Milan)</h3>
-      <p style="font-size: 12px; color: #555; margin-top: 0; margin-bottom: 12px;">
+      <p style="font-size: 12px; color: var(--sub-text); margin-top: 0; margin-bottom: 12px;">
         वर और वधू दोनों की जन्म जानकारी दर्ज करके गुण मिलान (Out of 36) चेक करें:
       </p>
 
       <form id="milanForm">
         <div class="milan-grid">
           <!-- Boy Info -->
-          <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
+          <div style="background: var(--card-bg); padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
             <b style="color: var(--primary-dark); font-size: 13px;">👨 वर (Boy Details):</b>
             <div class="form-group" style="margin-top: 8px;">
               <input type="text" id="boyName" placeholder="वर का नाम" required>
@@ -475,7 +628,7 @@
           </div>
 
           <!-- Girl Info -->
-          <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
+          <div style="background: var(--card-bg); padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
             <b style="color: var(--primary-dark); font-size: 13px;">👩 वधू (Girl Details):</b>
             <div class="form-group" style="margin-top: 8px;">
               <input type="text" id="girlName" placeholder="वधू का नाम" required>
@@ -496,7 +649,7 @@
 
       <!-- Disclaimer Note -->
       <div class="disclaimer-note">
-        <b>नोट:</b> यह एक AI generated matching percentage एवं ज्योतिषीय एल्गोरिदम आधारित गणना है। अधिक एवं सटीक जानकारी हेतु किसी विद्वान ज्योतिषाचार्य (Astrologer) से परामर्श करें।
+        <b>नोट:</b> यह एक AI generated matching percentage एवं ज्योतिषीय एल्गोरिदम आधारित गणना है। अधिक एवं सटीक जानकारी हेतु किसी विद्वान ज्योतिषाचार्य से परामर्श करें।
       </div>
     </div>
   </section>
@@ -504,9 +657,9 @@
   <!-- YouTube Channel Join Section -->
   <section class="yt-banner">
     <div>
-      <small style="color: #666; font-weight: bold;">▶ Latest Videos</small>
+      <small style="color: var(--sub-text); font-weight: bold;">▶ Latest Videos</small>
       <h3 style="color: var(--primary-dark); margin: 4px 0 2px 0;">हमारे YouTube चैनल से जुड़ें</h3>
-      <p style="margin: 0; font-size: 13px; color: #555;">नई पूजा, व्रत, वास्तु और धार्मिक वीडियो देखें।</p>
+      <p style="margin: 0; font-size: 13px; color: var(--sub-text);">नई पूजा, व्रत, वास्तु और धार्मिक वीडियो देखें।</p>
     </div>
     <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
       <span class="yt-icon"></span> YouTube चैनल देखें
@@ -522,196 +675,85 @@
   </div>
 
   <script>
-    // Image Path for Today's Puja Modal
     const todaysPujaImage = "puja.jpg";
 
     // Day Wise Grah, Mantra, Remedies & Planet Background Images
     const dayGrahInfo = {
-      0: { 
-        dayName: "रविवार", 
-        grah: "सूर्य देव", 
-        mantra: "ॐ घृणिः सूर्याय नमः", 
-        remedy: "घर से निकलने से पहले थोड़ा गुड़ खाकर और जल पीकर निकलें।",
-        bgImg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
-      },
-      1: { 
-        dayName: "सोमवार", 
-        grah: "चंद्र देव", 
-        mantra: "ॐ सोमाय नमः", 
-        remedy: "घर से निकलने से पहले दही खाएं या शीशे में अपना चेहरा देखकर निकलें।",
-        bgImg: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=1200&q=80"
-      },
-      2: { 
-        dayName: "मंगलवार", 
-        grah: "मंगल देव", 
-        mantra: "ॐ भौमाय नमः", 
-        remedy: "घर से निकलने से पहले थोड़ा गुड़ या सौंफ खाकर निकलें।",
-        bgImg: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1200&q=80"
-      },
-      3: { 
-        dayName: "बुधवार", 
-        grah: "बुध देव", 
-        mantra: "ॐ बुधाय नमः", 
-        remedy: "घर से निकलने से पहले हरा धनिया या सौंफ खाकर निकलें।",
-        bgImg: "https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=1200&q=80"
-      },
-      4: { 
-        dayName: "गुरुवार", 
-        grah: "बृहस्पति देव (गुरु)", 
-        mantra: "ॐ बृं बृहस्पतये नमः", 
-        remedy: "घर से निकलने से पहले पीली सरसों या बेसन की मिठाई खाकर निकलें।",
-        bgImg: "https://images.unsplash.com/photo-1614314107768-6018061b5b72?auto=format&fit=crop&w=1200&q=80"
-      },
-      5: { 
-        dayName: "शुक्रवार", 
-        grah: "शुक्र देव", 
-        mantra: "ॐ शुं शुक्राय नमः", 
-        remedy: "घर से निकलने से पहले मीठी दही खाकर निकलें।",
-        bgImg: "https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?auto=format&fit=crop&w=1200&q=80"
-      },
-      6: { 
-        dayName: "शनिवार", 
-        grah: "शनिदेव", 
-        mantra: "ॐ शं शनैश्चराय नमः", 
-        remedy: "घर से निकलने से पहले थोड़ा घी या किशमिश खाकर निकलें।",
-        bgImg: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80"
-      }
+      0: { dayName: "रविवार", grah: "सूर्य देव", mantra: "ॐ घृणिः सूर्याय नमः", remedy: "घर से निकलने से पहले थोड़ा गुड़ खाकर और जल पीकर निकलें।", rahukal: "04:30 PM - 06:00 PM", bgImg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
+      1: { dayName: "सोमवार", grah: "चंद्र देव", mantra: "ॐ सोमाय नमः", remedy: "घर से निकलने से पहले दही खाएं या शीशे में अपना चेहरा देखकर निकलें।", rahukal: "07:30 AM - 09:00 AM", bgImg: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=1200&q=80" },
+      2: { dayName: "मंगलवार", grah: "मंगल देव", mantra: "ॐ भौमाय नमः", remedy: "घर से निकलने से पहले थोड़ा गुड़ या सौंफ खाकर निकलें।", rahukal: "03:00 PM - 04:30 PM", bgImg: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1200&q=80" },
+      3: { dayName: "बुधवार", grah: "बुध देव", mantra: "ॐ बुधाय नमः", remedy: "घर से निकलने से पहले हरा धनिया या सौंफ खाकर निकलें।", rahukal: "12:00 PM - 01:30 PM", bgImg: "https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=1200&q=80" },
+      4: { dayName: "गुरुवार", grah: "बृहस्पति देव (गुरु)", mantra: "ॐ बृं बृहस्पतये नमः", remedy: "घर से निकलने से पहले पीली सरसों या बेसन की मिठाई खाकर निकलें।", rahukal: "01:30 PM - 03:00 PM", bgImg: "https://images.unsplash.com/photo-1614314107768-6018061b5b72?auto=format&fit=crop&w=1200&q=80" },
+      5: { dayName: "शुक्रवार", grah: "शुक्र देव", mantra: "ॐ शुं शुक्राय नमः", remedy: "घर से निकलने से पहले मीठी दही खाकर निकलें।", rahukal: "10:30 AM - 12:00 PM", bgImg: "https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?auto=format&fit=crop&w=1200&q=80" },
+      6: { dayName: "शनिवार", grah: "शनिदेव", mantra: "ॐ शं शनैश्चराय नमः", remedy: "घर से निकलने से पहले थोड़ा घी या किशमिश खाकर निकलें।", rahukal: "09:00 AM - 10:30 AM", bgImg: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80" }
     };
 
-    // Special Festivals Data
     const accuratePanchangData = {
       "2026-09-20": { 
         tithi: "भाद्रपद शुक्ल एकादशी", 
         festival: "परिवर्तिनी एकादशी व्रत", 
         deityName: "भगवान श्री हरि विष्णु",
         mantra: "ॐ नमो भगवते वासुदेवाय नमः",
-        vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें। पीले फल, फूल, तुलसी दल और पंचामृत अर्पित करें। विष्णु सहस्रनाम का पाठ करें। पूरे दिन निराहार या फलाहार व्रत रखकर संध्या समय आरती करें। अगले दिन पारण करें।"
+        vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें। पीले फल, फूल, तुलसी दल और पंचामृत अर्पित करें। विष्णु सहस्रनाम का पाठ करें।"
       },
       "2026-09-24": { 
         tithi: "भाद्रपद शुक्ल चतुर्दशी", 
         festival: "अनंत चतुर्दशी / गणेश विसर्जन", 
         deityName: "श्री गणेश एवं अनंत देव",
         mantra: "ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः",
-        vidhi: "अनंत चतुर्दशी के दिन भगवान गणेश तथा अनंत भगवान की विधि-विधान से पूजा करें। कच्चे सूत के १४ गांठों वाले अनन्त डोरे की पूजा करके बाजू पर बांधें। इसके पश्चात गणपति प्रतिमा का आदरपूर्वक मोदक और दूर्वा से अंतिम पूजन करके विसर्जन करें।"
+        vidhi: "अनंत चतुर्दशी के दिन भगवान गणेश तथा अनंत भगवान की विधि-विधान से पूजा करें। अनंत डोरे की पूजा करके बाजू पर बांधें।"
       }
     };
 
-    // Deity Sadhana Data with Images and FULL Mantras
     const sadhanaData = {
-      "ganesh": { 
-        title: "श्री गणेश पूजा एवं मंत्र", 
-        image: "ganesh.jpg",
-        mantra: "ॐ श्रीमं महागणाधिपतये नमः। ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः अष्टविनायक नमो नमः गणपति बाप्पा मोरया।", 
-        desc: "समस्त विघ्नों के नाश और कार्यों में सफलता हेतु श्री गणेश जी की नित्य पूजा करें।" 
-      },
-      "lakshmi": { 
-        title: "मां लक्ष्मी पूजा एवं मंत्र", 
-        image: "lakshmi.jpg",
-        mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद श्रीं ह्रीं श्रीं ॐ महालक्ष्मै नमः।", 
-        desc: "धन, धान्य, ऐश्वर्य और घर में सुख-समृद्धि के लिए मां लक्ष्मी की उपासना करें।" 
-      },
-      "shiv": { 
-        title: "भगवान शिव पूजा एवं मंत्र", 
-        image: "shiv.jpg",
-        mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥", 
-        desc: "आरोग्यता, भय मुक्ति और आत्मिक शांति के लिए महामृत्युंजय एवं शिव मंत्र का पाठ करें।" 
-      },
-      "hanuman": { 
-        title: "श्री हनुमान साधना", 
-        image: "hanuman.jpg",
-        mantra: "ॐ हं हनुमते रुद्रात्मकाय हुं फट्। मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्। वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये॥", 
-        desc: "बल, बुद्धि, विद्या और संकटों के निवारण हेतु श्री हनुमान साधना एवं चालीसा का पाठ करें।" 
-      },
-      "krishna": { 
-        title: "श्री कृष्ण भक्ति", 
-        image: "krishna.jpg",
-        mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे। हरे राम हरे राम, राम राम हरे हरे॥ ॐ क्लीं कृष्णाय नमः।", 
-        desc: "भगवान श्रीकृष्ण के ध्यान और नाम जप से मन को असीम शांति और भक्ति रस की प्राप्ति होती है।" 
-      },
-      "durga": { 
-        title: "मां दुर्गा साधना", 
-        image: "durga.jpg",
-        mantra: "सर्वमंगल मांगल्ये शिवे सर्वार्थ साधिके। शरण्ये त्र्यंबके गौरि नारायणि नमोऽस्तु ते॥ ॐ दुं दुर्गायै नमः।", 
-        desc: "शक्ति, सुरक्षा और सर्व मनोकामना पूर्ति हेतु भगवती दुर्गा की आराधना करें।" 
-      },
-      "vishnu": { 
-        title: "भगवान विष्णु पूजा", 
-        image: "vishnu.jpg",
-        mantra: "ॐ नमो भगवते वासुदेवाय। शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं विश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गम्।", 
-        desc: "संसार के पालनहार श्री हरि विष्णु की भक्ति से जीवन में सुख, शांति और मोक्ष की प्राप्ति होती है।" 
-      },
-      "tulsi": { 
-        title: "तुलसी पूजन विधि", 
-        image: "tulsi.jpg",
-        mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी, आधि व्याधि हरा नित्यं तुलसी त्वं नमोस्तुते।", 
-        desc: "नित्य प्रातः तुलसी जी में जल अर्पित करने और पूजन से घर का वातावरण पवित्र एवं वास्तु दोष मुक्त रहता है।" 
-      },
-      "mantra": { 
-        title: "गायत्री मंत्र संग्रह", 
-        image: "mantra.jpg",
-        mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥", 
-        desc: "गायत्री मंत्र के नित्य जाप से बुद्धि कुशाग्र होती है और शरीर में सकारात्मक ऊर्जा का संचार होता है।" 
-      }
+      "ganesh": { title: "श्री गणेश पूजा एवं मंत्र", image: "ganesh.jpg", mantra: "ॐ श्रीमं महागणाधिपतये नमः। ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः।", desc: "समस्त विघ्नों के नाश और कार्यों में सफलता हेतु श्री गणेश जी की नित्य पूजा करें।" },
+      "lakshmi": { title: "मां लक्ष्मी पूजा एवं मंत्र", image: "lakshmi.jpg", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद श्रीं ह्रीं श्रीं ॐ महालक्ष्मै नमः।", desc: "धन, धान्य, ऐश्वर्य और घर में सुख-समृद्धि के लिए मां लक्ष्मी की उपासना करें।" },
+      "shiv": { title: "भगवान शिव पूजा एवं मंत्र", image: "shiv.jpg", mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥", desc: "आरोग्यता, भय मुक्ति और आत्मिक शांति के लिए महामृत्युंजय एवं शिव मंत्र का पाठ करें।" },
+      "hanuman": { title: "श्री हनुमान साधना", image: "hanuman.jpg", mantra: "ॐ हं हनुमते रुद्रात्मकाय हुं फट्। मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्।", desc: "बल, बुद्धि, विद्या और संकटों के निवारण हेतु श्री हनुमान साधना एवं चालीसा का पाठ करें।" },
+      "krishna": { title: "श्री कृष्ण भक्ति", image: "krishna.jpg", mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे। हरे राम हरे राम, राम राम हरे हरे॥", desc: "भगवान श्रीकृष्ण के ध्यान और नाम जप से मन को असीम शांति और भक्ति रस की प्राप्ति होती है।" },
+      "durga": { title: "मां दुर्गा साधना", image: "durga.jpg", mantra: "सर्वमंगल मांगल्ये शिवे सर्वार्थ साधिके। शरण्ये त्र्यंबके गौरि नारायणि नमोऽस्तु ते॥", desc: "शक्ति, सुरक्षा और सर्व मनोकामना पूर्ति हेतु भगवती दुर्गा की आराधना करें।" },
+      "vishnu": { title: "भगवान विष्णु पूजा", image: "vishnu.jpg", mantra: "ॐ नमो भगवते वासुदेवाय। शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं विश्वाधारं गगनसदृशम्।", desc: "संसार के पालनहार श्री हरि विष्णु की भक्ति से जीवन में सुख, शांति और मोक्ष की प्राप्ति होती है।" },
+      "tulsi": { title: "तुलसी पूजन विधि", image: "tulsi.jpg", mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी, आधि व्याधि हरा नित्यं तुलसी त्वं नमोस्तुते।", desc: "नित्य प्रातः तुलसी जी में जल अर्पित करने और पूजन से घर का वातावरण पवित्र एवं वास्तु दोष मुक्त रहता है।" },
+      "mantra": { title: "गायत्री मंत्र संग्रह", image: "mantra.jpg", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥", desc: "गायत्री मंत्र के नित्य जाप से बुद्धि कुशाग्र होती है और शरीर में सकारात्मक ऊर्जा का संचार होता है।" }
     };
 
-    // 50 Vastu Tips List
-    const allVastuTips = [
-      "मुख्य द्वार पर स्वास्तिक चिह्न बनाएं, इससे नकारात्मक ऊर्जा दूर रहती है।",
-      "घर के ईशान कोण (उत्तर-पूर्व) को हमेशा साफ-सुथरा और हल्का रखें।",
-      "रसोई घर में गैस चूल्हा पूर्व दिशा की ओर रखें, खाना बनाते समय मुंह पूर्व में होना चाहिए।",
-      "सोते समय सिर दक्षिण या पूर्व दिशा की ओर होना शुभ माना जाता है।",
-      "घर में टूटी-फूटी घड़ियां या बंद पड़ी घड़ियां न रखें, यह उन्नति में बाधा डालती हैं।",
-      "तिजोरी या धन का स्थान उत्तर दिशा में होना चाहिए, यह कुबेर की दिशा है।",
-      "शाम के समय घर के मुख्य द्वार पर दीपक अवश्य जलाएं।",
-      "बाथरूम का दरवाजा हमेशा बंद रखें, इससे नकारात्मक ऊर्जा घर में नहीं फैलती।",
-      "घर में झाड़ू को छिपाकर रखें और उस पर पैर न लगाएं।",
-      "घर के मंदिर में एक से अधिक शिवलिंग या गणेश जी की मूर्तियां न रखें।",
-      "पीने का पानी उत्तर-पूर्व दिशा में रखना शुभ होता है।",
-      "उत्तर दिशा में मनी प्लांट लगाने से धन वृद्धि होती है।",
-      "घर के केंद्र (ब्रह्मस्थान) में भारी सामान न रखें।",
-      "सीढ़ियों के नीचे रसोई या शौचालय का निर्माण न करवाएं।",
-      "घर में कांटेदार पौधे जैसे कैक्टस न लगाएं।",
-      "अक्वेरियम या बहते पानी का चित्र उत्तर दिशा में लगाएं।",
-      "बेडरूम में आईना इस तरह न लगाएं कि सोते समय शरीर दिखे।",
-      "घर के मुख्य द्वार के सामने डस्टबिन या कचरा न रखें।",
-      "तुलसी का पौधा पूर्व या उत्तर-पूर्व दिशा में लगाएं।",
-      "घर में रोज सुबह शंख बजाने से सकारात्मक ऊर्जा का संचार होता है।",
-      "भोजन हमेशा पूर्व या उत्तर की ओर मुंह करके करना चाहिए।",
-      "पूजा घर कभी भी बेडरूम में या सीढ़ियों के नीचे न बनाएं।",
-      "दक्षिण-पश्चिम दिशा में कभी भी भारी जलकुंड न बनाएं।",
-      "घर में नल से पानी का टपकना धन हानि का संकेत है, इसे तुरंत ठीक कराएं।",
-      "शाम के समय घर में कपूर जलाना बहुत शुभ माना जाता है।",
-      "घर में हिंसक जानवरों या युद्ध के चित्र न लगाएं।",
-      "पूजा कक्ष में सूखे फूल एकत्र न होने दें।",
-      "दक्षिण दिशा में पैर करके कभी न सोएं।",
-      "अलमारी का मुंह उत्तर दिशा की ओर खुलना चाहिए।",
-      "घर के मुख्य द्वार का रंग हल्का और आकर्षक होना चाहिए।",
-      "रसोईघर और बाथरूम एक सीध में नहीं होने चाहिए।",
-      "घर की छत पर कबाड़ या पुरानी वस्तुएं न जमा करें।",
-      "पढ़ाई करते समय बच्चों का मुंह पूर्व या उत्तर दिशा में होना चाहिए।",
-      "घर में बंद पड़े इलेक्ट्रॉनिक्स सामान तुरंत हटा दें।",
-      "घर की उत्तर-पूर्व दिशा में लाल रंग का उपयोग करने से बचें।",
-      "ताजे फूल घर में रखने से मानसिक शांति मिलती है।",
-      "संध्या काल में घर में झाड़ू न लगाएं।",
-      "घर के मंदिर में जल पात्र हमेशा भरकर रखें।",
-      "घर की खिड़कियां सुबह के समय खुली रखनी चाहिए।",
-      "दक्षिण-पूर्व दिशा (आग्नेय कोण) बिजली उपकरणों के लिए उत्तम है।",
-      "घर के किसी भी कोने में अंधेरा न रहने दें।",
-      "मुख्य द्वार पर सुंदर पौधे लगाएं।",
-      "भोजन पकाने वाले का मुंह कभी भी पश्चिम दिशा में न हो।",
-      "घर के बुजुर्गों का कमरा दक्षिण-पश्चिम दिशा में होना चाहिए।",
-      "घर में नमक के पानी से पोछा लगाने से नकारात्मकता दूर होती है।",
-      "अतिथि गृह (GUEST ROOM) उत्तर-पश्चिम दिशा में बनाएं।",
-      "तिजोरी के सामने दर्पण लगाने से धन दुगना होता है।",
-      "घर के मुख्य द्वार पर ऊं या श्री गणेश का चित्र लगाएं।",
-      "रात को सोते समय सिर खिड़की के ठीक नीचे न रखें।",
-      "घर के दक्षिण-पश्चिम कोने को हमेशा भारी और ऊंचा रखें।"
-    ];
+    // Daily Rashifal Data
+    const rashifalData = {
+      "मेष": "आज कार्यक्षेत्र में नए अवसर प्राप्त होंगे। आर्थिक मामलों में प्रगति होगी। परिवार का सहयोग मिलेगा।",
+      "वृषभ": "आज धैर्य बनाए रखें। धन के लेन-देन में सावधानी बरतें। स्वास्थ्य अच्छा रहेगा।",
+      "मिथुन": "वाणी में मधुरता रखें। व्यापार में नए लाभदायक सौदे हो सकते हैं। शुभ समाचार मिलेगा।",
+      "कर्क": "मानसिक शांति महसूस होगी। अध्यात्म में रुचि बढ़ेगी। पुराने मित्रों से मुलाकात संभव है।",
+      "सिंह": "आत्मविश्वास में वृद्धि होगी। रुके हुए कार्य पूरे होंगे। अधिकारियों से सराहना मिलेगी।",
+      "कन्या": "आर्थिक स्थिति मजबूत होगी। यात्रा का योग बन रहा है। खान-पान पर ध्यान दें।",
+      "तुला": "सकारात्मक ऊर्जा रहेगी। करियर में उन्नति के नए रास्ते खुलेंगे। दांपत्य जीवन सुखद रहेगा।",
+      "वृश्चिक": "परिश्रम का फल मिलेगा। विरोधी शांत रहेंगे। नया निवेश करने के लिए शुभ दिन है।",
+      "धनु": "भाग्य का साथ मिलेगा। धार्मिक कार्यों में मन लगेगा। विद्यार्थी वर्ग को सफलता मिलेगी।",
+      "मकर": "कार्यक्षेत्र में सफलता मिलेगी। पारिवारिक वातावरण खुशनुमा रहेगा। स्वास्थ्य में सुधार होगा।",
+      "कुंभ": "अचानक धन लाभ का योग है। नई योजनाओं की शुरुआत कर सकते हैं। मित्र मददगार साबित होंगे।",
+      "मीन": "मन प्रसन्न रहेगा। कार्यस्थल पर आपकी प्रशंसा होगी। प्रेम संबंधों में मधुरता आएगी।"
+    };
+
+    // Aarti & Chalisa Collection
+    const aartiCollection = {
+      "hanuman_chalisa": {
+        title: "श्री हनुमान चालीसा",
+        text: `<b>|| दोहा ||</b><br>श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि। बरनउँ रघुबर बिमल जसु जो दायकु फल चारि॥<br>बुद्धिहीन तनु जानिके सुमिरौ पवन-कुमार। बल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार॥<br><br><b>|| चौपाई ||</b><br>जय हनुमान ज्ञान गुन सागर। जय कपीस तिहुँ लोक उजागर॥<br>रामदूत अतुलित बल धामा। अंजनि-पुत्र पवनसुत नामा॥<br>महाबीर बिक्रम बजरंगी। कुमति निवार सुमति के संगी॥<br>कंचन बरन बिराज सुबेसा। कानन कुंडल कुंचित केसा॥<br>हाथ बज्र औ ध्वजा बिराजै। काँधे मूँज जनेऊ साजै॥<br>संकर सुवन केसरीनंदन। तेज प्रताप महा जग बन्दन॥...`
+      },
+      "ganesh_aarti": {
+        title: "जय गणेश जय गणेश देवा",
+        text: `जय गणेश जय गणेश, जय गणेश देवा। माता जाकी पार्वती पिता महादेवा॥<br>एक दंत दयावंत, चार भुजाधारी। माथे सिंदूर सोहे, मूसे की सवारी॥<br>पान चढ़े फूल चढ़े, और चढ़े मेवा। लड्डुअन का भोग लगे, संत करें सेवा॥<br>जय गणेश जय गणेश, जय गणेश देवा। माता जाकी पार्वती पिता महादेवा॥`
+      },
+      "lakshmi_aarti": {
+        title: "ॐ जय लक्ष्मी माता",
+        text: `ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता। तुमको निशदिन ध्यावत, हर विष्णु विधाता॥<br>उमा रमा ब्रह्माणी, तुम ही जग-माता। सूर्य चंद्रमा ध्यावत, नारद ऋषि गाता॥<br>दुर्गा रूप निरंजनी, सुख सम्पत्ति दाता। जो कोई तुमको ध्यावत, ऋद्धि-सिद्धि पाता॥`
+      }
+    };
 
     const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
     const lagnas = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
 
     let currentTodayData = {};
+    let malaCount = 0;
 
     function initPanchangAndGrah() {
       const today = new Date();
@@ -725,9 +767,8 @@
 
       const specialFest = accuratePanchangData[todayKey];
 
-      const heroBanner = document.getElementById("heroBanner");
-      heroBanner.style.backgroundImage = `url('${grahInfo.bgImg}')`;
-
+      document.getElementById("heroBanner").style.backgroundImage = `url('${grahInfo.bgImg}')`;
+      document.getElementById("rahukalTime").innerText = grahInfo.rahukal;
       document.getElementById("heroPill").innerText = `ॐ • आज का दिन: ${grahInfo.dayName} (${grahInfo.grah})`;
 
       if (specialFest) {
@@ -742,7 +783,7 @@
           festival: `${grahInfo.dayName} विशेष पूजन`,
           deityName: grahInfo.grah,
           mantra: grahInfo.mantra,
-          vidhi: `आज ${grahInfo.dayName} के दिन प्रातःकाल स्नान करके स्वच्छ वस्त्र धारण करें। ${grahInfo.grah} के मंत्र '${grahInfo.mantra}' का १०८ बार जाप करें। धूप, दीप प्रज्वलित करके फल और जल अर्पित करें। भक्तिभाव से आरती करें।`
+          vidhi: `आज ${grahInfo.dayName} के दिन प्रातःकाल स्नान करके स्वच्छ वस्त्र धारण करें। ${grahInfo.grah} के मंत्र '${grahInfo.mantra}' का १०८ बार जाप करें।`
         };
         document.getElementById("heroTitle").innerText = `${grahInfo.dayName} दैनिक पंचांग`;
         document.getElementById("heroText").innerText = `आज ${grahInfo.grah} का दिन है। विधि-विधान से पूजा अर्चना करें।`;
@@ -751,23 +792,34 @@
       }
 
       document.getElementById("heroRemedy").innerHTML = `<b>गृह गमन शुभ उपाय (${grahInfo.grah}):</b> ${grahInfo.remedy}`;
+
+      // WhatsApp Share Link Generation
+      const shareMsg = encodeURIComponent(`🕉️ *आज का अध्यात्मिक ज्ञान & पंचांग* 🕉️\n\n📌 *पर्व/पूजा:* ${document.getElementById("heroTitle").innerText}\n✨ *शुभ मंत्र:* ${grahInfo.mantra}\n💡 *आज का उपाय:* ${grahInfo.remedy}\n\nआज का पूरा पंचांग एवं राशिफल देखने के लिए यहाँ क्लिक करें: ${window.location.href}`);
+      document.getElementById("whatsappShareBtn").setAttribute("onclick", `window.open('https://api.whatsapp.com/send?text=${shareMsg}', '_blank')`);
     }
 
-    function getDailyVastuTips() {
-      const today = new Date();
-      const startOfYear = new Date(today.getFullYear(), 0, 0);
-      const diff = today - startOfYear;
-      const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-      const startIndex = (dayOfYear * 5) % allVastuTips.length;
-      let selectedTips = [];
-      for (let i = 0; i < 5; i++) {
-        selectedTips.push(allVastuTips[(startIndex + i) % allVastuTips.length]);
-      }
-      return selectedTips;
+    // Render Rashifal Chips
+    function renderRashifalChips() {
+      const container = document.getElementById("rashifalChips");
+      container.innerHTML = "";
+      rashis.forEach(rashi => {
+        const btn = document.createElement("button");
+        btn.innerText = rashi;
+        btn.onclick = () => {
+          modalContent.innerHTML = `
+            <div style="text-align:center;">
+              <h2 style="color:var(--primary-dark); margin-top:0;">🔮 ${rashi} राशिफल</h2>
+              <div style="background:var(--bg-cream); padding:16px; border-radius:12px; border:1px solid var(--card-border); font-size:14px; line-height:1.6; text-align:left;">
+                ${rashifalData[rashi]}
+              </div>
+            </div>
+          `;
+          modal.classList.add("active");
+        };
+        container.appendChild(btn);
+      });
     }
 
-    // Hash helper for astrology calculations
     function stringHash(str) {
       let hash = 0;
       for (let i = 0; i < str.length; i++) {
@@ -779,12 +831,19 @@
 
     document.addEventListener("DOMContentLoaded", function() {
       initPanchangAndGrah();
+      renderRashifalChips();
 
       const modal = document.getElementById("modal");
       const modalContent = document.getElementById("modalContent");
       const closeModal = document.getElementById("closeModal");
 
-      // 1. Individual Kundali Analysis Form
+      // Dark Mode Toggle
+      document.getElementById("darkModeBtn").addEventListener("click", function() {
+        document.body.classList.toggle("dark-mode");
+        this.innerText = document.body.classList.contains("dark-mode") ? "☀️ लाइट मोड" : "🌙 डार्क मोड";
+      });
+
+      // Kundali Form
       document.getElementById("kundaliForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const name = document.getElementById("kName").value;
@@ -796,7 +855,6 @@
         const userRashi = rashis[seed % 12];
         const userLagna = lagnas[(seed + 3) % 12];
 
-        // Dosh calculations
         const hasMangalDosh = (seed % 3 === 0);
         const hasKalsarpDosh = (seed % 5 === 0);
         const hasPitraDosh = (seed % 7 === 0);
@@ -804,7 +862,7 @@
         modalContent.innerHTML = `
           <div style="text-align:left;">
             <h2 style="color:var(--primary-dark); text-align:center; margin-top:0;">📜 जन्म कुण्डली रिपोर्ट</h2>
-            <div style="background:#fff8ed; padding:12px; border-radius:8px; border:1px solid var(--card-border); margin-bottom:12px;">
+            <div style="background:var(--bg-cream); padding:12px; border-radius:8px; border:1px solid var(--card-border); margin-bottom:12px;">
               <b>नाम:</b> ${name}<br>
               <b>जन्म तिथि & समय:</b> ${dob} | ${tob}<br>
               <b>जन्म स्थान:</b> ${pob}
@@ -812,8 +870,8 @@
 
             <h4 style="color:var(--primary-dark); margin-bottom:6px;">🪐 मूल ग्रह स्थिति:</h4>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px; margin-bottom:14px;">
-              <div style="background:#fef3c7; padding:8px; border-radius:6px;"><b>चंद्र राशि:</b> ${userRashi}</div>
-              <div style="background:#fef3c7; padding:8px; border-radius:6px;"><b>लग्न राशि:</b> ${userLagna}</div>
+              <div style="background:rgba(254, 243, 199, 0.4); padding:8px; border-radius:6px;"><b>चंद्र राशि:</b> ${userRashi}</div>
+              <div style="background:rgba(254, 243, 199, 0.4); padding:8px; border-radius:6px;"><b>लग्न राशि:</b> ${userLagna}</div>
             </div>
 
             <h4 style="color:var(--primary-dark); margin-bottom:6px;">⚠️ कुण्डली दोष विश्लेषण:</h4>
@@ -822,110 +880,139 @@
               <div>• <b>कालसर्प दोष:</b> ${hasKalsarpDosh ? '<span class="dosh-tag dosh-present">कालसर्प योग उपस्थित</span>' : '<span class="dosh-tag dosh-absent">कालसर्प दोष नहीं है</span>'}</div>
               <div>• <b>पितृ दोष:</b> ${hasPitraDosh ? '<span class="dosh-tag dosh-present">पितृ दोष प्रभाव</span>' : '<span class="dosh-tag dosh-absent">पितृ दोष मुक्त</span>'}</div>
             </div>
-
-            <div style="background:#fef3c7; padding:10px; border-radius:8px; font-size:12px; border-left:4px solid var(--primary-color);">
-              <b>शुभ उपाय:</b> नित्य प्रातः हनुमान चालीसा का पाठ करें एवं जल में गुड़ मिलाकर सूर्य देव को अर्घ्य दें।
-            </div>
-
-            <div class="disclaimer-note" style="margin-top:14px;">
-              <b>नोट:</b> यह एक AI generated astrology report है। अधिक एवं सटीक कुण्डली विश्लेषण के लिए ज्योतिषाचार्य से संपर्क करें।
-            </div>
           </div>
         `;
         modal.classList.add("active");
       });
 
-      // 2. Kundali Milan Form
+      // Milan Form
       document.getElementById("milanForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const boyName = document.getElementById("boyName").value;
         const boyDob = document.getElementById("boyDob").value;
         const boyPob = document.getElementById("boyPob").value;
-
         const girlName = document.getElementById("girlName").value;
         const girlDob = document.getElementById("girlDob").value;
         const girlPob = document.getElementById("girlPob").value;
 
         const seed = stringHash(boyName + boyDob + boyPob + girlName + girlDob + girlPob);
-        
-        // Match calculation out of 36 Guns
-        const totalGuns = 18 + (seed % 18); // Generates between 18 and 35
+        const totalGuns = 18 + (seed % 18);
         const percentage = Math.round((totalGuns / 36) * 100);
-
-        let matchStatus = "";
-        let colorCode = "#166534";
-        if (totalGuns >= 28) {
-          matchStatus = "उत्तम मिलान (Excellent Compatibility)";
-          colorCode = "#166534";
-        } else if (totalGuns >= 21) {
-          matchStatus = "मध्यम एवं शुभ मिलान (Good Match)";
-          colorCode = "#d97706";
-        } else {
-          matchStatus = "सामान्य मिलान (Average Match - परिहार आवश्यक)";
-          colorCode = "#991b1b";
-        }
 
         modalContent.innerHTML = `
           <div style="text-align:center;">
             <h2 style="color:var(--primary-dark); margin-top:0;">💞 कुण्डली मिलान परिणाम</h2>
-            <div style="font-size:13px; color:#555; margin-bottom:12px;">
+            <div style="font-size:13px; color:var(--sub-text); margin-bottom:12px;">
               <b>वर:</b> ${boyName} | <b>वधू:</b> ${girlName}
             </div>
 
-            <div style="background:#fff8ed; border:2px solid var(--primary-color); border-radius:12px; padding:16px; margin-bottom:14px;">
-              <div style="font-size:14px; color:#666;">अष्टकूट गुण मिलान:</div>
+            <div style="background:var(--bg-cream); border:2px solid var(--primary-color); border-radius:12px; padding:16px; margin-bottom:14px;">
+              <div style="font-size:14px; color:var(--sub-text);">अष्टकूट गुण मिलान:</div>
               <div style="font-size:36px; font-weight:bold; color:var(--primary-dark); margin:4px 0;">
-                ${totalGuns} <span style="font-size:18px; color:#777;">/ 36 गुण</span>
+                ${totalGuns} <span style="font-size:18px; color:var(--sub-text);">/ 36 गुण</span>
               </div>
-              <div style="font-size:14px; font-weight:bold; color:${colorCode};">
-                ${percentage}% - ${matchStatus}
+              <div style="font-size:14px; font-weight:bold; color:#166534;">
+                ${percentage}% - उत्तम एवं शुभ मिलान
               </div>
-            </div>
-
-            <div style="text-align:left; font-size:12px; color:#444; background:#fef3c7; padding:10px; border-radius:8px; line-height:1.5;">
-              <b>गुण तालिका विवरण:</b><br>
-              • वर्ण एवं वश्य: अनुकूल<br>
-              • तारा एवं योनि: मध्यम<br>
-              • भकूट एवं नाड़ी: ${totalGuns >= 22 ? 'शुभ (निर्दोष)' : 'सामान्य'}
-            </div>
-
-            <div class="disclaimer-note" style="margin-top:14px; text-align:left;">
-              <b>नोट:</b> यह एक AI generated matching percentage एवं ज्योतिषीय एल्गोरिदम आधारित गणना है। अधिक एवं सटीक जानकारी के लिए किसी विद्वान ज्योतिषाचार्य (Astrologer) से संपर्क करें।
             </div>
           </div>
         `;
         modal.classList.add("active");
       });
 
-      // Modals Handler for Top Buttons
+      // Universal Modal Handler
       document.addEventListener("click", function(e) {
         const btn = e.target.closest("[data-modal]");
         if (!btn) return;
 
         const modalType = btn.getAttribute("data-modal");
 
+        if (modalType === "mala") {
+          malaCount = 0;
+          modalContent.innerHTML = `
+            <div class="mala-counter-box">
+              <h2 style="color:var(--primary-dark); margin-top:0;">📿 डिजिटल जप माला</h2>
+              <p style="font-size:13px; color:var(--sub-text);">नीचे दिए गए चक्र पर स्पर्श करके मंत्र जप करें:</p>
+              
+              <div class="mala-circle" id="malaBtn">
+                <div class="mala-count" id="malaNum">0</div>
+                <div style="font-size:11px; opacity:0.9;">/ 108 जप</div>
+              </div>
+
+              <div id="malaStatus" style="font-size:14px; font-weight:bold; color:var(--primary-color); min-height:22px;">
+                जप शुरू करने के लिए गोल बटन दबाएं
+              </div>
+
+              <button class="btn" id="resetMalaBtn" style="margin-top:16px; width:auto; background:#666;">🔄 रीसेट करें</button>
+            </div>
+          `;
+
+          modal.classList.add("active");
+
+          const malaBtn = document.getElementById("malaBtn");
+          const malaNum = document.getElementById("malaNum");
+          const malaStatus = document.getElementById("malaStatus");
+
+          malaBtn.addEventListener("click", function() {
+            malaCount++;
+            malaNum.innerText = malaCount;
+
+            if (navigator.vibrate) {
+              navigator.vibrate(40);
+            }
+
+            if (malaCount === 108) {
+              malaStatus.innerText = "🎉 बधाई हो! आपकी 1 माला (108 जप) पूरी हुई!";
+              if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            } else if (malaCount > 108) {
+              malaStatus.innerText = `माला पूरी हो चुकी है। (कुल जप: ${malaCount})`;
+            } else {
+              malaStatus.innerText = `जप जारी रखें... (${108 - malaCount} बाकी)`;
+            }
+          });
+
+          document.getElementById("resetMalaBtn").addEventListener("click", function() {
+            malaCount = 0;
+            malaNum.innerText = 0;
+            malaStatus.innerText = "जप रीसेट हो गया है।";
+          });
+
+          return;
+        }
+
+        if (modalType === "aarti") {
+          modalContent.innerHTML = `
+            <div style="text-align:center;">
+              <h2 style="color:var(--primary-dark); margin-top:0;">📖 आरती एवं चालीसा संग्रह</h2>
+              <div style="display:flex; gap:8px; justify-content:center; margin-bottom:14px; flex-wrap:wrap;">
+                <button class="btn" style="width:auto;" onclick="showAarti('hanuman_chalisa')">हनुमान चालीसा</button>
+                <button class="btn" style="width:auto; background:#c2410c;" onclick="showAarti('ganesh_aarti')">गणेश आरती</button>
+                <button class="btn" style="width:auto; background:#047857;" onclick="showAarti('lakshmi_aarti')">लक्ष्मी आरती</button>
+              </div>
+              <div id="aartiBox" style="background:var(--bg-cream); padding:14px; border-radius:10px; text-align:left; font-size:14px; line-height:1.7; max-height:280px; overflow-y:auto; border:1px solid var(--card-border);">
+                ऊपर दिए गए बटन पर क्लिक करके चालीसा या आरती चुनें।
+              </div>
+            </div>
+          `;
+          modal.classList.add("active");
+          return;
+        }
+
         if (modalType === "puja") {
           modalContent.innerHTML = `
             <div style="text-align:center;">
               <img src="${todaysPujaImage}" alt="Today Puja" class="puja-custom-img">
               <h2 style="color:var(--primary-dark); margin-bottom:4px;">🪔 ${currentTodayData.festival}</h2>
-              <small style="color:#666; font-weight:bold;">${currentTodayData.tithi}</small>
+              <small style="color:var(--sub-text); font-weight:bold;">${currentTodayData.tithi}</small>
               
-              <div style="background:#fff8ed; padding:12px; border-radius:8px; margin:12px 0; border-left:4px solid var(--primary-color); text-align:left;">
+              <div style="background:var(--bg-cream); padding:12px; border-radius:8px; margin:12px 0; border-left:4px solid var(--primary-color); text-align:left;">
                 <b>भगवत्/पूजन मंत्र:</b>
                 <p style="font-size:15px; color:var(--primary-color); margin:6px 0 0 0; font-weight:bold; line-height:1.4;">${currentTodayData.mantra}</p>
               </div>
 
-              <div style="text-align:left; font-size:13px; color:#444; line-height:1.6;">
+              <div style="text-align:left; font-size:13px; color:var(--text-color); line-height:1.6;">
                 <b style="color:var(--primary-dark); font-size:14px;">संपूर्ण पूजा विधि:</b>
                 <p style="margin-top:6px;">${currentTodayData.vidhi}</p>
-              </div>
-
-              <div style="margin-top:16px; padding-top:10px; border-top:1px dashed #fed7aa;">
-                <p style="font-size:13px; color:#555; margin-bottom:8px; font-weight:bold;">सही मंत्र जाप विधि के लिए हमारे YouTube पेज से जुड़ें</p>
-                <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
-                  <span class="yt-icon"></span> YouTube चैनल देखें
-                </a>
               </div>
             </div>
           `;
@@ -935,78 +1022,33 @@
 
         if (sadhanaData[modalType]) {
           const item = sadhanaData[modalType];
-
           modalContent.innerHTML = `
             <div style="text-align:center;">
               <img src="${item.image}" alt="${item.title}" class="puja-custom-img">
               <h2 style="color:var(--primary-dark); margin-top:6px;">🕉️ ${item.title}</h2>
-              
-              <div style="background:#fff8ed; padding:12px; border-radius:8px; margin:14px 0; border-left:4px solid var(--primary-color); text-align:left;">
+              <div style="background:var(--bg-cream); padding:12px; border-radius:8px; margin:14px 0; border-left:4px solid var(--primary-color); text-align:left;">
                 <b>संपूर्ण मंत्र:</b>
-                <p style="font-size:15px; color:var(--primary-color); margin:6px 0 0 0; font-weight:bold; line-height:1.5;">${item.mantra}</p>
+                <p style="font-size:15px; color:var(--primary-color); margin:6px 0 0 0; font-weight:bold;">${item.mantra}</p>
               </div>
-
-              <p style="text-align:left; font-size:13px; color:#444; line-height:1.5;">${item.desc}</p>
-
-              <div style="margin-top:18px; padding-top:12px; border-top:1px dashed #fed7aa;">
-                <p style="font-size:13px; color:#555; margin-bottom:10px; font-weight:bold;">सही मंत्र जाप विधि के लिए हमारे YouTube पेज से जुड़ें</p>
-                <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
-                  <span class="yt-icon"></span> YouTube चैनल देखें
-                </a>
-              </div>
+              <p style="text-align:left; font-size:13px; color:var(--text-color); line-height:1.5;">${item.desc}</p>
             </div>
           `;
           modal.classList.add("active");
           return;
         }
-
-        if (modalType === "vastu") {
-          const dailyTips = getDailyVastuTips();
-          let vastuHtml = `<h2 style="color:var(--primary-dark); text-align:center;">🏠 आज के 5 महत्वपूर्ण वास्तु सुझाव</h2>
-          <div style="margin-top:15px; text-align:left;">`;
-          
-          dailyTips.forEach((tip, idx) => {
-            vastuHtml += `
-              <div style="background:#fff8ed; padding:10px 12px; border-radius:8px; margin-bottom:10px; border-left:4px solid var(--primary-color); font-size:13px; line-height:1.4;">
-                <b>${idx + 1}.</b> ${tip}
-              </div>`;
-          });
-          
-          vastuHtml += `</div>`;
-          modalContent.innerHTML = vastuHtml;
-          modal.classList.add("active");
-          return;
-        }
-
-        if (modalType === "calendar") {
-          let calHtml = `<h2 style="color:var(--primary-dark); text-align:center;">📅 प्रमुख व्रत एवं त्यौहार</h2>
-          <div style="margin-top:15px; text-align:left;">`;
-          
-          for (let dateKey in accuratePanchangData) {
-            const item = accuratePanchangData[dateKey];
-            calHtml += `
-              <div style="padding:10px 0; border-bottom:1px solid #fed7aa;">
-                <b>${dateKey}</b>: <span style="color:var(--primary-color); font-weight:bold;">${item.festival}</span>
-                <br><small style="color:#666;">${item.tithi}</small>
-              </div>`;
-          }
-          calHtml += `</div>`;
-          modalContent.innerHTML = calHtml;
-          modal.classList.add("active");
-          return;
-        }
       });
 
-      closeModal.addEventListener("click", function() {
-        modal.classList.remove("active");
-      });
-
-      window.addEventListener("click", function(e) {
-        if (e.target === modal) {
-          modal.classList.remove("active");
-        }
-      });
+      closeModal.addEventListener("click", function() { modal.classList.remove("active"); });
+      window.addEventListener("click", function(e) { if (e.target === modal) modal.classList.remove("active"); });
     });
+
+    // Helper for Aarti Show
+    function showAarti(key) {
+      const item = aartiCollection[key];
+      if (item) {
+        document.getElementById("aartiBox").innerHTML = `<h3 style="color:var(--primary-dark); margin-top:0;">${item.title}</h3>${item.text}`;
+      }
+    }
   </script>
 </body>
 </html>
