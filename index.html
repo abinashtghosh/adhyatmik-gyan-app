@@ -111,7 +111,7 @@
 <script src="app.js"></script>
 
 <script>
-  // God Images for Modal Popups
+  // Dynamic God Images for Modal Popups
   const godImages = {
     "surya": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
     "shiv": "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=600&q=80",
@@ -146,6 +146,7 @@
     "2026-09-24": { tithi: "भाद्रपद शुक्ल चतुर्दशी", festival: "अनंत चतुर्दशी / गणेश विसर्जन", godKey: "ganesh" },
     "2026-09-26": { tithi: "भाद्रपद पूर्णिमा", festival: "सत्यनारायण व्रत / पितृ पक्ष प्रारंभ", godKey: "vishnu" },
     
+    // October 2026
     "2026-10-06": { tithi: "आश्विन कृष्ण एकादशी", festival: "इंद्रा एकादशी व्रत", godKey: "vishnu" },
     "2026-10-10": { tithi: "आश्विन अमावस्या", festival: "सर्वपितृ अमावस्या / महालया", godKey: "shiv" },
     "2026-10-11": { tithi: "आश्विन शुक्ल प्रतिपदा", festival: "शारदीय नवरात्रि प्रारंभ / घटस्थापना", godKey: "durga" },
@@ -155,6 +156,7 @@
     "2026-10-26": { tithi: "आश्विन पूर्णिमा", festival: "शरद पूर्णिमा / कोजागरी लक्ष्मी पूजा", godKey: "lakshmi" },
     "2026-10-29": { tithi: "कार्तिक कृष्ण चतुर्थी", festival: "करवा चौथ / संकष्टी चतुर्थी", godKey: "ganesh" },
 
+    // November 2026
     "2026-11-05": { tithi: "कार्तिक कृष्ण एकादशी", festival: "रमा एकादशी व्रत", godKey: "vishnu" },
     "2026-11-06": { tithi: "कार्तिक कृष्ण त्रयोदशी", festival: "धनतेरस / धन्वंतरि पूजा", godKey: "lakshmi" },
     "2026-11-08": { tithi: "कार्तिक अमावस्या", festival: "दीपावली / महालक्ष्मी पूजन", godKey: "lakshmi" },
@@ -164,6 +166,7 @@
     "2026-11-20": { tithi: "कार्तिक शुक्ल एकादशी", festival: "देवउठनी एकादशी / तुलसी विवाह", godKey: "vishnu" },
     "2026-11-24": { tithi: "कार्तिक पूर्णिमा", festival: "देव दीपावली / कार्तिक पूर्णिमा स्नान", godKey: "shiv" },
 
+    // December 2026
     "2026-12-04": { tithi: "मार्गशीर्ष कृष्ण एकादशी", festival: "उत्पन्ना एकादशी व्रत", godKey: "vishnu" },
     "2026-12-07": { tithi: "मार्गशीर्ष कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि", godKey: "shiv" },
     "2026-12-14": { tithi: "मार्गशीर्ष शुक्ल पंचमी", festival: "विवाह पंचमी (राम-सीता विवाह)", godKey: "vishnu" },
@@ -246,7 +249,7 @@
 
       const modalType = btn.getAttribute("data-modal");
 
-      // Today's Puja or Vrat Modal Click
+      // Handle Today's Puja or Vrat Modal Click
       if (modalType === "puja" || modalType === "vrat") {
         const godImg = godImages[currentTodayData.godKey] || godImages["vishnu"];
         const ytLink = `https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1`;
@@ -277,7 +280,7 @@
         return;
       }
 
-      // Deity Chips Modal Click
+      // Handle Deity Chips Modal Click
       if (sadhanaYouTubeData[modalType]) {
         const item = sadhanaYouTubeData[modalType];
         const godImg = godImages[item.godKey] || godImages["vishnu"];
@@ -303,9 +306,9 @@
         return;
       }
 
-      // Calendar Modal Click
+      // Handle Calendar Modal Click
       if (modalType === "calendar") {
-        let calHtml = `<h2>📅 Month-Wise Panchang Calendar</h2>
+        let calHtml = `<h2>📅 Hindu Panchang & Festival Calendar (Month-Wise)</h2>
         <div style="margin-top:10px; max-height:380px; overflow-y:auto;">`;
         
         let currentMonth = "";
@@ -319,7 +322,7 @@
           }
 
           calHtml += `
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #fee2e2;">
+            <div style="display:flex; justify-style:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #fee2e2;">
               <div>
                 <b>${dateKey}</b>: <span style="color:#d97706; font-weight:bold;">${item.festival}</span>
                 <br><small style="color:#666;">${item.tithi}</small>
