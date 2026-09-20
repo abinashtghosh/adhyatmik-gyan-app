@@ -75,17 +75,17 @@
       color: #fff;
     }
 
-    /* Uniform Grid & Cards */
+    /* Uniform 3 Grid Layout */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 14px;
       margin-bottom: 24px;
     }
 
     .card {
       background: #fff;
-      padding: 16px 12px;
+      padding: 18px 12px;
       border-radius: 14px;
       border: 1px solid var(--card-border);
       text-align: center;
@@ -121,8 +121,8 @@
     .card-desc {
       font-size: 12px;
       color: #666;
-      margin-bottom: 10px;
-      min-height: 32px;
+      margin-bottom: 12px;
+      min-height: 28px;
     }
 
     .btn {
@@ -140,6 +140,67 @@
 
     .btn:hover {
       background: var(--primary-dark);
+    }
+
+    /* Deity Chips Section */
+    .chips-section {
+      margin-bottom: 24px;
+    }
+
+    .chips-title {
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chips button {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--primary-dark);
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+
+    .chips button:hover {
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    /* YouTube Banner Section */
+    .yt-banner {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .yt-btn {
+      background: #cc181e;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* Modal Styling */
@@ -184,7 +245,7 @@
     .square-img {
       width: 100%;
       aspect-ratio: 1 / 1;
-      max-width: 320px;
+      max-width: 300px;
       object-fit: cover;
       border-radius: 12px;
       border: 2px solid var(--primary-color);
@@ -206,7 +267,7 @@
     </div>
   </section>
 
-  <!-- Today's Cards Section -->
+  <!-- 3 Main Cards Section -->
   <h3 style="color: var(--primary-dark); margin-bottom: 12px;">आज का दैनिक पंचांग एवं पूजा</h3>
   <div class="grid">
     <!-- Today's Puja Card -->
@@ -219,22 +280,12 @@
       <button class="btn" data-modal="puja">विधि देखें</button>
     </div>
 
-    <!-- Today's Vrat Card -->
-    <div class="card">
-      <div class="icon-container">🕉️</div>
-      <div>
-        <div class="card-title">Today's Vrat & Tithi</div>
-        <div class="card-desc" id="todayVratSubText">Loading...</div>
-      </div>
-      <button class="btn" data-modal="vrat">नियम देखें</button>
-    </div>
-
     <!-- Month-Wise Panchang Card -->
     <div class="card">
       <div class="icon-container">📅</div>
       <div>
-        <div class="card-title">Month Panchang</div>
-        <div class="card-desc">मासिक पंचांग एवं प्रमुख त्यौहार</div>
+        <div class="card-title">Month-Wise Panchang</div>
+        <div class="card-desc">मासिक पंचांग एवं त्यौहार</div>
       </div>
       <button class="btn" data-modal="calendar">देखें</button>
     </div>
@@ -244,11 +295,39 @@
       <div class="icon-container">🏠</div>
       <div>
         <div class="card-title">Vastu Tips</div>
-        <div class="card-desc">आज के 5 दैनिक वास्तु सुझाव</div>
+        <div class="card-desc">50 महत्वपूर्ण वास्तु सुझाव</div>
       </div>
       <button class="btn" data-modal="vastu">सुझाव देखें</button>
     </div>
   </div>
+
+  <!-- Puja & Sadhana Deity Chips Section -->
+  <section class="chips-section">
+    <h3 class="chips-title">पूजा एवं साधना</h3>
+    <div class="chips">
+      <button data-modal="ganesh">गणेश</button>
+      <button data-modal="lakshmi">लक्ष्मी</button>
+      <button data-modal="shiv">शिव</button>
+      <button data-modal="hanuman">हनुमान</button>
+      <button data-modal="krishna">कृष्ण</button>
+      <button data-modal="durga">दुर्गा</button>
+      <button data-modal="vishnu">विष्णु</button>
+      <button data-modal="tulsi">तुलसी</button>
+      <button data-modal="mantra">मंत्र</button>
+    </div>
+  </section>
+
+  <!-- YouTube Channel Join Section -->
+  <section class="yt-banner">
+    <div>
+      <small style="color: #666; font-weight: bold;">▶ Latest Videos</small>
+      <h3 style="color: var(--primary-dark); margin: 4px 0 2px 0;">हमारे YouTube चैनल से जुड़ें</h3>
+      <p style="margin: 0; font-size: 13px; color: #555;">नई पूजा, व्रत, वास्तु और धार्मिक वीडियो देखें।</p>
+    </div>
+    <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
+      ▶ YouTube देखें
+    </a>
+  </section>
 
   <!-- Modal Container -->
   <div class="modal" id="modal">
@@ -259,12 +338,14 @@
   </div>
 
   <script>
-    // 1024x1024 Square HD God Images
+    // Reliable 1024x1024 Square HD Image Sources
     const godImagesSquare = {
       "vishnu": "https://images.unsplash.com/photo-1545232979-fbf592320781?auto=format&fit=crop&w=1024&h=1024&q=80",
       "ganesh": "https://images.unsplash.com/photo-1567591377030-de198b9d5186?auto=format&fit=crop&w=1024&h=1024&q=80",
       "shiv": "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1024&h=1024&q=80",
       "durga": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1024&h=1024&q=80",
+      "lakshmi": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1024&h=1024&q=80",
+      "hanuman": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=1024&h=1024&q=80",
       "krishna": "https://images.unsplash.com/photo-1545232979-fbf592320781?auto=format&fit=crop&w=1024&h=1024&q=80",
       "surya": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1024&h=1024&q=80"
     };
@@ -322,15 +403,15 @@
       }
     };
 
-    // Panchang Calendar Special Events Mapped with Specific Gods & Accurate Vidhi
+    // Special Festivals Data
     const accuratePanchangData = {
       "2026-09-20": { 
         tithi: "भाद्रपद शुक्ल एकादशी", 
         festival: "परिवर्तिनी एकादशी व्रत", 
         godKey: "vishnu",
         deityName: "भगवान श्री हरि विष्णु",
-        mantra: "ॐ नमो भगवते वा वासदेवाय",
-        vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें। पीले फल, फूल, तुलसी दल और पंचामृत अर्पित करें। विष्णु सहस्रनाम या एकादशी महात्म्य का पाठ करें। पूरे दिन निराहार या फलाहार व्रत रखकर संध्या समय आरती करें। अगले दिन द्वादशी को शुभ मुहूर्त में पारण करें।"
+        mantra: "ॐ नमो भगवते वासुदेवाय",
+        vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें। पीले फल, फूल, तुलसी दल और पंचामृत अर्पित करें। विष्णु सहस्रनाम का पाठ करें। पूरे दिन निराहार या फलाहार व्रत रखकर संध्या समय आरती करें। अगले दिन पारण करें।"
       },
       "2026-09-24": { 
         tithi: "भाद्रपद शुक्ल चतुर्दशी", 
@@ -339,15 +420,20 @@
         deityName: "श्री गणेश एवं अनंत देव",
         mantra: "ॐ गं गणपतये नमः",
         vidhi: "अनंत चतुर्दशी के दिन भगवान गणेश तथा अनंत भगवान की विधि-विधान से पूजा करें। कच्चे सूत के १४ गांठों वाले अनन्त डोरे की पूजा करके बाजू पर बांधें। इसके पश्चात गणपति प्रतिमा का आदरपूर्वक मोदक और दूर्वा से अंतिम पूजन करके विसर्जन करें।"
-      },
-      "2026-09-26": { 
-        tithi: "भाद्रपद पूर्णिमा", 
-        festival: "सत्यनारायण व्रत", 
-        godKey: "vishnu",
-        deityName: "भगवान सत्यनारायण",
-        mantra: "ॐ श्री सत्यनारायणाय नमः",
-        vidhi: "सत्यनारायण पूर्णिमा पर कलश स्थापना करें। भगवान नारायण को पंजीरी, चरणामृत और तुलसी पत्र अर्पित करें। सत्यनारायण कथा का श्रवण करें तथा आरती के पश्चात परिजनों में प्रसाद वितरित करें।"
       }
+    };
+
+    // Deity Sadhana Data for Bottom Chips
+    const sadhanaData = {
+      "ganesh": { title: "श्री गणेश पूजा एवं मंत्र", mantra: "ॐ गं गणपतये नमः", desc: "समस्त विघ्न दूर करने हेतु गणेश साधना करें।", godKey: "ganesh" },
+      "lakshmi": { title: "मां लक्ष्मी पूजा एवं मंत्र", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद", desc: "धन, धान्य और समृद्धि हेतु लक्ष्मी पूजन करें।", godKey: "lakshmi" },
+      "shiv": { title: "भगवान शिव पूजा एवं मंत्र", mantra: "ॐ नमः शिवाय", desc: "शिव आराधना से आरोग्यता और शांति मिलती है।", godKey: "shiv" },
+      "hanuman": { title: "श्री हनुमान साधना", mantra: "ॐ हं हनुमते नमः", desc: "हनुमान चालीसा पाठ से संकट दूर होते हैं।", godKey: "hanuman" },
+      "krishna": { title: "श्री कृष्ण भक्ति", mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे", desc: "भगवान श्रीकृष्ण के ध्यान से आनंद मिलता है।", godKey: "krishna" },
+      "durga": { title: "मां दुर्गा साधना", mantra: "ॐ दुं दुर्गायै नमः", desc: "दुर्गा मंत्र से शक्ति और सुरक्षा मिलती है।", godKey: "durga" },
+      "vishnu": { title: "भगवान विष्णु पूजा", mantra: "ॐ नमो भगवते वासुदेवाय", desc: "श्री हरि विष्णु की भक्ति से सुख-शांति मिलती है।", godKey: "vishnu" },
+      "tulsi": { title: "तुलसी पूजन विधि", mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी...", desc: "तुलसी पूजन से घर का वास्तु दोष दूर होता है।", godKey: "vishnu" },
+      "mantra": { title: "गायत्री मंत्र संग्रह", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं...", desc: "गायत्री मंत्र का नित्य जप करें।", godKey: "surya" }
     };
 
     // 50 Vastu Tips List
@@ -397,7 +483,7 @@
       "भोजन पकाने वाले का मुंह कभी भी पश्चिम दिशा में न हो।",
       "घर के बुजुर्गों का कमरा दक्षिण-पश्चिम दिशा में होना चाहिए।",
       "घर में नमक के पानी से पोछा लगाने से नकारात्मकता दूर होती है।",
-      "अतिथि गृह (गUEST ROOM) उत्तर-पश्चिम दिशा में बनाएं।",
+      "अतिथि गृह (GUEST ROOM) उत्तर-पश्चिम दिशा में बनाएं।",
       "तिजोरी के सामने दर्पण लगाने से धन दुगना होता है।",
       "घर के मुख्य द्वार पर ऊं या श्री गणेश का चित्र लगाएं।",
       "रात को सोते समय सिर खिड़की के ठीक नीचे न रखें।",
@@ -429,9 +515,7 @@
         document.getElementById("heroTitle").innerText = specialFest.festival;
         document.getElementById("heroText").innerText = `आज ${specialFest.tithi} का पावन पर्व है। ${specialFest.deityName} का ध्यान करें।`;
         document.getElementById("heroMantra").innerText = `देव मंत्र: ${specialFest.mantra}`;
-
-        document.getElementById("todayPujaSubText").innerText = `${specialFest.festival} विशेष विधि`;
-        document.getElementById("todayVratSubText").innerText = `${specialFest.tithi}`;
+        document.getElementById("todayPujaSubText").innerText = `${specialFest.festival} विशेष पूजा`;
       } else {
         currentTodayData = {
           tithi: "दैनिक तिथि",
@@ -444,15 +528,13 @@
         document.getElementById("heroTitle").innerText = `${grahInfo.dayName} दैनिक पंचांग`;
         document.getElementById("heroText").innerText = `आज ${grahInfo.grah} का दिन है। विधि-विधान से पूजा अर्चना करें।`;
         document.getElementById("heroMantra").innerText = `ग्रह मंत्र: ${grahInfo.mantra}`;
-
-        document.getElementById("todayPujaSubText").innerText = `${grahInfo.dayName} दैनिक पूजन`;
-        document.getElementById("todayVratSubText").innerText = `नित्य नियम व व्रत`;
+        document.getElementById("todayPujaSubText").innerText = `${grahInfo.dayName} विशेष पूजा`;
       }
 
       document.getElementById("heroRemedy").innerHTML = `<b>गृह गमन शुभ उपाय (${grahInfo.grah}):</b> ${grahInfo.remedy}`;
     }
 
-    // Dynamic Daily Rotating 5 Vastu Tips
+    // Dynamic Daily 5 Vastu Tips
     function getDailyVastuTips() {
       const today = new Date();
       const startOfYear = new Date(today.getFullYear(), 0, 0);
@@ -480,8 +562,8 @@
 
         const modalType = btn.getAttribute("data-modal");
 
-        // Puja or Vrat Modal Click
-        if (modalType === "puja" || modalType === "vrat") {
+        // 1. Today's Puja Modal Click
+        if (modalType === "puja") {
           const imgUrl = godImagesSquare[currentTodayData.godKey] || godImagesSquare["vishnu"];
 
           modalContent.innerHTML = `
@@ -491,12 +573,12 @@
               <small style="color:#666; font-weight:bold;">${currentTodayData.tithi}</small>
               
               <div style="background:#fff8ed; padding:10px 12px; border-radius:8px; margin:12px 0; border-left:4px solid var(--primary-color); text-align:left;">
-                <b>भगवत्/व्रत मंत्र:</b>
+                <b>भगवत्/पूजन मंत्र:</b>
                 <p style="font-size:16px; color:var(--primary-color); margin:4px 0 0 0; font-weight:bold;">${currentTodayData.mantra}</p>
               </div>
 
               <div style="text-align:left; font-size:13px; color:#444; line-height:1.6;">
-                <b style="color:var(--primary-dark); font-size:14px;">संपूर्ण पूजा विधि (~100 शब्द):</b>
+                <b style="color:var(--primary-dark); font-size:14px;">संपूर्ण पूजा विधि:</b>
                 <p style="margin-top:6px;">${currentTodayData.vidhi}</p>
               </div>
 
@@ -511,7 +593,32 @@
           return;
         }
 
-        // Vastu Tips Modal
+        // 2. Deity Sadhana Chips Click (Ganesh, Lakshmi, Shiv, etc.)
+        if (sadhanaData[modalType]) {
+          const item = sadhanaData[modalType];
+          const imgUrl = godImagesSquare[item.godKey] || godImagesSquare["vishnu"];
+
+          modalContent.innerHTML = `
+            <div style="text-align:center;">
+              <img src="${imgUrl}" alt="Bhagwan Image" class="square-img">
+              <h2 style="color:var(--primary-dark);">🕉️ ${item.title}</h2>
+              <div style="background:#fff8ed; padding:10px 12px; border-radius:8px; margin:12px 0; border-left:4px solid var(--primary-color); text-align:left;">
+                <b>मूल मंत्र:</b>
+                <p style="font-size:16px; color:var(--primary-color); margin:4px 0 0 0; font-weight:bold;">${item.mantra}</p>
+              </div>
+              <p style="text-align:left; font-size:13px; color:#444;">${item.desc}</p>
+              <div style="margin-top:16px;">
+                <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="btn" style="display:inline-block; text-decoration:none; width:auto;">
+                  ▶ YouTube पर वीडियो देखें
+                </a>
+              </div>
+            </div>
+          `;
+          modal.classList.add("active");
+          return;
+        }
+
+        // 3. Vastu Tips Modal
         if (modalType === "vastu") {
           const dailyTips = getDailyVastuTips();
           let vastuHtml = `<h2 style="color:var(--primary-dark); text-align:center;">🏠 आज के 5 महत्वपूर्ण वास्तु सुझाव</h2>
@@ -530,7 +637,7 @@
           return;
         }
 
-        // Calendar Modal
+        // 4. Calendar Modal
         if (modalType === "calendar") {
           let calHtml = `<h2 style="color:var(--primary-dark); text-align:center;">📅 प्रमुख व्रत एवं त्यौहार</h2>
           <div style="margin-top:15px; text-align:left;">`;
