@@ -1,1304 +1,1458 @@
-<!doctype html>
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="hi" class="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>अध्यात्मिक ज्ञान | Hindu Panchang, Puja, Vrat & Kundali</title>
-  <style>
-    :root {
-      --primary-color: #d97706;
-      --primary-dark: #92400e;
-      --bg-cream: #fff8ed;
-      --card-bg: #ffffff;
-      --card-border: #fed7aa;
-      --text-color: #333333;
-      --sub-text: #666666;
-    }
-
-    body.dark-mode {
-      --bg-cream: #121212;
-      --card-bg: #1e1e1e;
-      --card-border: #333333;
-      --text-color: #e0e0e0;
-      --sub-text: #aaa;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-cream);
-      margin: 0;
-      padding: 16px;
-      color: var(--text-color);
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    /* Top Bar Header */
-    .header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .app-logo-title {
-      font-size: 20px;
-      font-weight: bold;
-      color: var(--primary-color);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .dark-mode-toggle {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-color);
-      padding: 6px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    /* Top Hero Banner */
-    .hero {
-      position: relative;
-      border-radius: 16px;
-      padding: 22px;
-      color: #fff;
-      margin-bottom: 24px;
-      background-size: cover;
-      background-position: center;
-      transition: background 0.5s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    
-    .hero-overlay {
-      background: rgba(0, 0, 0, 0.68);
-      backdrop-filter: blur(4px);
-      padding: 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-
-    .pill {
-      background: var(--primary-color);
-      color: #fff;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      margin: 4px 0 8px 0;
-      font-size: 22px;
-      color: #ffffff;
-    }
-
-    .hero-sub {
-      margin: 0 0 10px 0;
-      font-size: 14px;
-      color: #fef3c7;
-      line-height: 1.4;
-    }
-
-    .remedy-box {
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: rgba(217, 119, 6, 0.3);
-      border-left: 3px solid #fde68a;
-      border-radius: 4px;
-      font-size: 13px;
-      color: #fff;
-    }
-
-    .share-btn-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #25D366;
-      color: #fff;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 12px;
-      text-decoration: none;
-    }
-
-    /* Timings / Muhurat Box */
-    .timings-box {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 24px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-    }
-
-    .timing-item {
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
-
-    .subh-bg { background: rgba(34, 197, 94, 0.12); border-left: 3px solid #22c55e; }
-    .asubh-bg { background: rgba(239, 68, 68, 0.12); border-left: 3px solid #ef4444; }
-
-    /* Grid Layout */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      padding: 18px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--card-border);
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .icon-container {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: #fef3c7;
-      border: 2px solid var(--primary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      color: var(--primary-color);
-      font-size: 24px;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: bold;
-      color: var(--primary-dark);
-      margin-bottom: 4px;
-    }
-
-    .card-desc {
-      font-size: 12px;
-      color: var(--sub-text);
-      margin-bottom: 12px;
-      min-height: 28px;
-    }
-
-    .btn {
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 13px;
-      transition: background 0.2s ease;
-      width: 100%;
-    }
-
-    .btn:hover {
-      background: var(--primary-dark);
-    }
-
-    /* Monthly Panchang Section Styling */
-    .panchang-section {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-
-    .panchang-controls {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .panchang-controls select {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: var(--bg-cream);
-      color: var(--text-color);
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .panchang-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      text-align: left;
-    }
-
-    .panchang-table th {
-      background: var(--primary-color);
-      color: #fff;
-      padding: 10px;
-      border-radius: 4px;
-    }
-
-    .panchang-table td {
-      padding: 10px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .panchang-table tr:hover {
-      background: rgba(217, 119, 6, 0.08);
-    }
-
-    /* Deity & Rashifal Chips Section */
-    .chips-section {
-      margin-bottom: 24px;
-    }
-
-    .chips-title {
-      color: var(--primary-dark);
-      margin-bottom: 12px;
-      font-size: 18px;
-    }
-
-    .chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .chips button {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      color: var(--primary-dark);
-      font-size: 13px;
-      transition: all 0.2s ease;
-    }
-
-    .chips button:hover {
-      background: var(--primary-color);
-      color: #fff;
-    }
-
-    /* Kundali & Astrology Section */
-    .astrology-section {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-
-    .astro-title {
-      color: var(--primary-dark);
-      margin-top: 0;
-      margin-bottom: 6px;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .form-group {
-      margin-bottom: 12px;
-      text-align: left;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: bold;
-      color: var(--sub-text);
-      margin-bottom: 4px;
-    }
-
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 9px 12px;
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      font-size: 13px;
-      box-sizing: border-box;
-      background: var(--bg-cream);
-      color: var(--text-color);
-    }
-
-    .milan-box {
-      background: rgba(254, 243, 199, 0.4);
-      border: 1px dashed var(--primary-color);
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 20px;
-    }
-
-    .milan-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .disclaimer-note {
-      font-size: 11px;
-      color: var(--sub-text);
-      font-style: italic;
-      margin-top: 12px;
-      line-height: 1.4;
-      background: var(--card-bg);
-      padding: 8px 12px;
-      border-radius: 6px;
-      border-left: 3px solid #f59e0b;
-    }
-
-    /* YouTube Banner Section */
-    .yt-banner {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .yt-btn {
-      background: #ff0000;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 2px 5px rgba(255, 0, 0, 0.3);
-      transition: background 0.2s ease;
-    }
-
-    .yt-btn:hover {
-      background: #cc0000;
-    }
-
-    .yt-icon {
-      width: 20px;
-      height: 14px;
-      background: #fff;
-      border-radius: 4px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .yt-icon::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 7px;
-      border-style: solid;
-      border-width: 4px 0 4px 7px;
-      border-color: transparent transparent transparent #ff0000;
-    }
-
-    /* Jaap Mala Counter Styling */
-    .mala-counter-box {
-      text-align: center;
-      padding: 10px 0;
-    }
-
-    .mala-circle {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: var(--primary-color);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 16px auto;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
-      user-select: none;
-      transition: transform 0.1s ease;
-    }
-
-    .mala-circle:active {
-      transform: scale(0.94);
-    }
-
-    .mala-count {
-      font-size: 42px;
-      font-weight: bold;
-    }
-
-    /* Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.65);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modalBox {
-      background: var(--card-bg);
-      color: var(--text-color);
-      padding: 20px;
-      border-radius: 14px;
-      width: 90%;
-      max-width: 520px;
-      position: relative;
-      max-height: 85vh;
-      overflow-y: auto;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px; right: 14px;
-      font-size: 28px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: var(--primary-dark);
-      font-weight: bold;
-    }
-
-    .puja-custom-img {
-      width: 100%;
-      max-width: 320px;
-      max-height: 220px;
-      border-radius: 12px;
-      border: 2px solid var(--primary-color);
-      margin: 0 auto 12px auto;
-      display: block;
-      object-fit: cover;
-    }
-
-    .dosh-tag {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: bold;
-      margin: 2px;
-    }
-
-    .dosh-present { background: #fee2e2; color: #991b1b; }
-    .dosh-absent { background: #dcfce7; color: #166534; }
-
-    .text-content-scroll {
-      background: var(--bg-cream);
-      padding: 16px;
-      border-radius: 10px;
-      text-align: left;
-      font-size: 14px;
-      line-height: 1.8;
-      max-height: 360px;
-      overflow-y: auto;
-      border: 1px solid var(--card-border);
-      white-space: pre-line;
-    }
-
-    .vastu-item {
-      background: var(--bg-cream);
-      border-left: 4px solid var(--primary-color);
-      padding: 10px 14px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- App Header -->
-  <div class="header-bar">
-    <div class="app-logo-title">
-      🕉️ अध्यात्मिक ज्ञान
-    </div>
-    <button class="dark-mode-toggle" id="darkModeBtn">🌙 डार्क मोड</button>
-  </div>
-
-  <!-- Dynamic Banner Section -->
-  <section class="hero" id="heroBanner">
-    <div class="hero-overlay">
-      <span class="pill" id="heroPill">ॐ • दैनिक पंचांग एवं ग्रह</span>
-      <h2 class="hero-title" id="heroTitle">loading...</h2>
-      <p class="hero-sub" id="heroText">loading...</p>
-      <div id="heroMantra" style="font-size: 14px; font-weight: bold; color: #fde68a;"></div>
-      <div class="remedy-box" id="heroRemedy"><b>शुभ उपाय:</b> loading...</div>
-      
-      <button class="share-btn-top" id="whatsappShareBtn">
-        <span>📲 WhatsApp पर शेयर करें</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- Aaj Ka Subh Muhurat & Rahukal Box -->
-  <div class="timings-box">
-    <div class="timing-item subh-bg">
-      <b style="color: #15803d;">✨ शुभ मुहूर्त (अभिजित):</b>
-      <div id="subhMuhuratTime" style="font-weight: bold; margin-top: 2px;">11:48 AM - 12:36 PM</div>
-    </div>
-    <div class="timing-item asubh-bg">
-      <b style="color: #b91c1c;">⚠️ राहुकाल (अशुभ समय):</b>
-      <div id="rahukalTime" style="font-weight: bold; margin-top: 2px;">04:30 PM - 06:00 PM</div>
-    </div>
-  </div>
-
-  <!-- 4 Main Feature Cards Section -->
-  <h3 style="color: var(--primary-dark); margin-bottom: 12px;">आज का दैनिक पंचांग एवं साधना</h3>
-  <div class="grid">
-    <!-- Today's Puja Card -->
-    <div class="card">
-      <div class="icon-container">🪔</div>
-      <div>
-        <div class="card-title">Today's Puja</div>
-        <div class="card-desc" id="todayPujaSubText">Loading...</div>
-      </div>
-      <button class="btn" data-modal="puja">विधि देखें</button>
-    </div>
-
-    <!-- Jaap Mala Counter Card -->
-    <div class="card">
-      <div class="icon-container">📿</div>
-      <div>
-        <div class="card-title">डिजिटल जप माला</div>
-        <div class="card-desc">108 मंत्र जप काउन्टर</div>
-      </div>
-      <button class="btn" data-modal="mala">जप शुरू करें</button>
-    </div>
-
-    <!-- Aarti & Chalisa Card -->
-    <div class="card">
-      <div class="icon-container">📖</div>
-      <div>
-        <div class="card-title">आरती एवं चालीसा</div>
-        <div class="card-desc">पाठ एवं स्तोत्र संग्रह</div>
-      </div>
-      <button class="btn" data-modal="aarti">पाठ चुनें</button>
-    </div>
-
-    <!-- Vastu Tips Card -->
-    <div class="card">
-      <div class="icon-container">🏠</div>
-      <div>
-        <div class="card-title">Vastu Tips</div>
-        <div class="card-desc">महत्वपूर्ण वास्तु सुझाव</div>
-      </div>
-      <button class="btn" data-modal="vastu">सुझाव देखें</button>
-    </div>
-  </div>
-
-  <!-- Monthly Panchang Section -->
-  <section class="panchang-section">
-    <h3 class="astro-title">📅 मासिक पंचांग एवं व्रत त्यौहार (Monthly Panchang)</h3>
-    <p style="font-size: 13px; color: var(--sub-text); margin-top: 0; margin-bottom: 14px;">
-      माह और वर्ष चुनें और पूरे महीने की तिथि, पक्ष एवं महत्वपूर्ण पर्व देखें:
-    </p>
-
-    <div class="panchang-controls">
-      <select id="panchangMonth">
-        <option value="0">जनवरी (January)</option>
-        <option value="1">फरवरी (February)</option>
-        <option value="2">मार्च (March)</option>
-        <option value="3">अप्रैल (April)</option>
-        <option value="4">मई (May)</option>
-        <option value="5">जून (June)</option>
-        <option value="6">जुलाई (July)</option>
-        <option value="7">अगस्त (August)</option>
-        <option value="8" selected>सितंबर (September)</option>
-        <option value="9">अक्टूबर (October)</option>
-        <option value="10">नवंबर (November)</option>
-        <option value="11">दिसंबर (December)</option>
-      </select>
-
-      <select id="panchangYear">
-        <option value="2026" selected>2026</option>
-        <option value="2027">2027</option>
-      </select>
-
-      <button class="btn" id="loadPanchangBtn" style="width: auto;">पंचांग देखें</button>
-    </div>
-
-    <div style="max-height: 380px; overflow-y: auto;">
-      <table class="panchang-table">
-        <thead>
-          <tr>
-            <th>दिनांक / वार</th>
-            <th>पक्ष / तिथि</th>
-            <th>त्यौहार / विशेष पर्व</th>
-          </tr>
-        </thead>
-        <tbody id="panchangTableBody">
-          <!-- Dynamically populated -->
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Aaj Ka Rashifal Section -->
-  <section class="chips-section">
-    <h3 class="chips-title">🔮 आज का दैनिक राशिफल (12 राशियां)</h3>
-    <div class="chips" id="rashifalChips">
-      <!-- Generated via JS -->
-    </div>
-  </section>
-
-  <!-- Puja & Sadhana Deity Chips Section -->
-  <section class="chips-section">
-    <h3 class="chips-title">🚩 पूजा एवं देवी-देवता साधना</h3>
-    <div class="chips">
-      <button data-modal="ganesh">गणेश</button>
-      <button data-modal="lakshmi">लक्ष्मी</button>
-      <button data-modal="shiv">शिव</button>
-      <button data-modal="hanuman">हनुमान</button>
-      <button data-modal="krishna">कृष्ण</button>
-      <button data-modal="durga">दुर्गा</button>
-      <button data-modal="vishnu">विष्णु</button>
-      <button data-modal="tulsi">तुलसी</button>
-      <button data-modal="mantra">गायत्री मंत्र</button>
-    </div>
-  </section>
-
-  <!-- Kundali & Astrology Section -->
-  <section class="astrology-section">
-    <h3 class="astro-title">📜 जनम कुंडली एवं दोष विश्लेषण</h3>
-    <p style="font-size: 13px; color: var(--sub-text); margin-top: 0; margin-bottom: 16px;">
-      अपनी जन्म विवरण दर्ज करें और जानें अपनी राशि, लग्न एवं कुंडली दोष (मंगल दोष, कालसर्प आदि):
-    </p>
-
-    <form id="kundaliForm">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
-        <div class="form-group">
-          <label>पूरा नाम (Full Name):</label>
-          <input type="text" id="kName" placeholder="उदा. राहुल शर्मा" required>
-        </div>
-        <div class="form-group">
-          <label>जन्म तिथि (Date of Birth):</label>
-          <input type="date" id="kDob" required>
-        </div>
-        <div class="form-group">
-          <label>जन्म समय (Time of Birth):</label>
-          <input type="time" id="kTob" required>
-        </div>
-        <div class="form-group">
-          <label>जन्म स्थान (Place of Birth):</label>
-          <input type="text" id="kPob" placeholder="उदा. दिल्ली / जमशेदपुर" required>
-        </div>
-      </div>
-      <button type="submit" class="btn" style="margin-top: 8px; background: var(--primary-dark);">📜 कुण्डली देखें एवं दोष जांचें</button>
-    </form>
-
-    <!-- Dedicated Kundali Milan Section -->
-    <div class="milan-box">
-      <h3 class="astro-title" style="font-size: 18px; color: var(--primary-dark);">💞 कुण्डली मिलान (Kundali Milan)</h3>
-      <p style="font-size: 12px; color: var(--sub-text); margin-top: 0; margin-bottom: 12px;">
-        वर और वधू दोनों की जन्म जानकारी दर्ज करके गुण मिलान (Out of 36) चेक करें:
-      </p>
-
-      <form id="milanForm">
-        <div class="milan-grid">
-          <!-- Boy Info -->
-          <div style="background: var(--card-bg); padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
-            <b style="color: var(--primary-dark); font-size: 13px;">👨 वर (Boy Details):</b>
-            <div class="form-group" style="margin-top: 8px;">
-              <input type="text" id="boyName" placeholder="वर का नाम" required>
-            </div>
-            <div class="form-group">
-              <input type="date" id="boyDob" required>
-            </div>
-            <div class="form-group">
-              <input type="text" id="boyPob" placeholder="जन्म स्थान" required>
-            </div>
-          </div>
-
-          <!-- Girl Info -->
-          <div style="background: var(--card-bg); padding: 12px; border-radius: 8px; border: 1px solid var(--card-border);">
-            <b style="color: var(--primary-dark); font-size: 13px;">👩 वधू (Girl Details):</b>
-            <div class="form-group" style="margin-top: 8px;">
-              <input type="text" id="girlName" placeholder="वधू का नाम" required>
-            </div>
-            <div class="form-group">
-              <input type="date" id="girlDob" required>
-            </div>
-            <div class="form-group">
-              <input type="text" id="girlPob" placeholder="जन्म स्थान" required>
-            </div>
-          </div>
-        </div>
-
-        <button type="submit" class="btn" style="margin-top: 14px; background: #c2410c;">
-          💞 कुण्डली मिलान करें (Gun Milan)
-        </button>
-      </form>
-
-      <!-- Disclaimer Note -->
-      <div class="disclaimer-note">
-        <b>नोट:</b> यह एक AI generated matching percentage एवं ज्योतिषीय एल्गोरिदम आधारित गणना है। अधिक एवं सटीक जानकारी हेतु किसी विद्वान ज्योतिषाचार्य से परामर्श करें।
-      </div>
-    </div>
-  </section>
-
-  <!-- YouTube Channel Join Section -->
-  <section class="yt-banner">
-    <div>
-      <small style="color: var(--sub-text); font-weight: bold;">▶ Latest Videos</small>
-      <h3 style="color: var(--primary-dark); margin: 4px 0 2px 0;">हमारे YouTube चैनल से जुड़ें</h3>
-      <p style="margin: 0; font-size: 13px; color: var(--sub-text);">नई पूजा, व्रत, वास्तु और धार्मिक वीडियो देखें।</p>
-    </div>
-    <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
-      <span class="yt-icon"></span> YouTube चैनल देखें
-    </a>
-  </section>
-
-  <!-- Modal Container -->
-  <div class="modal" id="modal">
-    <div class="modalBox">
-      <button class="close" id="closeModal">&times;</button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-
-  <script>
-    const todaysPujaImage = "puja.jpg";
-
-    const hindiDays = ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"];
-    const tithis = ["प्रथमा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी", "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी", "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"];
-
-    const dayGrahInfo = {
-      0: { dayName: "रविवार", grah: "सूर्य देव", mantra: "ॐ घृणिः सूर्याय नमः", remedy: "घर से निकलने से पहले थोड़ा गुड़ खाकर और जल पीकर निकलें।", rahukal: "04:30 PM - 06:00 PM", bgImg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
-      1: { dayName: "सोमवार", grah: "चंद्र देव", mantra: "ॐ सोमाय नमः", remedy: "घर से निकलने से पहले दही खाएं या शीशे में अपना चेहरा देखकर निकलें।", rahukal: "07:30 AM - 09:00 AM", bgImg: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=1200&q=80" },
-      2: { dayName: "मंगलवार", grah: "मंगल देव", mantra: "ॐ भौमाय नमः", remedy: "घर से निकलने से पहले थोड़ा गुड़ या सौंफ खाकर निकलें।", rahukal: "03:00 PM - 04:30 PM", bgImg: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1200&q=80" },
-      3: { dayName: "बुधवार", grah: "बुध देव", mantra: "ॐ बुधाय नमः", remedy: "घर से निकलने से पहले हरा धनिया या सौंफ खाकर निकलें।", rahukal: "12:00 PM - 01:30 PM", bgImg: "https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=1200&q=80" },
-      4: { dayName: "गुरुवार", grah: "बृहस्पति देव (गुरु)", mantra: "ॐ बृं बृहस्पतये नमः", remedy: "घर से निकलने से पहले पीली सरसों या बेसन की मिठाई खाकर निकलें।", rahukal: "01:30 PM - 03:00 PM", bgImg: "https://images.unsplash.com/photo-1614314107768-6018061b5b72?auto=format&fit=crop&w=1200&q=80" },
-      5: { dayName: "शुक्रवार", grah: "शुक्र देव", mantra: "ॐ शुं शुक्राय नमः", remedy: "घर से निकलने से पहले मीठी दही खाकर निकलें।", rahukal: "10:30 AM - 12:00 PM", bgImg: "https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?auto=format&fit=crop&w=1200&q=80" },
-      6: { dayName: "शनिवार", grah: "शनिदेव", mantra: "ॐ शं शनैश्चराय नमः", remedy: "घर से निकलने से पहले थोड़ा घी या किशमिश खाकर निकलें।", rahukal: "09:00 AM - 10:30 AM", bgImg: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80" }
-    };
-
-    const accuratePanchangData = {
-      "2026-09-20": { 
-        tithi: "भाद्रपद शुक्ल एकादशी", 
-        festival: "परिवर्तिनी एकादशी व्रत", 
-        deityName: "भगवान श्री हरि विष्णु",
-        mantra: "ॐ नमो भगवते वासुदेवाय नमः",
-        vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें।"
-      },
-      "2026-09-24": { 
-        tithi: "भाद्रपद शुक्ल चतुर्दशी", 
-        festival: "अनंत चतुर्दशी / गणेश विसर्जन", 
-        deityName: "श्री गणेश एवं अनंत देव",
-        mantra: "ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः",
-        vidhi: "अनंत चतुर्दशी के दिन भगवान गणेश तथा अनंत भगवान की विधि-विधान से पूजा करें।"
-      }
-    };
-
-    const sadhanaData = {
-      "ganesh": { title: "श्री गणेश पूजा एवं मंत्र", image: "ganesh.jpg", mantra: "ॐ श्रीमं महागणाधिपतये नमः। ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः।", desc: "समस्त विघ्नों के नाश और कार्यों में सफलता हेतु श्री गणेश जी की नित्य पूजा करें।" },
-      "lakshmi": { title: "मां लक्ष्मी पूजा एवं मंत्र", image: "lakshmi.jpg", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद श्रीं ह्रीं श्रीं ॐ महालक्ष्मै नमः।", desc: "धन, धान्य, ऐश्वर्य और घर में सुख-समृद्धि के लिए मां लक्ष्मी की उपासना करें।" },
-      "shiv": { title: "भगवान शिव पूजा एवं मंत्र", image: "shiv.jpg", mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥", desc: "आरोग्यता, भय मुक्ति और आत्मिक शांति के लिए महामृत्युंजय एवं शिव मंत्र का पाठ करें।" },
-      "hanuman": { title: "श्री हनुमान साधना", image: "hanuman.jpg", mantra: "ॐ हं हनुमते रुद्रात्मकाय हुं फट्। मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्।", desc: "बल, बुद्धि, विद्या और संकटों के निवारण हेतु श्री हनुमान साधना एवं चालीसा का पाठ करें।" },
-      "krishna": { title: "श्री कृष्ण भक्ति", image: "krishna.jpg", mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे। हरे राम हरे राम, राम राम हरे हरे॥", desc: "भगवान श्रीकृष्ण के ध्यान और नाम जप से मन को असीम शांति और भक्ति रस की प्राप्ति होती है।" },
-      "durga": { title: "मां दुर्गा साधना", image: "durga.jpg", mantra: "सर्वमंगल मांगल्ये शिवे सर्वार्थ साधिके। शरण्ये त्र्यंबके गौरि नारायणि नमोऽस्तु ते॥", desc: "शक्ति, सुरक्षा और सर्व मनोकामना पूर्ति हेतु भगवती दुर्गा की आराधना करें।" },
-      "vishnu": { title: "भगवान विष्णु पूजा", image: "vishnu.jpg", mantra: "ॐ नमो भगवते वासुदेवाय। शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं विश्वाधारं गगनसदृशम्।", desc: "संसार के पालनहार श्री हरि विष्णु की भक्ति से जीवन में सुख, शांति और मोक्ष की प्राप्ति होती है।" },
-      "tulsi": { title: "तुलसी पूजन विधि", image: "tulsi.jpg", mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी, आधि व्याधि हरा नित्यं तुलसी त्वं नमोस्तुते।", desc: "नित्य प्रातः तुलसी जी में जल अर्पित करने और पूजन से घर का वातावरण पवित्र एवं वास्तु दोष मुक्त रहता है।" },
-      "mantra": { title: "गायत्री मंत्र संग्रह", image: "mantra.jpg", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥", desc: "गायत्री मंत्र के नित्य जाप से बुद्धि कुशाग्र होती है और शरीर में सकारात्मक ऊर्जा का संचार होता है।" }
-    };
-
-    const vastuTipsList = [
-      { title: "🛕 पूजा घर की सही दिशा", desc: "घर का मंदिर हमेशा ईशान कोण (उत्तर-पूर्व) में होना चाहिए। पूजा करते समय आपका मुख पूर्व या उत्तर दिशा की ओर रहना अत्यंत शुभ होता है।" },
-      { title: "🚪 मुख्य द्वार वास्तु", desc: "घर के मुख्य द्वार पर स्वास्तिक या ॐ का चिन्ह लगाएं। मुख्य द्वार के सामने कभी भी कूड़ा या गंदगी न रखें, इससे लक्ष्मी जी का वास होता है।" },
-      { title: "🍳 रसोईघर (Kitchen) वास्तु", desc: "रसोईघर आग्नेय कोण (दक्षिण-पूर्व) में होना चाहिए। खाना बनाते समय गृहिणी का मुख पूर्व दिशा की ओर होना स्वास्थ्य और समृद्धि प्रदान करता है।" },
-      { title: "🛌 बेडरूम एवं सोने की दिशा", desc: "सोते समय सिर हमेशा दक्षिण या पूर्व दिशा में होना चाहिए। उत्तर दिशा की ओर सिर करके सोने से मानसिक तनाव और अनिद्रा की समस्या हो सकती है।" },
-      { title: "💰 तिजोरी व धन स्थान", desc: "धन रखने की अलमारी या तिजोरी को घर के उत्तर या उत्तर-पूर्व दिशा में रखें। तिजोरी का दरवाजा उत्तर दिशा की ओर खुलना चाहिए।" },
-      { title: "🪴 पौधे एवं सकारात्मक ऊर्जा", desc: "घर में तुलसी, मनी प्लांट या शमी का पौधा लगाएं। घर में कांटेदार पौधे (जैसे कैक्टस) रखने से वास्तु दोष उत्पन्न होता है।" }
-    ];
-
-    const aartiCollection = {
-      "hanuman_chalisa": {
-        title: "श्री हनुमान चालीसा (सम्पूर्ण)",
-        text: `<b>|| दोहा ||</b>
-श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि।
-बरनउँ रघुबर बिमल जसु जो दायकु फल चारि॥
-बुद्धिहीन तनु जानिके सुमिरौ पवन-कुमार।
-बल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार॥
-
-<b>|| चौपाई ||</b>
-जय हनुमान ज्ञान गुन सागर। जय कपीस तिहुँ लोक उजागर॥ १ ॥
-रामदूत अतुलित बल धामा। अंजनि-पुत्र पवनसुत नामा॥ २ ॥
-महाबीर बिक्रम बजरंगी। कुमति निवार सुमति के संगी॥ ३ ॥
-कंचन बरन बिराज सुबेसा। कानन कुंडल कुंचित केसा॥ ४ ॥
-
-हाथ बज्र औ ध्वजा बिराजै। काँधे मूँज जनेऊ साजै॥ ५ ॥
-संकर सुवन केसरीनंदन। तेज प्रताप महा जग बन्दन॥ ६ ॥
-विद्यावान गुनी अति चातुर। राम काज करिबे को आतुर॥ ७ ॥
-प्रभु चरित्र सुनिबे को रसिया। राम लखन सीता मन बसिया॥ ८ ॥
-
-सूक्ष्म रूप धरि सियहिं दिखावा। बिकट रूप धरि लंक जरावा॥ ९ ॥
-भीम रूप धरि असुर सँहारे। रामचंद्र के काज संवारे॥ १० ॥
-लाय सजीवन लखन जियाये। श्रीरघुबीर हरषि उर लाये॥ ११ ॥
-रघुपति कीह्नी बहुत बड़ाई। तुम मम प्रिय भरतहि सम भाई॥ १२ ॥
-
-सहस बदन तुम्हरो जस गावैं। अस कहि श्रीपति कंठ लगावैं॥ १३ ॥
-सनकादिक ब्रह्मादि मुनीसा। नारद सारद सहित अहीसा॥ १४ ॥
-जम कुबेर दिगपाल जहाँ ते। कबि कोबिद कहि सके कहाँ ते॥ १५ ॥
-तुम उपकार सुग्रीवहिं कीह्ना। राम मिलाय राज पद दीह्ना॥ १६ ॥
-
-तुम्हरो मंत्र बिभीषन माना। लंकेस्वर भय सब जग जाना॥ १७ ॥
-जुग सहस्र जोजन पर भानू। लील्यो ताहि मधुर फल जानू॥ १८ ॥
-प्रभु मुद्रिका मेलि मुख माहीं। जलधि लांघि गये अचरज नाहीं॥ १९ ॥
-दुर्गम काज जगत के जेते। सुगम अनुग्रह तुम्हरे तेते॥ २० ॥
-
-राम दुआरे तुम रखवारे। होत न आज्ञा बिनु पैसारे॥ २१ ॥
-सब सुख लहै तुम्हारी सरना। तुम रक्षक काहू को डर ना॥ २२ ॥
-आपन तेज सम्हारो आपै। तीनों लोक हाँक तें काँपै॥ २३ ॥
-भूत पिसाच निकट नहिं आवै। महाबीर जब नाम सुनावै॥ २४ ॥
-
-नासै रोग हरै सब पीरा। जपत निरंतर हनुमत बीरा॥ २५ ॥
-संकट तें हनुमान छुड़ावै। मन क्रम बचन ध्यान जो लावै॥ २६ ॥
-सब पर राम तपस्वी राजा। तिन के काज सकल तुम साजा॥ २७ ॥
-और मनोरथ जो कोई लावै। सोइ अमित जीवन फल पावै॥ २८ ॥
-
-चारों जुग परताप तुम्हारा। है परसिद्ध जगत उजियारा॥ २९ ॥
-साधु संत के तुम रखवारे। असुर निकंदन राम दुलारे॥ ३० ॥
-अष्ट सिद्धि नौ निधि के दाता। अस बर दीन्ह जानकी माता॥ ३१ ॥
-राम रसायन तुम्हरे पासा। सदा रहो रघुपति के दासा॥ ३२ ॥
-
-तुम्हरे भजन राम को पावै। जनम जनम के दुख बिसरावै॥ ३३ ॥
-अन्त काल रघुबर पुर जाई। जहाँ जन्म हरि-भक्त कहाई॥ ३४ ॥
-और देवता चित्त न धरई। हनुमत सेइ सर्ब सुख करई॥ ३५ ॥
-संकट कटै मिटै सब पीरा। जो सुमिरै हनुमत बलबीरा॥ ३६ ॥
-
-जै जै जै हनुमान गोसाईं। कृपा करहु गुरुदेव की नाईं॥ ३७ ॥
-जो सत बार पाठ कर कोई। छूटहि बंदि महा सुख होई॥ ३८ ॥
-जो यह पढ़े हनुमान चालीसा। होय सिद्धि साखी गौरीसा॥ ३९ ॥
-तुलसीदास सदा हरि चेरा। कीजै नाथ हृदय मँह डेरा॥ ४० ॥
-
-<b>|| दोहा ||</b>
-पवनतनय संकट हरन मंगल मूरति रूप।
-राम लखन सीता सहित हृदय बसहु सुर भूप॥`
-      },
-      "ganesh_aarti": {
-        title: "जय गणेश जय गणेश देवा (सम्पूर्ण आरती)",
-        text: `जय गणेश जय गणेश, जय गणेश देवा।
-माता जाकी पार्वती, पिता महादेवा॥
-
-एक दंत दयावंत, चार भुजाधारी।
-माथे सिंदूर सोहे, मूसे की सवारी॥
-जय गणेश जय गणेश, जय गणेश देवा...`
-      },
-      "lakshmi_aarti": {
-        title: "ॐ जय लक्ष्मी माता (सम्पूर्ण आरती)",
-        text: `ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता।
-तुमको निशदिन ध्यावत, हर विष्णु विधाता॥
-ॐ जय लक्ष्मी माता...`
-      },
-      "shiv_aarti": {
-        title: "ॐ जय शिव ओंकारा (सम्पूर्ण आरती)",
-        text: `ॐ जय शिव ओंकारा, हर ॐ जय शिव ओंकारा।
-ब्रह्मा, विष्णु, सदाशिव, अर्द्धांगी धारा॥
-ॐ जय शिव ओंकारा...`
-      }
-    };
-
-    const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
-    const lagnas = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
-
-    const rashifalData = {
-      "मेष": "आज कार्यक्षेत्र में नए अवसर प्राप्त होंगे। आर्थिक मामलों में प्रगति होगी। परिवार का सहयोग मिलेगा।",
-      "वृषभ": "आज धैर्य बनाए रखें। धन के लेन-देन में सावधानी बरतें। स्वास्थ्य अच्छा रहेगा।",
-      "मिथुन": "वाणी में मधुरता रखें। व्यापार में नए लाभदायक सौदे हो सकते हैं। शुभ समाचार मिलेगा।",
-      "कर्क": "मानसिक शांति महसूस होगी। अध्यात्म में रुचि बढ़ेगी। पुराने मित्रों से मुलाकात संभव है।",
-      "सिंह": "आत्मविश्वास में वृद्धि होगी। रुके हुए कार्य पूरे होंगे। अधिकारियों से सराहना मिलेगी।",
-      "कन्या": "आर्थिक स्थिति मजबूत होगी। यात्रा का योग बन रहा है। खान-पान पर ध्यान दें।",
-      "तुला": "सकारात्मक ऊर्जा रहेगी। करियर में उन्नति के नए रास्ते खुलेंगे। दांपत्य जीवन सुखद रहेगा।",
-      "वृश्चिक": "परिश्रम का फल मिलेगा। विरोधी शांत रहेंगे। नया निवेश करने के लिए शुभ दिन है।",
-      "धनु": "भाग्य का साथ मिलेगा। धार्मिक कार्यों में मन लगेगा। विद्यार्थी वर्ग को सफलता मिलेगी।",
-      "मकर": "कार्यक्षेत्र में सफलता मिलेगी। पारिवारिक वातावरण खुशनुमा रहेगा। स्वास्थ्य में सुधार होगा।",
-      "कुंभ": "अचानक धन लाभ का योग है। नई योजनाओं की शुरुआत कर सकते हैं। मित्र मददगार साबित होंगे।",
-      "मीन": "मन प्रसन्न रहेगा। कार्यस्थल पर आपकी प्रशंसा होगी। प्रेम संबंधों में मधुरता आएगी।"
-    };
-
-    let currentTodayData = {};
-    let malaCount = 0;
-
-    function generateMonthlyPanchang(month, year) {
-      const tbody = document.getElementById("panchangTableBody");
-      tbody.innerHTML = "";
-
-      const daysInMonth = new Date(year, parseInt(month) + 1, 0).getDate();
-
-      for (let d = 1; d <= daysInMonth; d++) {
-        const dateObj = new Date(year, month, d);
-        const dayOfWeek = dateObj.getDay();
-        const hindiDay = hindiDays[dayOfWeek];
-
-        const dateStr = `${year}-${String(parseInt(month) + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-        const paksha = d <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
-        const tithiIdx = (d - 1) % 15;
-        const currentTithi = tithis[tithiIdx];
-
-        const special = accuratePanchangData[dateStr];
-        const festivalText = special ? `<b style="color:var(--primary-dark);">${special.festival}</b>` : (d % 7 === 0 ? "रविप्रदोष/विशेष योग" : "नित्य पूजा");
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td><b>${d} तारीख</b> (${hindiDay})</td>
-          <td>${paksha} - ${currentTithi}</td>
-          <td>${festivalText}</td>
-        `;
-        tbody.appendChild(tr);
-      }
-    }
-
-    function initPanchangAndGrah() {
-      const today = new Date();
-      const dayOfWeek = today.getDay();
-      const grahInfo = dayGrahInfo[dayOfWeek];
-
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      const todayKey = `${yyyy}-${mm}-${dd}`;
-
-      const specialFest = accuratePanchangData[todayKey];
-
-      document.getElementById("heroBanner").style.backgroundImage = `url('${grahInfo.bgImg}')`;
-      document.getElementById("rahukalTime").innerText = grahInfo.rahukal;
-      document.getElementById("heroPill").innerText = `ॐ • आज का दिन: ${grahInfo.dayName} (${grahInfo.grah})`;
-
-      if (specialFest) {
-        currentTodayData = specialFest;
-        document.getElementById("heroTitle").innerText = specialFest.festival;
-        document.getElementById("heroText").innerText = `आज ${specialFest.tithi} का पावन पर्व है। ${specialFest.deityName} का ध्यान करें।`;
-        document.getElementById("heroMantra").innerText = `देव मंत्र: ${specialFest.mantra}`;
-        document.getElementById("todayPujaSubText").innerText = `${specialFest.festival} विशेष पूजा`;
-      } else {
-        currentTodayData = {
-          tithi: "दैनिक तिथि",
-          festival: `${grahInfo.dayName} विशेष पूजन`,
-          deityName: grahInfo.grah,
-          mantra: grahInfo.mantra,
-          vidhi: `आज ${grahInfo.dayName} के दिन प्रातःकाल स्नान करके स्वच्छ वस्त्र धारण करें। ${grahInfo.grah} के मंत्र '${grahInfo.mantra}' का १०८ बार जाप करें।`
-        };
-        document.getElementById("heroTitle").innerText = `${grahInfo.dayName} दैनिक पंचांग`;
-        document.getElementById("heroText").innerText = `आज ${grahInfo.grah} का दिन है। विधि-विधान से पूजा अर्चना करें।`;
-        document.getElementById("heroMantra").innerText = `ग्रह मंत्र: ${grahInfo.mantra}`;
-        document.getElementById("todayPujaSubText").innerText = `${grahInfo.dayName} विशेष पूजा`;
-      }
-
-      document.getElementById("heroRemedy").innerHTML = `<b>गृह गमन शुभ उपाय (${grahInfo.grah}):</b> ${grahInfo.remedy}`;
-
-      const shareMsg = encodeURIComponent(`🕉️ *आज का अध्यात्मिक ज्ञान & पंचांग* 🕉️\n\n📌 *पर्व/पूजा:* ${document.getElementById("heroTitle").innerText}\n✨ *शुभ मंत्र:* ${grahInfo.mantra}\n💡 *आज का उपाय:* ${grahInfo.remedy}\n\nआज का पूरा पंचांग एवं राशिफल देखने के लिए यहाँ क्लिक करें: ${window.location.href}`);
-      document.getElementById("whatsappShareBtn").setAttribute("onclick", `window.open('https://api.whatsapp.com/send?text=${shareMsg}', '_blank')`);
-
-      generateMonthlyPanchang(today.getMonth(), today.getFullYear());
-    }
-
-    function renderRashifalChips() {
-      const container = document.getElementById("rashifalChips");
-      container.innerHTML = "";
-      rashis.forEach(rashi => {
-        const btn = document.createElement("button");
-        btn.innerText = rashi;
-        btn.onclick = () => {
-          modalContent.innerHTML = `
-            <div style="text-align:center;">
-              <h2 style="color:var(--primary-dark); margin-top:0;">🔮 ${rashi} राशिफल</h2>
-              <div style="background:var(--bg-cream); padding:16px; border-radius:12px; border:1px solid var(--card-border); font-size:14px; line-height:1.6; text-align:left;">
-                ${rashifalData[rashi]}
-              </div>
-            </div>
-          `;
-          modal.classList.add("active");
-        };
-        container.appendChild(btn);
-      });
-    }
-
-    function stringHash(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = (hash << 5) - hash + str.charCodeAt(i);
-        hash |= 0;
-      }
-      return Math.abs(hash);
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      initPanchangAndGrah();
-      renderRashifalChips();
-
-      const modal = document.getElementById("modal");
-      const modalContent = document.getElementById("modalContent");
-      const closeModal = document.getElementById("closeModal");
-
-      // Monthly Panchang Button Event
-      document.getElementById("loadPanchangBtn").addEventListener("click", function() {
-        const m = document.getElementById("panchangMonth").value;
-        const y = document.getElementById("panchangYear").value;
-        generateMonthlyPanchang(m, y);
-      });
-
-      // Dark Mode Toggle
-      document.getElementById("darkModeBtn").addEventListener("click", function() {
-        document.body.classList.toggle("dark-mode");
-        this.innerText = document.body.classList.contains("dark-mode") ? "☀️ लाइट मोड" : "🌙 डार्क मोड";
-      });
-
-      // Kundali Form
-      document.getElementById("kundaliForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const name = document.getElementById("kName").value;
-        const dob = document.getElementById("kDob").value;
-        const tob = document.getElementById("kTob").value;
-        const pob = document.getElementById("kPob").value;
-
-        const seed = stringHash(name + dob + tob + pob);
-        const userRashi = rashis[seed % 12];
-        const userLagna = lagnas[(seed + 3) % 12];
-
-        const hasMangalDosh = (seed % 3 === 0);
-        const hasKalsarpDosh = (seed % 5 === 0);
-        const hasPitraDosh = (seed % 7 === 0);
-
-        modalContent.innerHTML = `
-          <div style="text-align:left;">
-            <h2 style="color:var(--primary-dark); text-align:center; margin-top:0;">📜 जन्म कुण्डली रिपोर्ट</h2>
-            <div style="background:var(--bg-cream); padding:12px; border-radius:8px; border:1px solid var(--card-border); margin-bottom:12px;">
-              <b>नाम:</b> ${name}<br>
-              <b>जन्म तिथि & समय:</b> ${dob} | ${tob}<br>
-              <b>जन्म स्थान:</b> ${pob}
-            </div>
-
-            <h4 style="color:var(--primary-dark); margin-bottom:6px;">🪐 मूल ग्रह स्थिति:</h4>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px; margin-bottom:14px;">
-              <div style="background:rgba(254, 243, 199, 0.4); padding:8px; border-radius:6px;"><b>चंद्र राशि:</b> ${userRashi}</div>
-              <div style="background:rgba(254, 243, 199, 0.4); padding:8px; border-radius:6px;"><b>लग्न राशि:</b> ${userLagna}</div>
-            </div>
-
-            <h4 style="color:var(--primary-dark); margin-bottom:6px;">⚠️ कुण्डली दोष विश्लेषण:</h4>
-            <div style="font-size:13px; margin-bottom:12px; line-height:1.6;">
-              <div>• <b>मंगल दोष:</b> ${hasMangalDosh ? '<span class="dosh-tag dosh-present">आंशिक मंगल दोष उपस्थित</span>' : '<span class="dosh-tag dosh-absent">निर्दोष (मंगल दोष नहीं है)</span>'}</div>
-              <div>• <b>कालसर्प दोष:</b> ${hasKalsarpDosh ? '<span class="dosh-tag dosh-present">कालसर्प योग उपस्थित</span>' : '<span class="dosh-tag dosh-absent">कालसर्प दोष नहीं है</span>'}</div>
-              <div>• <b>पितृ दोष:</b> ${hasPitraDosh ? '<span class="dosh-tag dosh-present">पितृ दोष प्रभाव</span>' : '<span class="dosh-tag dosh-absent">पितृ दोष मुक्त</span>'}</div>
-            </div>
-          </div>
-        `;
-        modal.classList.add("active");
-      });
-
-      // Kundali Milan Form
-      document.getElementById("milanForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const boyName = document.getElementById("boyName").value;
-        const boyDob = document.getElementById("boyDob").value;
-        const boyPob = document.getElementById("boyPob").value;
-        const girlName = document.getElementById("girlName").value;
-        const girlDob = document.getElementById("girlDob").value;
-        const girlPob = document.getElementById("girlPob").value;
-
-        const seed = stringHash(boyName + boyDob + boyPob + girlName + girlDob + girlPob);
-        const totalGuns = 18 + (seed % 18);
-        const percentage = Math.round((totalGuns / 36) * 100);
-
-        modalContent.innerHTML = `
-          <div style="text-align:center;">
-            <h2 style="color:var(--primary-dark); margin-top:0;">💞 कुण्डली मिलान परिणाम</h2>
-            <div style="font-size:13px; color:var(--sub-text); margin-bottom:12px;">
-              <b>वर:</b> ${boyName} | <b>वधू:</b> ${girlName}
-            </div>
-
-            <div style="background:var(--bg-cream); border:2px solid var(--primary-color); border-radius:12px; padding:16px; margin-bottom:14px;">
-              <div style="font-size:14px; color:var(--sub-text);">अष्टकूट गुण मिलान:</div>
-              <div style="font-size:36px; font-weight:bold; color:var(--primary-dark); margin:4px 0;">
-                ${totalGuns} <span style="font-size:18px; color:var(--sub-text);">/ 36 गुण</span>
-              </div>
-              <div style="font-size:14px; font-weight:bold; color:#166534;">
-                ${percentage}% - उत्तम एवं शुभ मिलान
-              </div>
-            </div>
-          </div>
-        `;
-        modal.classList.add("active");
-      });
-
-      // Universal Modal Event Click Handler
-      document.addEventListener("click", function(e) {
-        const btn = e.target.closest("[data-modal]");
-        if (!btn) return;
-
-        const modalType = btn.getAttribute("data-modal");
-
-        if (modalType === "vastu") {
-          let vastuHTML = `<h2 style="color:var(--primary-dark); margin-top:0; text-align:center;">🏠 महत्वपूर्ण वास्तु टिप्स</h2>`;
-          vastuTipsList.forEach(tip => {
-            vastuHTML += `
-              <div class="vastu-item">
-                <b style="color:var(--primary-dark); font-size:15px;">${tip.title}</b>
-                <p style="margin:4px 0 0 0; font-size:13px; color:var(--text-color);">${tip.desc}</p>
-              </div>
-            `;
-          });
-          modalContent.innerHTML = `<div style="max-height:75vh; overflow-y:auto;">${vastuHTML}</div>`;
-          modal.classList.add("active");
-          return;
-        }
-
-        if (modalType === "mala") {
-          malaCount = 0;
-          modalContent.innerHTML = `
-            <div class="mala-counter-box">
-              <h2 style="color:var(--primary-dark); margin-top:0;">📿 डिजिटल जप माला</h2>
-              <p style="font-size:13px; color:var(--sub-text);">नीचे दिए गए चक्र पर स्पर्श करके मंत्र जप करें:</p>
-              
-              <div class="mala-circle" id="malaBtn">
-                <div class="mala-count" id="malaNum">0</div>
-                <div style="font-size:11px; opacity:0.9;">/ 108 जप</div>
-              </div>
-
-              <div id="malaStatus" style="font-size:14px; font-weight:bold; color:var(--primary-color); min-height:22px;">
-                जप शुरू करने के लिए गोल बटन दबाएं
-              </div>
-
-              <button class="btn" id="resetMalaBtn" style="margin-top:16px; width:auto; background:#666;">🔄 रीसेट करें</button>
-            </div>
-          `;
-
-          modal.classList.add("active");
-
-          const malaBtn = document.getElementById("malaBtn");
-          const malaNum = document.getElementById("malaNum");
-          const malaStatus = document.getElementById("malaStatus");
-
-          malaBtn.addEventListener("click", function() {
-            malaCount++;
-            malaNum.innerText = malaCount;
-
-            if (navigator.vibrate) navigator.vibrate(40);
-
-            if (malaCount === 108) {
-              malaStatus.innerText = "🎉 बधाई हो! आपकी 1 माला (108 जप) पूरी हुई!";
-              if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
-            } else if (malaCount > 108) {
-              malaStatus.innerText = `माला पूरी हो चुकी है। (कुल जप: ${malaCount})`;
-            } else {
-              malaStatus.innerText = `जप जारी रखें... (${108 - malaCount} बाकी)`;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अध्यात्मिक ज्ञान - Kundali, Rashifal, Choghadiya & Sadhana</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yantra+One:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- jsPDF for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: {
+                            50: '#fffbf0',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        rudraksha: '#4a2c11',
+                        maroon: '#800000',
+                        gold: '#d4af37'
+                    },
+                    fontFamily: {
+                        rozha: ['"Rozha One"', 'serif'],
+                        yantra: ['"Yantra One"', 'sans-serif'],
+                        poppins: ['"Poppins"', 'sans-serif']
+                    }
+                }
             }
-          });
+        }
+    </script>
 
-          document.getElementById("resetMalaBtn").addEventListener("click", function() {
+    <style>
+        body {
+            font-family: 'Yantra One', 'Poppins', sans-serif;
+            background-attachment: fixed;
+        }
+
+        .heading-font {
+            font-family: 'Rozha One', serif;
+        }
+
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .dark .glass-card {
+            background: rgba(24, 20, 16, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(245, 158, 11, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 4px;
+        }
+
+        /* Pulse glow effect for mala */
+        .glow-saffron {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Print styles for Kundali */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printableKundali, #printableKundali * {
+                visibility: visible;
+            }
+            #printableKundali {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                color: black !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-amber-50 text-stone-800 dark:bg-stone-950 dark:text-amber-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-saffron-700/90 dark:bg-stone-900/95 text-white backdrop-blur-md border-b border-saffron-500/30 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showTab('home')">
+                <div class="w-10 h-10 rounded-full bg-saffron-500 border-2 border-amber-200 flex items-center justify-center text-xl font-bold shadow-inner">
+                    ॐ
+                </div>
+                <div>
+                    <h1 class="heading-font text-xl md:text-2xl text-amber-200 tracking-wide">अध्यात्मिक ज्ञान</h1>
+                    <p class="text-[10px] text-amber-100/80 -mt-1 hidden sm:block">ज्योतिष, साधना, ग्रन्थ एवं दैनिक पंचांग</p>
+                </div>
+            </div>
+
+            <!-- Quick Action Icons -->
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <!-- Streak Pill -->
+                <div class="flex items-center space-x-1 bg-saffron-800/60 dark:bg-stone-800/80 px-3 py-1 rounded-full text-xs font-semibold border border-saffron-400/30">
+                    <i class="fa-solid fa-fire text-amber-400 animate-pulse"></i>
+                    <span>Streak: <span id="headerStreak">0</span> दिन</span>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-saffron-600/50 transition" title="Toggle Theme">
+                    <i class="fa-solid fa-moon text-amber-200 text-lg dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-amber-400 text-lg hidden dark:block"></i>
+                </button>
+
+                <!-- Notifications Toggle -->
+                <button onclick="toggleNotifications()" class="p-2 rounded-full hover:bg-saffron-600/50 transition text-amber-200" title="PWA Notifications">
+                    <i id="notifIcon" class="fa-solid fa-bell-slash"></i>
+                </button>
+
+                <!-- Share App -->
+                <button onclick="shareApp()" class="p-2 rounded-full hover:bg-saffron-600/50 transition text-amber-200" title="Share Web App">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Horizontal Category Bar -->
+    <nav class="bg-saffron-800 dark:bg-stone-900 text-amber-100 overflow-x-auto no-scrollbar border-b border-saffron-600/30 sticky top-16 z-30 shadow-md">
+        <div class="max-w-7xl mx-auto px-2 flex space-x-1 py-2 text-sm whitespace-nowrap">
+            <button onclick="showTab('home')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 bg-saffron-600 font-medium">
+                <i class="fa-solid fa-house text-xs"></i> <span>मुख्य पृष्ठ</span>
+            </button>
+            <button onclick="showTab('horoscope')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-star text-xs"></i> <span>राशिफल</span>
+            </button>
+            <button onclick="showTab('choghadiya')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-clock text-xs"></i> <span>चौघड़िया</span>
+            </button>
+            <button onclick="showTab('kundali')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-scroll text-xs"></i> <span>कुंडली जनरेटर</span>
+            </button>
+            <button onclick="showTab('tarot')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-wand-magic-sparkles text-xs"></i> <span>प्रश्न कुंडली / कार्ड</span>
+            </button>
+            <button onclick="showTab('jaap')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-dharmachakra text-xs"></i> <span>डिजिटल जाप माला</span>
+            </button>
+            <button onclick="showTab('gita')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-book-open text-xs"></i> <span>गीता श्लोक</span>
+            </button>
+            <button onclick="showTab('vrat')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-torah text-xs"></i> <span>व्रत कथाएं</span>
+            </button>
+            <button onclick="showTab('stotra')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-om text-xs"></i> <span>स्तोत्र एवं कवच</span>
+            </button>
+            <button onclick="showTab('namakaran')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-baby text-xs"></i> <span>नामकरण</span>
+            </button>
+            <button onclick="showTab('wallpapers')" class="nav-btn px-3 py-1.5 rounded-lg flex items-center space-x-1.5 hover:bg-saffron-700/60 transition">
+                <i class="fa-solid fa-image text-xs"></i> <span>वॉलपेपर व स्टेटस</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-8">
+
+        <!-- TAB 1: HOME DASHBOARD -->
+        <section id="tab-home" class="tab-content space-y-6">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-saffron-700 via-saffron-600 to-amber-700 text-white p-6 sm:p-10 shadow-xl border border-saffron-400/30">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="inline-block px-3 py-1 bg-amber-300/20 rounded-full text-xs font-semibold tracking-wider text-amber-200 mb-2 border border-amber-300/30">
+                        ✨ दैनिक आध्यात्मिक सेवा
+                    </span>
+                    <h2 class="heading-font text-3xl sm:text-5xl font-bold mb-3 text-amber-100">
+                        शुभ मुहूर्त एवं आत्मिक शांति
+                    </h2>
+                    <p class="text-amber-100/90 text-sm sm:text-base leading-relaxed mb-6">
+                        दैनिक पंचांग, चौघड़िया, मंत्र साधना, जन्म कुंडली, और आध्यात्मिक ग्रंथों का संपूर्ण संग्रह एक स्थान पर।
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="showTab('jaap')" class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-saffron-950 rounded-xl font-bold shadow-md transition flex items-center space-x-2">
+                            <i class="fa-solid fa-dharmachakra"></i> <span>डिजिटल जाप माला</span>
+                        </button>
+                        <button onclick="showTab('choghadiya')" class="px-5 py-2.5 bg-stone-900/80 hover:bg-stone-900 text-amber-200 rounded-xl font-medium border border-saffron-400/40 shadow-md transition flex items-center space-x-2">
+                            <i class="fa-solid fa-clock"></i> <span>आज का चौघड़िया</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute -right-10 -bottom-10 opacity-20 pointer-events-none text-[180px] font-bold text-amber-200">
+                    ॐ
+                </div>
+            </div>
+
+            <!-- Shloka of the Day Widget -->
+            <div class="glass-card rounded-2xl p-6 shadow-md border border-saffron-500/20 relative">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-saffron-600 dark:text-saffron-400 flex items-center space-x-1">
+                        <i class="fa-solid fa-quote-left"></i> <span>आज का श्रीमद्भगवद्गीता श्लोक</span>
+                    </span>
+                    <button onclick="showTab('gita')" class="text-xs font-bold text-saffron-600 hover:underline">
+                        और श्लोक पढ़ें &rarr;
+                    </button>
+                </div>
+                <p id="homeShlokaSanskrit" class="text-lg sm:text-xl font-bold text-saffron-800 dark:text-amber-200 text-center mb-2 leading-relaxed">
+                    कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।
+                </p>
+                <p id="homeShlokaMeaning" class="text-stone-600 dark:text-stone-300 text-sm text-center italic">
+                    "आपको अपने अधिकार में कर्म करने का अधिकार है, लेकिन कर्म के फलों का कभी नहीं।"
+                </p>
+            </div>
+
+            <!-- Live Upcoming Festival Countdowns -->
+            <div class="space-y-3">
+                <h3 class="heading-font text-2xl font-bold text-saffron-800 dark:text-amber-300 flex items-center space-x-2">
+                    <i class="fa-solid fa-calendar-days text-saffron-600"></i>
+                    <span>आगामी प्रमुख पर्व एवं उत्सव</span>
+                </h3>
+                <div id="festivalCountdownsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Dashboard Quick Grid Navigation -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div onclick="showTab('horoscope')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-saffron-500">
+                    <div class="w-12 h-12 rounded-full bg-saffron-100 dark:bg-saffron-900/50 text-saffron-600 dark:text-saffron-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">दैनिक राशिफल</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">12 राशियों का आज का भविष्यफल</p>
+                </div>
+
+                <div onclick="showTab('choghadiya')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-amber-500">
+                    <div class="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">शुभ चौघड़िया</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">अमृत, शुभ, लाभ एवं काल समय</p>
+                </div>
+
+                <div onclick="showTab('kundali')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-yellow-500">
+                    <div class="w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-scroll"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">कुंडली जनरेटर</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">जन्म पत्री व दोष निवारण उपाय</p>
+                </div>
+
+                <div onclick="showTab('tarot')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-purple-500">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">प्रश्न कुंडली</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">कार्ड चयन से प्रश्नों का समाधान</p>
+                </div>
+
+                <div onclick="showTab('vrat')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-red-500">
+                    <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-torah"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">व्रत कथाएं</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">एकादशी, सत्यनारायण कथा आदि</p>
+                </div>
+
+                <div onclick="showTab('stotra')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-orange-500">
+                    <div class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-om"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">स्तोत्र एवं कवच</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">हनुमान बाहुक, आदित्य हृदय आदि</p>
+                </div>
+
+                <div onclick="showTab('namakaran')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-teal-500">
+                    <div class="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-baby"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">नामकरण टूल</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">राशि व नक्षत्र अनुसार बच्चों के नाम</p>
+                </div>
+
+                <div onclick="showTab('wallpapers')" class="glass-card p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition shadow-md flex flex-col items-center text-center border-t-4 border-pink-500">
+                    <div class="w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <h4 class="font-bold text-base mb-1">वॉलपेपर व स्टेटस</h4>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">WhatsApp स्टेटस डाउनलोड</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: HOROSCOPE (दैनिक एवं साप्ताहिक राशिफल) -->
+        <section id="tab-horoscope" class="tab-content hidden space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                        दैनिक एवं साप्ताहिक राशिफल
+                    </h2>
+                    <p class="text-stone-600 dark:text-stone-400 text-sm">अपनी राशि चुनें और जानें आज और इस सप्ताह का भविष्यफल</p>
+                </div>
+                <!-- Toggle Daily/Weekly -->
+                <div class="bg-saffron-200 dark:bg-stone-800 p-1 rounded-xl flex self-start">
+                    <button id="horoDailyBtn" onclick="switchHoroType('daily')" class="px-4 py-1.5 rounded-lg text-sm font-bold bg-saffron-600 text-white transition">
+                        दैनिक (Daily)
+                    </button>
+                    <button id="horoWeeklyBtn" onclick="switchHoroType('weekly')" class="px-4 py-1.5 rounded-lg text-sm font-bold text-stone-700 dark:text-stone-300 transition">
+                        साप्ताहिक (Weekly)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Rashi Selection Grid -->
+            <div id="rashiGrid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                <!-- Javascript will inject 12 Rashis -->
+            </div>
+
+            <!-- Selected Horoscope Detail Box -->
+            <div id="horoscopeDetail" class="glass-card rounded-2xl p-6 shadow-lg border-l-8 border-saffron-600 hidden">
+                <div class="flex items-center space-x-4 mb-4 pb-4 border-b border-stone-300 dark:border-stone-800">
+                    <div id="horoIcon" class="w-16 h-16 rounded-full bg-saffron-500 text-white flex items-center justify-center text-3xl font-bold shadow-md">
+                        ♈
+                    </div>
+                    <div>
+                        <h3 id="horoTitle" class="heading-font text-2xl font-bold text-saffron-800 dark:text-amber-200">मेष (Aries)</h3>
+                        <p id="horoTypeBadge" class="text-xs font-semibold px-2.5 py-0.5 bg-saffron-200 dark:bg-saffron-900 text-saffron-800 dark:text-saffron-200 rounded-full inline-block mt-1">
+                            दैनिक राशिफल
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2 space-y-4">
+                        <div>
+                            <h4 class="font-bold text-saffron-700 dark:text-amber-400 mb-1 flex items-center space-x-1.5">
+                                <i class="fa-solid fa-sparkles"></i> <span>सामान्य भविष्यफल</span>
+                            </h4>
+                            <p id="horoGeneralText" class="text-stone-700 dark:text-stone-300 text-sm leading-relaxed">
+                                -
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-3 bg-amber-100/60 dark:bg-stone-800/60 rounded-xl">
+                                <span class="text-xs text-stone-500 dark:text-stone-400 font-bold block">प्रेम एवं संबंध</span>
+                                <p id="horoLoveText" class="text-xs text-stone-800 dark:text-stone-200 mt-1">-</p>
+                            </div>
+                            <div class="p-3 bg-amber-100/60 dark:bg-stone-800/60 rounded-xl">
+                                <span class="text-xs text-stone-500 dark:text-stone-400 font-bold block">करियर व धन</span>
+                                <p id="horoCareerText" class="text-xs text-stone-800 dark:text-stone-200 mt-1">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div class="space-y-3 bg-saffron-50 dark:bg-stone-900 p-4 rounded-xl border border-saffron-200 dark:border-stone-800">
+                        <div class="flex justify-between items-center text-sm border-b pb-2 border-stone-200 dark:border-stone-800">
+                            <span class="text-stone-600 dark:text-stone-400 font-medium">शुभ रंग:</span>
+                            <span id="horoColor" class="font-bold text-saffron-700 dark:text-amber-400">-</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm border-b pb-2 border-stone-200 dark:border-stone-800">
+                            <span class="text-stone-600 dark:text-stone-400 font-medium">शुभ अंक:</span>
+                            <span id="horoNumber" class="font-bold text-saffron-700 dark:text-amber-400">-</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm border-b pb-2 border-stone-200 dark:border-stone-800">
+                            <span class="text-stone-600 dark:text-stone-400 font-medium">भाग्य प्रतिशत:</span>
+                            <span id="horoLuck" class="font-bold text-green-600 dark:text-green-400">-</span>
+                        </div>
+                        <div class="pt-1">
+                            <span class="text-xs text-stone-500 dark:text-stone-400 font-bold block mb-1">विशेष उपाय:</span>
+                            <p id="horoRemedy" class="text-xs text-stone-700 dark:text-stone-300 italic">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: LIVE CHOGHADIYA (आज का चौघड़िया) -->
+        <section id="tab-choghadiya" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                        आज का शुभ चौघड़िया (Choghadiya Timings)
+                    </h2>
+                    <p class="text-stone-600 dark:text-stone-400 text-sm">
+                        दिन और रात के मुहूर्त (अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग)
+                    </p>
+                </div>
+                <div class="text-xs px-3 py-1.5 bg-saffron-200 dark:bg-stone-800 text-saffron-900 dark:text-amber-200 rounded-lg font-bold">
+                    <i class="fa-regular fa-clock"></i> वर्तमान समय: <span id="choghadiyaClock">--:--:--</span>
+                </div>
+            </div>
+
+            <!-- Day / Night Tabs -->
+            <div class="flex space-x-3 border-b border-stone-300 dark:border-stone-800 pb-2">
+                <button id="dayChogTab" onclick="switchChoghadiyaPeriod('day')" class="px-5 py-2 rounded-xl text-sm font-bold bg-saffron-600 text-white shadow-sm transition flex items-center space-x-2">
+                    <i class="fa-solid fa-sun text-amber-300"></i> <span>दिन का चौघड़िया (06:00 AM - 06:00 PM)</span>
+                </button>
+                <button id="nightChogTab" onclick="switchChoghadiyaPeriod('night')" class="px-5 py-2 rounded-xl text-sm font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-moon text-indigo-400"></i> <span>रात का चौघड़िया (06:00 PM - 06:00 AM)</span>
+                </button>
+            </div>
+
+            <!-- Choghadiya Table Grid -->
+            <div class="glass-card rounded-2xl overflow-hidden shadow-lg">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-saffron-700 text-white text-xs sm:text-sm">
+                                <th class="p-3.5 sm:p-4">चौघड़िया का नाम</th>
+                                <th class="p-3.5 sm:p-4">प्रकृति / फल</th>
+                                <th class="p-3.5 sm:p-4">समय सीमा</th>
+                                <th class="p-3.5 sm:p-4">स्थिति</th>
+                            </tr>
+                        </thead>
+                        <tbody id="choghadiyaTableBody" class="divide-y divide-stone-200 dark:divide-stone-800 text-sm">
+                            <!-- Populated via Javascript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: KUNDALI GENERATOR & DOSHA REMEDIES -->
+        <section id="tab-kundali" class="tab-content hidden space-y-6">
+            <div>
+                <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                    जन्म कुंडली जनरेटर एवं दोष निवारण
+                </h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm">
+                    अपनी जन्म विवरण भरें और अपनी कुंडली का संक्षिप्त विवरण प्राप्त करें एवं PDF डाउनलोड करें।
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Input Form -->
+                <div class="glass-card rounded-2xl p-6 shadow-lg space-y-4 border-t-4 border-saffron-600">
+                    <h3 class="font-bold text-lg text-saffron-800 dark:text-amber-300 flex items-center space-x-2">
+                        <i class="fa-solid fa-user-pen"></i> <span>जन्म विवरण भरें</span>
+                    </h3>
+                    <form id="kundaliForm" onsubmit="generateKundali(event)" class="space-y-3">
+                        <div>
+                            <label class="text-xs font-bold text-stone-600 dark:text-stone-400">पूरा नाम</label>
+                            <input type="text" id="kName" required placeholder="उदाहरण: राहुल शर्मा" class="w-full mt-1 p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm focus:ring-2 focus:ring-saffron-500 outline-none">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-xs font-bold text-stone-600 dark:text-stone-400">जन्म तिथि</label>
+                                <input type="date" id="kDob" required class="w-full mt-1 p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm focus:ring-2 focus:ring-saffron-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-stone-600 dark:text-stone-400">जन्म समय</label>
+                                <input type="time" id="kTob" required class="w-full mt-1 p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm focus:ring-2 focus:ring-saffron-500 outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-stone-600 dark:text-stone-400">जन्म स्थान (शहर)</label>
+                            <input type="text" id="kPob" required placeholder="उदाहरण: दिल्ली, मुंबई, वाराणसी" class="w-full mt-1 p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm focus:ring-2 focus:ring-saffron-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-stone-600 dark:text-stone-400">लिंग</label>
+                            <select id="kGender" class="w-full mt-1 p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm focus:ring-2 focus:ring-saffron-500 outline-none">
+                                <option value="पुरुष">पुरुष (Male)</option>
+                                <option value="महिला">महिला (Female)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 bg-saffron-600 hover:bg-saffron-500 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center space-x-2 mt-2">
+                            <i class="fa-solid fa-dharmachakra"></i> <span>कुंडली बनाएं</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Generated Kundali Output -->
+                <div class="lg:col-span-2 glass-card rounded-2xl p-6 shadow-lg flex flex-col justify-between" id="printableKundali">
+                    <div id="kundaliOutputPlaceholder" class="h-full flex flex-col items-center justify-center py-12 text-stone-400 dark:text-stone-600 text-center">
+                        <i class="fa-solid fa-scroll text-6xl mb-3 opacity-40"></i>
+                        <p class="font-bold">कुंडली रिपोर्ट देखने के लिए बाईं तरफ फॉर्म भरें।</p>
+                    </div>
+
+                    <div id="kundaliReport" class="hidden space-y-6">
+                        <div class="flex items-center justify-between border-b pb-4 border-stone-200 dark:border-stone-800">
+                            <div>
+                                <h3 id="resName" class="heading-font text-2xl font-bold text-saffron-800 dark:text-amber-200">-</h3>
+                                <p id="resDetails" class="text-xs text-stone-500 dark:text-stone-400 mt-1">-</p>
+                            </div>
+                            <div class="no-print flex space-x-2">
+                                <button onclick="printKundali()" class="px-3 py-1.5 bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-amber-200 text-xs font-bold rounded-lg hover:bg-stone-300 transition">
+                                    <i class="fa-solid fa-print"></i> प्रिंट
+                                </button>
+                                <button onclick="downloadKundaliPDF()" class="px-3 py-1.5 bg-saffron-600 text-white text-xs font-bold rounded-lg hover:bg-saffron-500 transition">
+                                    <i class="fa-solid fa-file-pdf"></i> PDF डाउनलोड
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Kundali Key Charts & Astrological Elements -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="p-3 bg-saffron-50 dark:bg-stone-900 rounded-xl border border-saffron-200 dark:border-stone-800 text-center">
+                                <span class="text-xs text-stone-500 dark:text-stone-400 font-bold block">लग्न राशि</span>
+                                <span id="resLagna" class="text-lg font-bold text-saffron-700 dark:text-amber-300">-</span>
+                            </div>
+                            <div class="p-3 bg-saffron-50 dark:bg-stone-900 rounded-xl border border-saffron-200 dark:border-stone-800 text-center">
+                                <span class="text-xs text-stone-500 dark:text-stone-400 font-bold block">चंद्र राशि</span>
+                                <span id="resRashi" class="text-lg font-bold text-saffron-700 dark:text-amber-300">-</span>
+                            </div>
+                            <div class="p-3 bg-saffron-50 dark:bg-stone-900 rounded-xl border border-saffron-200 dark:border-stone-800 text-center">
+                                <span class="text-xs text-stone-500 dark:text-stone-400 font-bold block">जन्म नक्षत्र</span>
+                                <span id="resNakshatra" class="text-lg font-bold text-saffron-700 dark:text-amber-300">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Visual Diamond Kundali Representation -->
+                        <div class="flex justify-center my-4">
+                            <div class="w-48 h-48 sm:w-64 sm:h-64 border-2 border-saffron-600 relative bg-amber-50 dark:bg-stone-900 flex items-center justify-center font-bold text-xs shadow-inner">
+                                <div class="absolute inset-0 border border-saffron-400 rotate-45 transform origin-center scale-75"></div>
+                                <div class="text-center z-10 text-saffron-800 dark:text-amber-200">
+                                    <p class="font-bold text-sm">जन्म लग्न चक्र</p>
+                                    <p class="text-[10px] text-stone-500" id="resCenterLagna">लग्न: -</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dosha Analysis & Remedies -->
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-saffron-800 dark:text-amber-300 border-b pb-1 border-stone-200 dark:border-stone-800 flex items-center space-x-2">
+                                <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+                                <span>कुंडली दोष विश्लेषण एवं सरल उपाय (Dosha Remedies)</span>
+                            </h4>
+                            <div id="doshaContainer" class="space-y-2">
+                                <!-- Dynamic doshas inserted -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: PRASHNA KUNDALI / TAROT GUIDANCE -->
+        <section id="tab-tarot" class="tab-content hidden space-y-6">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                    प्रश्न कुंडली एवं डिवाइन कार्ड मार्गदर्शन
+                </h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm">
+                    मन में अपने किसी एक महत्वपूर्ण प्रश्न का ध्यान करें, भगवान श्री कृष्ण व अपने इष्टदेव का स्मरण करें और नीचे दिए गए किसी एक कार्ड पर क्लिक करें।
+                </p>
+            </div>
+
+            <!-- Interactive Cards -->
+            <div id="cardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 my-8">
+                <!-- 5 Interactive Dynamic Cards -->
+            </div>
+
+            <!-- Answer Box Modal / Div -->
+            <div id="tarotAnswerBox" class="glass-card rounded-2xl p-6 shadow-xl border-t-8 border-purple-600 hidden max-w-2xl mx-auto text-center space-y-4">
+                <div class="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-600 dark:text-purple-300 flex items-center justify-center text-3xl mx-auto shadow-md">
+                    <i class="fa-solid fa-hands-praying"></i>
+                </div>
+                <h3 id="tarotCardTitle" class="heading-font text-2xl font-bold text-purple-900 dark:text-purple-200">
+                    -
+                </h3>
+                <p id="tarotCardGuidance" class="text-stone-700 dark:text-stone-200 text-sm sm:text-base leading-relaxed italic">
+                    -
+                </p>
+                <div class="p-4 bg-purple-50 dark:bg-stone-900 rounded-xl text-xs text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                    <strong>सुझाया गया उपाय:</strong> <span id="tarotRemedy">-</span>
+                </div>
+                <button onclick="resetTarot()" class="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs transition">
+                    दूसरा प्रश्न पूछें
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 6: DIGITAL JAAP MALA & SADHANA STREAK TRACKER -->
+        <section id="tab-jaap" class="tab-content hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Digital Mala Counter Column -->
+                <div class="lg:col-span-2 glass-card rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col items-center text-center space-y-6 border-2 border-saffron-400/40 relative overflow-hidden">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-saffron-600 dark:text-saffron-400 tracking-wider uppercase">डिजिटल जप माला</span>
+                        <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-200">मंत्र जाप साधन</h2>
+                    </div>
+
+                    <!-- Selected Mantra Selector -->
+                    <div class="w-full max-w-md">
+                        <label class="text-xs font-bold text-stone-500 dark:text-stone-400 block mb-1">जाप मंत्र चुनें:</label>
+                        <select id="mantraSelect" class="w-full p-2.5 rounded-xl bg-amber-100/80 dark:bg-stone-900 border border-saffron-300 dark:border-stone-700 text-sm font-bold text-saffron-900 dark:text-amber-100 outline-none">
+                            <option value="ॐ नमः शिवाय">ॐ नमः शिवाय (Om Namah Shivaya)</option>
+                            <option value="ॐ नमो भगवते वासुदेवाय">ॐ नमो भगवते वासुदेवाय (Om Namo Bhagavate Vasudevaya)</option>
+                            <option value="गायत्री मंत्र">ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं...</option>
+                            <option value="महामृत्युंजय मंत्र">ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्...</option>
+                            <option value="हरे कृष्ण हरे राम">हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे...</option>
+                            <option value="श्री राम जय राम जय जय राम">श्री राम जय राम जय जय राम</option>
+                        </select>
+                    </div>
+
+                    <!-- Target Selection -->
+                    <div class="flex items-center space-x-2 text-xs font-bold">
+                        <span>लक्ष्य:</span>
+                        <button onclick="setTarget(108)" class="target-btn px-3 py-1 rounded-lg bg-saffron-600 text-white">108</button>
+                        <button onclick="setTarget(508)" class="target-btn px-3 py-1 rounded-lg bg-stone-200 dark:bg-stone-800">508</button>
+                        <button onclick="setTarget(1008)" class="target-btn px-3 py-1 rounded-lg bg-stone-200 dark:bg-stone-800">1008</button>
+                    </div>
+
+                    <!-- Digital Mala Interactive Bead Circle -->
+                    <div onclick="countMalaBead()" class="w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-gradient-to-tr from-saffron-700 via-saffron-500 to-amber-400 text-white flex flex-col items-center justify-center cursor-pointer shadow-2xl hover:scale-105 active:scale-95 transition-all duration-150 border-8 border-amber-200/50 glow-saffron relative select-none">
+                        <span id="malaCountDisplay" class="heading-font text-6xl font-extrabold tracking-wider">0</span>
+                        <span class="text-xs text-amber-100/90 font-medium mt-1">माला मनका (क्लिक करें)</span>
+                        <div class="absolute bottom-4 text-[11px] bg-saffron-900/60 px-3 py-0.5 rounded-full border border-amber-300/30">
+                            कुल मालाएं: <span id="completedMalaCount" class="font-bold text-amber-300">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full max-w-md space-y-1">
+                        <div class="flex justify-between text-xs font-bold text-stone-600 dark:text-stone-400">
+                            <span>प्रगति: <span id="currBeadNum">0</span>/<span id="targetDisplay">108</span></span>
+                            <span><span id="percentDisplay">0</span>%</span>
+                        </div>
+                        <div class="w-full h-3 bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden">
+                            <div id="malaProgressBar" class="h-full bg-saffron-500 transition-all duration-200" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex space-x-3">
+                        <button onclick="resetMala()" class="px-4 py-2 bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-xl text-xs font-bold hover:bg-stone-300 transition">
+                            <i class="fa-solid fa-rotate-right"></i> रीसेट करें
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 7-Day Sadhana Streak Tracker -->
+                <div class="glass-card rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-4 border-t-4 border-saffron-600">
+                    <div class="space-y-2">
+                        <h3 class="heading-font text-2xl font-bold text-saffron-800 dark:text-amber-300 flex items-center space-x-2">
+                            <i class="fa-solid fa-fire text-saffron-500"></i>
+                            <span>7-दिवसीय साधना स्ट्राइक (Streak Tracker)</span>
+                        </h3>
+                        <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
+                            रोजाना अपनी साधना (जाप/आरती/पाठ) पूरी करें और स्ट्राइक बनाए रखें।
+                        </p>
+                    </div>
+
+                    <!-- 7 Days Grid -->
+                    <div id="streakDaysGrid" class="grid grid-cols-7 gap-1.5 text-center my-4">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="bg-saffron-50 dark:bg-stone-900 p-4 rounded-2xl border border-saffron-200 dark:border-stone-800 space-y-2">
+                        <span class="text-xs text-stone-500 dark:text-stone-400 font-bold block">आज का साधना संकल्प:</span>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" id="todaySadhanaCheck" onchange="toggleTodaySadhana()" class="w-5 h-5 accent-saffron-600 rounded cursor-pointer">
+                            <label for="todaySadhanaCheck" class="text-sm font-bold text-stone-800 dark:text-amber-100 cursor-pointer">
+                                मैंने आज का जाप/पाठ पूर्ण किया
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-xs text-stone-500 dark:text-stone-400">
+                        <i class="fa-solid fa-award text-amber-500 text-lg mb-1 block"></i>
+                        <span>लगातार साधना करने से मन एकाग्र और शांत होता है।</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: BHAGAVAD GITA SHLOKA -->
+        <section id="tab-gita" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                        श्रीमद्भगवद्गीता ज्ञानप्रसाद
+                    </h2>
+                    <p class="text-stone-600 dark:text-stone-400 text-sm">संस्कृत श्लोक, हिंदी-अंग्रेजी अनुवाद एवं जीवन पाठ</p>
+                </div>
+                <button onclick="randomGitaShloka()" class="px-4 py-2 bg-saffron-600 hover:bg-saffron-500 text-white text-xs font-bold rounded-xl shadow transition self-start flex items-center space-x-1.5">
+                    <i class="fa-solid fa-shuffle"></i> <span>अन्य श्लोक देखें</span>
+                </button>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border-t-8 border-saffron-600 space-y-6 max-w-3xl mx-auto">
+                <div class="text-center space-y-2">
+                    <span id="gitaChapter" class="px-3 py-1 bg-amber-200 dark:bg-stone-800 text-saffron-900 dark:text-amber-200 text-xs font-bold rounded-full inline-block">
+                        अध्याय 2, श्लोक 47
+                    </span>
+                    <h3 id="gitaSanskrit" class="heading-font text-2xl sm:text-3xl font-bold text-saffron-900 dark:text-amber-200 leading-relaxed">
+                        कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-stone-200 dark:border-stone-800">
+                    <div class="p-4 bg-saffron-50 dark:bg-stone-900 rounded-2xl">
+                        <h4 class="font-bold text-xs uppercase text-saffron-700 dark:text-amber-400 mb-1">हिंदी अर्थ</h4>
+                        <p id="gitaHindi" class="text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
+                            कर्म करने में ही आपका अधिकार है, उसके फलों में कभी नहीं। इसलिए कर्मफल का हेतु मत बनो और न ही कर्म न करने में आपकी आसक्ति हो।
+                        </p>
+                    </div>
+                    <div class="p-4 bg-saffron-50 dark:bg-stone-900 rounded-2xl">
+                        <h4 class="font-bold text-xs uppercase text-saffron-700 dark:text-amber-400 mb-1">English Translation</h4>
+                        <p id="gitaEnglish" class="text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
+                            You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-amber-100/80 dark:bg-stone-800 rounded-2xl border border-amber-300 dark:border-stone-700">
+                    <h4 class="font-bold text-xs uppercase text-saffron-900 dark:text-amber-300 mb-1 flex items-center space-x-1">
+                        <i class="fa-solid fa-lightbulb text-amber-500"></i> <span>व्यावहारिक जीवन सीख (Life Lesson)</span>
+                    </h4>
+                    <p id="gitaLesson" class="text-xs text-stone-800 dark:text-stone-200 leading-relaxed">
+                        परिणाम की चिंता किए बिना केवल अपने प्रयास और कर्म पर ध्यान केंद्रित करें।
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 8: VRAT KATHA COLLECTION -->
+        <section id="tab-vrat" class="tab-content hidden space-y-6">
+            <div>
+                <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                    प्रमुख व्रत कथाएं (Vrat Kathas)
+                </h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm">एकादशी, सत्यनारायण, प्रदोष एवं अन्य व्रत कथा संग्रह</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Story Titles List -->
+                <div class="space-y-2" id="vratTitlesList">
+                    <!-- Dynamic List -->
+                </div>
+
+                <!-- Story Detailed Reading View -->
+                <div class="md:col-span-3 glass-card rounded-2xl p-6 shadow-lg border-t-4 border-saffron-600 space-y-4">
+                    <h3 id="vratTitleDisplay" class="heading-font text-2xl font-bold text-saffron-800 dark:text-amber-200 border-b pb-2 border-stone-200 dark:border-stone-800">
+                        कथा चुनें
+                    </h3>
+                    <div id="vratBodyDisplay" class="text-stone-700 dark:text-stone-300 text-sm leading-relaxed space-y-3 max-h-[500px] overflow-y-auto pr-2">
+                        कृपया बाईं सूची में से अपनी पसंद की व्रत कथा चुनें।
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 9: STOTRAM & KAVACH COLLECTION -->
+        <section id="tab-stotra" class="tab-content hidden space-y-6">
+            <div>
+                <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                    स्तोत्र एवं कवच संग्रह
+                </h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm">हनुमान बाहुक, आदित्य हृदय स्तोत्र, शिव तांडव एवं दुर्गा कवच</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Titles -->
+                <div class="space-y-2" id="stotraTitlesList">
+                    <!-- Dynamic List -->
+                </div>
+
+                <!-- Content -->
+                <div class="md:col-span-3 glass-card rounded-2xl p-6 shadow-lg border-t-4 border-orange-600 space-y-4">
+                    <h3 id="stotraTitleDisplay" class="heading-font text-2xl font-bold text-saffron-800 dark:text-amber-200 border-b pb-2 border-stone-200 dark:border-stone-800">
+                        स्तोत्र चुनें
+                    </h3>
+                    <div id="stotraBodyDisplay" class="text-stone-700 dark:text-stone-300 text-sm leading-relaxed whitespace-pre-line font-serif max-h-[500px] overflow-y-auto pr-2">
+                        कृपया बाईं सूची में से कोई स्तोत्र अथवा कवच चुनें।
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 10: BABY NAME SUGGESTION TOOL -->
+        <section id="tab-namakaran" class="tab-content hidden space-y-6">
+            <div>
+                <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                    नामकरण टूल (Baby Name Suggestion)
+                </h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm">राशि, नक्षत्र व अक्षर के आधार पर अर्थपूर्ण नाम खोजें</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="glass-card rounded-2xl p-5 shadow-md grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                    <label class="text-xs font-bold text-stone-600 dark:text-stone-400">राशि चुनें</label>
+                    <select id="nameRashiSelect" onchange="filterBabyNames()" class="w-full mt-1 p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm outline-none">
+                        <option value="ALL">सभी राशियां (All)</option>
+                        <option value="मेष">मेष (अ, ल, च)</option>
+                        <option value="वृषभ">वृषभ (इ, उ, ए, ओ, व)</option>
+                        <option value="मिथुन">मिथुन (क, छ, घ)</option>
+                        <option value="कर्क">कर्क (ह, ड)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-stone-600 dark:text-stone-400">लिंग</label>
+                    <select id="nameGenderSelect" onchange="filterBabyNames()" class="w-full mt-1 p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm outline-none">
+                        <option value="ALL">सभी (Boy/Girl)</option>
+                        <option value="बालक">बालक (Boy)</option>
+                        <option value="बालिका">बालिका (Girl)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-stone-600 dark:text-stone-400">प्रथम अक्षर</label>
+                    <input type="text" id="nameLetterInput" oninput="filterBabyNames()" placeholder="उदा. अ, क, श" class="w-full mt-1 p-2 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-sm outline-none">
+                </div>
+            </div>
+
+            <!-- Names Table -->
+            <div class="glass-card rounded-2xl overflow-hidden shadow-lg">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-saffron-700 text-white text-xs">
+                            <th class="p-3">नाम</th>
+                            <th class="p-3">अर्थ</th>
+                            <th class="p-3">लिंग</th>
+                            <th class="p-3">राशि</th>
+                        </tr>
+                    </thead>
+                    <tbody id="babyNamesTableBody" class="divide-y divide-stone-200 dark:divide-stone-800 text-sm">
+                        <!-- Dynamic list -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TAB 11: SPIRITUAL WALLPAPERS & WHATSAPP STATUS -->
+        <section id="tab-wallpapers" class="tab-content hidden space-y-6">
+            <div>
+                <h2 class="heading-font text-3xl font-bold text-saffron-800 dark:text-amber-300">
+                    धार्मिक वॉलपेपर एवं WhatsApp स्टेटस
+                </h2>
+                <p class="text-stone-600 dark:text-stone-400 text-sm">सुंदर इमेजेस व सुविचार डाउनलोड/शेयर करें</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="wallpapersGrid">
+                <!-- Javascript populates cards -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-saffron-950 text-amber-100 py-8 border-t border-saffron-800/50 mt-12 text-sm">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <div class="flex items-center justify-center space-x-2">
+                <span class="w-8 h-8 rounded-full bg-saffron-600 text-white font-bold flex items-center justify-center text-sm">ॐ</span>
+                <span class="heading-font text-xl text-amber-200">अध्यात्मिक ज्ञान पोर्टल</span>
+            </div>
+            <p class="text-xs text-amber-200/70 max-w-xl mx-auto">
+                वैदिक ज्योतिष, दैनिक पंचांग, शुभ मुहूर्त, मंत्र साधना व धार्मिक ग्रंथों का प्रामाणिक मंच।
+            </p>
+            <div class="text-[11px] text-amber-200/50 pt-2 border-t border-saffron-900">
+                © 2026 अध्यात्मिक ज्ञान | सर्वाधिकार सुरक्षित
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global App State
+        let currentTab = 'home';
+        let horoscopeType = 'daily';
+        let selectedRashiIndex = 0;
+        let malaCount = 0;
+        let malaCompleted = 0;
+        let malaTarget = 108;
+        let saddhanaStreak = parseInt(localStorage.getItem('sadhana_streak') || '1');
+        let notificationsEnabled = false;
+
+        // --- Data Repositories ---
+
+        const RASHIS = [
+            { name: "मेष", eng: "Aries", symbol: "♈", element: "अग्नि" },
+            { name: "वृषभ", eng: "Taurus", symbol: "♉", element: "पृथ्वी" },
+            { name: "मिथुन", eng: "Gemini", symbol: "♊", element: "वायु" },
+            { name: "कर्क", eng: "Cancer", symbol: "♋", element: "जल" },
+            { name: "सिंह", eng: "Leo", symbol: "♌", element: "अग्नि" },
+            { name: "कन्या", eng: "Virgo", symbol: "♍", element: "पृथ्वी" },
+            { name: "तुला", eng: "Libra", symbol: "♎", element: "वायु" },
+            { name: "वृश्चिक", eng: "Scorpio", symbol: "♏", element: "जल" },
+            { name: "धनु", eng: "Sagittarius", symbol: "♐", element: "अग्नि" },
+            { name: "मकर", eng: "Capricorn", symbol: "♑", element: "पृथ्वी" },
+            { name: "कुंभ", eng: "Aquarius", symbol: "♒", element: "वायु" },
+            { name: "मीन", eng: "Pisces", symbol: "♓", element: "जल" }
+        ];
+
+        const HOROSCOPE_DATA = {
+            daily: [
+                { general: "आज का दिन आपके लिए ऊर्जावान रहेगा। नए कार्यों की शुरुआत के लिए समय अनुकूल है। कार्यक्षेत्र में प्रशंसा मिलेगी।", love: "साथी के साथ सामंजस्य अच्छा रहेगा।", career: "आर्थिक लाभ के योग हैं।", color: "लाल", number: "9", luck: "85%", remedy: "सूर्य देव को जल अर्पित करें।" },
+                { general: "धैर्य से काम लें। वित्तीय मामलों में सावधानी बरतें। पारिवारिक वातावरण सुखद रहेगा।", love: "मधुर संबंध बने रहेंगे।", career: "सोच-समझकर निवेश करें।", color: "सफेद", number: "6", luck: "75%", remedy: "माता लक्ष्मी को खीर का भोग लगाएं।" },
+                { general: "वाणी पर संयम रखें। नए संपर्क लाभकारी सिद्ध होंगे। यात्रा के योग बन रहे हैं।", love: "पुराने मित्रों से मुलाकात हो सकती है।", career: "व्यापार में नया प्रस्ताव मिलेगा।", color: "हरा", number: "5", luck: "80%", remedy: "गणेश जी को दूर्वा अर्पित करें।" },
+                { general: "मानसिक शांति महसूस होगी। घर के बड़े-बुजुर्गों का आशीर्वाद मिलेगा। रचनात्मक कार्य में रुचि बढ़ेगी।", love: "प्रेम संबंधों में प्रगाढ़ता आएगी।", career: "पदोन्नति के अवसर हैं।", color: "दूधिया सफेद", number: "2", luck: "90%", remedy: "शिवलिंग पर कच्चा दूध चढ़ाएं।" },
+                { general: "आत्मविश्वास चरम पर रहेगा। आपके नेतृत्व क्षमता की सराहना होगी। स्वास्थ्य अच्छा रहेगा।", love: "रोमांचक दिन रहेगा।", career: "नया प्रोजेक्ट प्राप्त हो सकता है।", color: "सुनहरा", number: "1", luck: "88%", remedy: "गाय को गुड़ खिलाएं।" },
+                { general: "योजनाबद्ध तरीके से काम करें। पुरानी समस्याओं का समाधान मिलेगा। व्यर्थ की बहस से बचें।", love: "गलतफहमी दूर होगी।", career: "नौकरी में स्थिरता आएगी।", color: "हल्का हरा", number: "7", luck: "78%", remedy: "तुलसी के पौधे में दीपक जलाएं।" },
+                { general: "सकारात्मक विचार बनाए रखें। कला व संगीत की ओर रुझान बढ़ेगा। मित्रों का सहयोग मिलेगा।", love: "दांपत्य जीवन में खुशहाली रहेगी।", career: "साझेदारी से लाभ होगा।", color: "गुलाबी", number: "6", luck: "82%", remedy: "छोटी कन्याओं को फल दान करें।" },
+                { general: "गूढ़ विद्याओं में रुचि बढ़ेगी। रुका हुआ धन वापस मिलने की संभावना है। संयम रखें।", love: "गहन भावनाएं व्यक्त करेंगे।", career: "शोध कार्य में सफलता।", color: "मखमली लाल", number: "8", luck: "70%", remedy: "हनुमान चालीसा का पाठ करें।" },
+                { general: "धार्मिक यात्रा का कार्यक्रम बन सकता है। उच्च शिक्षा के क्षेत्र में शुभ परिणाम मिलेंगे।", love: "सौहार्दपूर्ण वातावरण।", career: "भाग्य का साथ मिलेगा।", color: "पीला", number: "3", luck: "92%", remedy: "चने की दाल का दान करें।" },
+                { general: "कठिन परिश्रम का फल मिलेगा। सामाजिक प्रतिष्ठा में वृद्धि होगी। स्वास्थ्य पर ध्यान दें।", love: "गंभीर बातचीत हो सकती है।", career: "अधिकारियों का सहयोग मिलेगा।", color: "नीला", number: "4", luck: "84%", remedy: "शनिदेव को सरसों का तेल चढ़ाएं।" },
+                { general: "नवीन विचारों का आगमन होगा। सामाजिक कार्यों में सहभागिता बढ़ेगी। आर्थिक स्थिति मजबूत होगी।", love: "नए संबंध बन सकते हैं।", career: "आईटी सेक्टर में लाभ।", color: "आसमानी", number: "11", luck: "86%", remedy: "चींटियों को आटा डालें।" },
+                { general: "आध्यात्मिक क्षेत्र में प्रगति होगी। आत्मचिंतन के लिए उत्तम समय है। खर्चे नियंत्रित रखें।", love: "भावनात्मक सहयोग मिलेगा।", career: "विदेश से जुड़ा काम बनेगा।", color: "हल्का पीला", number: "12", luck: "80%", remedy: "विष्णु सहस्रनाम का पाठ करें।" }
+            ],
+            weekly: [
+                { general: "इस सप्ताह आपकी व्यावसायिक योजनाएं गति पकड़ेंगी। मध्य सप्ताह में धन लाभ होगा।", love: "सप्ताहांत में यात्रा के योग हैं।", career: "प्रतियोगी परीक्षा में सफलता।", color: "केशरिया", number: "18", luck: "88%", remedy: "प्रतिदिन आदित्य हृदय स्तोत्र पढ़ें।" },
+                { general: "सप्ताह की शुरुआत में थोड़ी व्यस्तता रहेगी, परंतु अंत तक परिणाम आपके पक्ष में होंगे।", love: "रिश्तों में स्पष्टता रखें।", career: "अचल संपत्ति में निवेश लाभदायक।", color: "सफेद", number: "15", luck: "82%", remedy: "शुक्रवार को सफेद मिठाई दान करें।" },
+                { general: "बौद्धिक क्षमताओं का विकास होगा। नए व्यवसायिक सौदे तय हो सकते हैं।", love: "सकारात्मक ऊर्जा का अनुभव।", career: "मीडिया व संवाद क्षेत्र में प्रगति।", color: "सी ग्रीन", number: "14", luck: "85%", remedy: "बुधवार को हरी मूंग दान करें।" },
+                { general: "परिवार में मांगलिक कार्य की रूपरेखा बनेगी। मानसिक संतोष प्राप्त होगा।", love: "साथी के साथ गुणवत्तापूर्ण समय।", career: "सरकारी कार्यों में सफलता।", color: "चांदी जैसा", number: "11", luck: "91%", remedy: "चंद्रदेव को अर्घ्य दें।" },
+                { general: "यह सप्ताह आपके लिए उपलब्धियों से भरा रहेगा। आपके मान-सम्मान में वृद्धि होगी।", love: "रिश्ते में मजबूती।", career: "प्रशासनिक क्षेत्र में लाभ।", color: "नारंगी", number: "10", luck: "90%", remedy: "सूर्य नमस्कार करें।" },
+                { general: "कार्यों में छोटी-मोटी रुकावटें आ सकती हैं, लेकिन धैर्य से सफलता मिलेगी।", love: "संवादहीनता से बचें।", career: "लेखा संबंधी काम में सावधानी।", color: "पिस्ता हरा", number: "16", luck: "76%", remedy: "गाय को हरा चारा खिलाएं।" },
+                { general: "सप्ताह मध्य में अचानक धन आगमन हो सकता है। नए प्रोजेक्ट्स शुरू होंगे।", love: "सुखद सरप्राइज मिलेगा।", career: "फैशन व कला में सफलता।", color: "सफेद व क्रीम", number: "24", luck: "87%", remedy: "लक्ष्मी जी के सम्मुख घी का दीपक जलाएं।" },
+                { general: "ऊर्जा का सही दिशा में उपयोग करें। संपत्ति से जुड़े विवाद सुलझेंगे।", love: "अथाह स्नेह प्राप्त होगा।", career: "तकनीकी क्षेत्र में लाभ।", color: "गहरा लाल", number: "27", luck: "81%", remedy: "मंगलवार को सुंदरकांड का पाठ करें।" },
+                { general: "गुरुजनों व मेंटर्स का मार्गदर्शन मिलेगा। अध्यात्म में मन लगेगा।", love: "एक-दूसरे का सम्मान करेंगे।", career: "शिक्षण क्षेत्र में विशेष उन्नति।", color: "हल्दी पीला", number: "21", luck: "94%", remedy: "केसर का तिलक लगाएं।" },
+                { general: "कड़ी मेहनत का फल मिलेगा। संपत्ति क्रय करने के योग बन रहे हैं।", love: "स्थायित्व महसूस होगा।", career: "निर्माण व इंजीनियरिंग में लाभ।", color: "गहरा नीला", number: "8", luck: "83%", remedy: "शनिवार को पीपल के नीचे दीपक जलाएं।" },
+                { general: "मित्रों व नेटवर्किंग से लाभ होगा। रचनात्मक विचारों का क्रियान्वयन करेंगे।", love: "मित्रता प्रेम में बदल सकती है।", career: "इनोवेशन में नाम होगा।", color: "नीलम", number: "22", luck: "89%", remedy: "कौवे को रोटी खिलाएं।" },
+                { general: "मानसिक व आध्यात्मिक सुख मिलेगा। यात्राएं फलदायी रहेंगी।", love: "सच्चे प्रेम का अहसास।", career: "अध्यापन व काउंसलिंग में प्रगति।", color: "पीला", number: "12", luck: "86%", remedy: "भगवान विष्णु को तुलसी दल अर्पित करें।" }
+            ]
+        };
+
+        const CHOGHADIYA_DATA = {
+            day: [
+                { name: "शुभ", nature: "शुभ (Good)", time: "06:00 AM - 07:30 AM", type: "good" },
+                { name: "रोग", nature: "अशुभ (Bad)", time: "07:30 AM - 09:00 AM", type: "bad" },
+                { name: "उद्वेग", nature: "अशुभ (Bad)", time: "09:00 AM - 10:30 AM", type: "bad" },
+                { name: "चर", nature: "सामान्य (Neutral)", time: "10:30 AM - 12:00 PM", type: "neutral" },
+                { name: "लाभ", nature: "शुभ (Good)", time: "12:00 PM - 01:30 PM", type: "good" },
+                { name: "अमृत", nature: "सर्वोत्तम (Best)", time: "01:30 PM - 03:00 PM", type: "best" },
+                { name: "काल", nature: "अशुभ (Bad)", time: "03:00 PM - 04:30 PM", type: "bad" },
+                { name: "शुभ", nature: "शुभ (Good)", time: "04:30 PM - 06:00 PM", type: "good" }
+            ],
+            night: [
+                { name: "अमृत", nature: "सर्वोत्तम (Best)", time: "06:00 PM - 07:30 PM", type: "best" },
+                { name: "चर", nature: "सामान्य (Neutral)", time: "07:30 PM - 09:00 PM", type: "neutral" },
+                { name: "रोग", nature: "अशुभ (Bad)", time: "09:00 PM - 10:30 PM", type: "bad" },
+                { name: "काल", nature: "अशुभ (Bad)", time: "10:30 PM - 12:00 AM", type: "bad" },
+                { name: "लाभ", nature: "शुभ (Good)", time: "12:00 AM - 01:30 AM", type: "good" },
+                { name: "उद्वेग", nature: "अशुभ (Bad)", time: "01:30 AM - 03:00 AM", type: "bad" },
+                { name: "शुभ", nature: "शुभ (Good)", time: "03:00 AM - 04:30 AM", type: "good" },
+                { name: "अमृत", nature: "सर्वोत्तम (Best)", time: "04:30 AM - 06:00 AM", type: "best" }
+            ]
+        };
+
+        const TAROT_CARDS = [
+            { title: "सफलता व विजय (Card of Victory)", guidance: "आपके मन में जो संशय है, उसका समाधान शीघ्र मिलेगा। आपका संकल्प सही दिशा में है, प्रयास जारी रखें।", remedy: "प्रतिदिन हनुमान जी के सामने दीपक प्रज्वलित करें।" },
+            { title: "धैर्य व आत्मचिंतन (Card of Patience)", guidance: "अभी जल्दबाजी में कोई फैसला न लें। कुछ समय प्रतीक्षा करना आपके हित में होगा। सही समय का इंतजार करें।", remedy: "शिवजी पर जल और बेलपत्र अर्पित करें।" },
+            { title: "दिव्य संरक्षण (Card of Divine Blessing)", guidance: "ईश्वरीय कृपा आपके साथ है। डरने की कोई आवश्यकता नहीं है, आपकी समस्याएं धीरे-धीरे समाप्त होंगी।", remedy: "गायत्री मंत्र का 108 बार जाप करें।" },
+            { title: "सावधानी व सजगता (Card of Caution)", guidance: "अपनी गुप्त बातें दूसरों से साझा न करें। लेन-देन में सतर्कता बरतें। कार्य योजना गुप्त रखें।", remedy: "शनिवार को पीपल के पेड़ के पास चौमुखी दीपक जलाएं।" },
+            { title: "सकारात्मक परिवर्तन (Card of Transformation)", guidance: "जीवन में एक नया और शुभ अध्याय शुरू होने वाला है। पुरानी बातें भूलकर आगे बढ़ें।", remedy: "विष्णु सहस्रनाम का पाठ या श्रवण करें।" }
+        ];
+
+        const GITA_SHLOKAS = [
+            { chapter: "अध्याय 2, श्लोक 47", sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥", hindi: "आपको अपने कर्तव्य का पालन करने का अधिकार है, लेकिन कर्म के फलों का नहीं।", english: "You have a right to perform your duties, but not to the fruits of your actions.", lesson: "बिना फल की चिंता किए निष्काम भाव से कर्म करें।" },
+            { chapter: "अध्याय 2, श्लोक 20", sanskrit: "न जायते म्रियते वा कदाचिन्नायं भूत्वा भविता वा न भूयः।\nअजो नित्यः शाश्वतोऽयं पुराणो न हन्यते हन्यमाने शरीरे॥", hindi: "आत्मा न कभी जन्म लेती है और न कभी मरती है। यह अजर, अमर और शाश्वत है।", english: "The soul is never born, nor does it die at any time. It is eternal.", lesson: "शरीर नश्वर है, अतः मृत्यु या हानि का भय मन से निकाल दें।" },
+            { chapter: "अध्याय 4, श्लोक 7", sanskrit: "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥", hindi: "जब-जब धर्म की हानि होती है, तब-तब मैं अवतार लेता हूँ।", english: "Whenever there is a decline in righteousness, I manifest Myself.", lesson: "सत्य और धर्म की अंततः हमेशा विजय होती है।" }
+        ];
+
+        const VRAT_KATHAS = [
+            { id: "ekadashi", title: "एकादशी व्रत कथा", body: "एकादशी का व्रत सभी पापों का नाश करने वाला माना गया है। पौराणिक कथा के अनुसार, भगवान विष्णु के शरीर से उत्पन्न हुई एकादशी देवी ने मुर दैत्य का वध किया था। तब प्रसन्न होकर श्री हरि ने उन्हें वरदान दिया कि जो मनुष्य एकादशी का उपवास रखेगा, वह बैकुंठ लोक को प्राप्त करेगा।" },
+            { id: "satyanarayan", title: "श्री सत्यनारायण व्रत कथा", body: "भगवान सत्यनारायण की कथा कलयुग में शीघ्र फल देने वाली है। स्वामी जी ने शतानंद ब्राह्मण और लकड़ी बेचने वाले भील को यह कथा सुनाई थी। जो व्यक्ति श्रद्धापूर्वक सत्यव्रत का पालन करता है, उसके घर में धन-धान्य और सुख-समृद्धि की वृद्धि होती है।" },
+            { id: "pradosh", title: "प्रदोष व्रत कथा", body: "प्रदोष व्रत भगवान शिव की असीम अनुकंपा प्राप्त करने के लिए किया जाता है। संध्याकाल में जब सूर्यास्त हो रहा होता है, उस समय शिव जी कैलाश पर प्रसन्न होकर नृत्य करते हैं। इस समय पूजा करने से दरिद्रता का नाश होता है।" }
+        ];
+
+        const STOTRAS = [
+            { id: "bahuk", title: "हनुमान बाहुक", body: "सिंधु तरण, सिया-सोच-हरन, रघुपति-दूत अतुलित बल-धाम।\nबाहु-पीड़ा और शारीरिक कष्टों के निवारण हेतु गोस्वामी तुलसीदास जी द्वारा रचित परम प्रभावशाली स्तोत्र।" },
+            { id: "aditya", title: "आदित्य हृदय स्तोत्र", body: "ततो युद्धपरिश्रान्तं समरे चिन्तया स्थितम्।\nरावणं अग्रतो दृष्ट्वा युद्धाय समुपस्थितम्॥\nरामायण के युद्ध कांड में महर्षि अगस्त्य ने भगवान राम को विजय प्राप्ति हेतु सूर्य देव की स्तुति का उपदेश दिया था।" },
+            { id: "tandav", title: "शिव तांडव स्तोत्र", body: "जटाटवीगलज्जलप्रवाहपावितस्थले\nगलेऽवलम्ब्य लम्बितां भुजङ्गतुङ्गमालिकाम्।\nडमड्डमड्डमड्डमन्निनादवड्डमर्वयं\nचकार चण्डताण्डवं तनोतु नः शिवः शिवम्॥" }
+        ];
+
+        const BABY_NAMES = [
+            { name: "आरव", meaning: "शांतिपूर्ण व शांत", gender: "बालक", rashi: "मेष" },
+            { name: "आद्या", meaning: "प्रथम शक्ति (देवी दुर्गा)", gender: "बालिका", rashi: "मेष" },
+            { name: "ईशान", meaning: "भगवान शिव, पूर्वोत्तर दिशा", gender: "बालक", rashi: "वृषभ" },
+            { name: "उर्वी", meaning: "पृथ्वी (Earth)", gender: "बालिका", rashi: "वृषभ" },
+            { name: "कयान", meaning: "राजा, संपूर्ण", gender: "बालक", rashi: "मिथुन" },
+            { name: "छविका", meaning: "सुंदर प्रतिबिंब", gender: "बालिका", rashi: "मिथुन" }
+        ];
+
+        const FESTIVALS = [
+            { name: "दीपावली (Diwali)", date: "2026-11-08" },
+            { name: "शारदीय नवरात्रि", date: "2026-10-11" },
+            { name: "महाशिवरात्रि", date: "2027-03-06" },
+            { name: "होली (Holi)", date: "2027-03-22" }
+        ];
+
+        const WALLPAPERS = [
+            { title: "भगवान श्री कृष्ण", quote: "कर्म करो, फल की चिंता मत करो।", img: "https://images.unsplash.com/photo-1545063914-a1a6ec821c88?w=500&auto=format&fit=crop" },
+            { title: "महादेव शिव", quote: "सत्य ही शिव है, शिव ही सुंदर है।", img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=500&auto=format&fit=crop" },
+            { title: "जय श्री राम", quote: "मंगल भवन अमंगल हारी।", img: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=500&auto=format&fit=crop" }
+        ];
+
+        // --- Core Functions ---
+
+        window.onload = function() {
+            initRashis();
+            initChoghadiya();
+            initTarotCards();
+            initFestivalCountdowns();
+            initStreakGrid();
+            initVratKathas();
+            initStotras();
+            initBabyNames();
+            initWallpapers();
+            startClock();
+
+            // Set default date picker
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('kDob').value = today;
+        };
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(`tab-${tabId}`);
+            if(target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-saffron-600', 'font-medium');
+            });
+            
+            currentTab = tabId;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function startClock() {
+            setInterval(() => {
+                const now = new Date();
+                const clockEl = document.getElementById('choghadiyaClock');
+                if(clockEl) clockEl.innerText = now.toLocaleTimeString();
+            }, 1000);
+        }
+
+        // --- Horoscope Feature ---
+        function initRashis() {
+            const grid = document.getElementById('rashiGrid');
+            grid.innerHTML = '';
+            RASHIS.forEach((rashi, idx) => {
+                const card = document.createElement('div');
+                card.className = `glass-card p-3 rounded-xl cursor-pointer hover:border-saffron-500 transition text-center flex flex-col items-center ${idx === selectedRashiIndex ? 'border-2 border-saffron-600 bg-saffron-100/50 dark:bg-stone-800' : ''}`;
+                card.onclick = () => selectRashi(idx);
+                card.innerHTML = `
+                    <span class="text-2xl">${rashi.symbol}</span>
+                    <span class="font-bold text-sm mt-1">${rashi.name}</span>
+                    <span class="text-[10px] text-stone-500">${rashi.eng}</span>
+                `;
+                grid.appendChild(card);
+            });
+            selectRashi(0);
+        }
+
+        function selectRashi(index) {
+            selectedRashiIndex = index;
+            initRashis();
+
+            const data = HOROSCOPE_DATA[horoscopeType][index];
+            const rashi = RASHIS[index];
+
+            document.getElementById('horoTitle').innerText = `${rashi.name} (${rashi.eng})`;
+            document.getElementById('horoIcon').innerText = rashi.symbol;
+            document.getElementById('horoTypeBadge').innerText = horoscopeType === 'daily' ? 'दैनिक राशिफल' : 'साप्ताहिक राशिफल';
+            document.getElementById('horoGeneralText').innerText = data.general;
+            document.getElementById('horoLoveText').innerText = data.love;
+            document.getElementById('horoCareerText').innerText = data.career;
+            document.getElementById('horoColor').innerText = data.color;
+            document.getElementById('horoNumber').innerText = data.number;
+            document.getElementById('horoLuck').innerText = data.luck;
+            document.getElementById('horoRemedy').innerText = data.remedy;
+
+            document.getElementById('horoscopeDetail').classList.remove('hidden');
+        }
+
+        function switchHoroType(type) {
+            horoscopeType = type;
+            document.getElementById('horoDailyBtn').className = type === 'daily' ? 'px-4 py-1.5 rounded-lg text-sm font-bold bg-saffron-600 text-white transition' : 'px-4 py-1.5 rounded-lg text-sm font-bold text-stone-700 dark:text-stone-300 transition';
+            document.getElementById('horoWeeklyBtn').className = type === 'weekly' ? 'px-4 py-1.5 rounded-lg text-sm font-bold bg-saffron-600 text-white transition' : 'px-4 py-1.5 rounded-lg text-sm font-bold text-stone-700 dark:text-stone-300 transition';
+            selectRashi(selectedRashiIndex);
+        }
+
+        // --- Choghadiya Feature ---
+        let currentPeriod = 'day';
+        function initChoghadiya() {
+            const tbody = document.getElementById('choghadiyaTableBody');
+            tbody.innerHTML = '';
+            const list = CHOGHADIYA_DATA[currentPeriod];
+
+            list.forEach(item => {
+                let badgeClass = 'bg-stone-200 text-stone-800';
+                if(item.type === 'best') badgeClass = 'bg-green-100 text-green-800 font-bold';
+                else if(item.type === 'good') badgeClass = 'bg-emerald-100 text-emerald-800';
+                else if(item.type === 'bad') badgeClass = 'bg-red-100 text-red-800';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-saffron-800 dark:text-amber-200">${item.name}</td>
+                    <td class="p-3.5"><span class="px-2 py-1 rounded-md text-xs ${badgeClass}">${item.nature}</span></td>
+                    <td class="p-3.5 text-stone-600 dark:text-stone-400 font-mono text-xs">${item.time}</td>
+                    <td class="p-3.5"><span class="text-xs text-stone-400">सामान्य</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function switchChoghadiyaPeriod(period) {
+            currentPeriod = period;
+            document.getElementById('dayChogTab').className = period === 'day' ? 'px-5 py-2 rounded-xl text-sm font-bold bg-saffron-600 text-white shadow-sm transition flex items-center space-x-2' : 'px-5 py-2 rounded-xl text-sm font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-200 transition flex items-center space-x-2';
+            document.getElementById('nightChogTab').className = period === 'night' ? 'px-5 py-2 rounded-xl text-sm font-bold bg-saffron-600 text-white shadow-sm transition flex items-center space-x-2' : 'px-5 py-2 rounded-xl text-sm font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-200 transition flex items-center space-x-2';
+            initChoghadiya();
+        }
+
+        // --- Kundali & Remedies ---
+        function generateKundali(e) {
+            e.preventDefault();
+            const name = document.getElementById('kName').value;
+            const dob = document.getElementById('kDob').value;
+            const tob = document.getElementById('kTob').value;
+            const pob = document.getElementById('kPob').value;
+            const gender = document.getElementById('kGender').value;
+
+            document.getElementById('kundaliOutputPlaceholder').classList.add('hidden');
+            document.getElementById('kundaliReport').classList.remove('hidden');
+
+            document.getElementById('resName').innerText = `${name} (${gender})`;
+            document.getElementById('resDetails').innerText = `जन्म: ${dob} | समय: ${tob} | स्थान: ${pob}`;
+
+            // Calculated pseudo astrological placements
+            const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+            const nakshatras = ["अश्विनी", "भरणी", "कृत्तिका", "रोहिणी", "मृगशिरा", "आर्द्रा", "पुनर्वसु", "पुष्य", "अश्लेषा"];
+
+            const rIdx = (name.length + new Date(dob).getDate()) % 12;
+            const nIdx = (name.length * 2) % 9;
+
+            document.getElementById('resLagna').innerText = rashis[(rIdx + 2) % 12];
+            document.getElementById('resRashi').innerText = rashis[rIdx];
+            document.getElementById('resNakshatra').innerText = nakshatras[nIdx];
+            document.getElementById('resCenterLagna').innerText = `लग्न: ${rashis[(rIdx + 2) % 12]}`;
+
+            // Remedies
+            const doshaContainer = document.getElementById('doshaContainer');
+            doshaContainer.innerHTML = `
+                <div class="p-3 bg-amber-50 dark:bg-stone-900 rounded-xl border border-amber-200 dark:border-stone-800 text-xs">
+                    <span class="font-bold text-amber-800 dark:text-amber-300 block mb-1">मंगल दोष प्रभाव (आंशिक):</span>
+                    <p class="text-stone-700 dark:text-stone-300">उपाय: मंगलवार को हनुमान जी को गुड़ व चना अर्पित करें और हनुमान चालीसा का पाठ करें।</p>
+                </div>
+                <div class="p-3 bg-amber-50 dark:bg-stone-900 rounded-xl border border-amber-200 dark:border-stone-800 text-xs">
+                    <span class="font-bold text-amber-800 dark:text-amber-300 block mb-1">पितृ दोष निवारण:</span>
+                    <p class="text-stone-700 dark:text-stone-300">उपाय: अमावस्या पर पीपल के वृक्ष में जल दें और तिल का दान करें।</p>
+                </div>
+            `;
+        }
+
+        function printKundali() {
+            window.print();
+        }
+
+        function downloadKundaliPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            const name = document.getElementById('resName').innerText;
+            const details = document.getElementById('resDetails').innerText;
+
+            doc.setFontSize(18);
+            doc.text("Janam Kundali Report", 20, 20);
+            doc.setFontSize(12);
+            doc.text(`Name: ${name}`, 20, 35);
+            doc.text(`Details: ${details}`, 20, 45);
+            doc.text(`Rashi: ${document.getElementById('resRashi').innerText}`, 20, 55);
+            doc.text(`Nakshatra: ${document.getElementById('resNakshatra').innerText}`, 20, 65);
+            
+            doc.save("Kundali_Report.pdf");
+        }
+
+        // --- Tarot / Prashna Kundali ---
+        function initTarotCards() {
+            const grid = document.getElementById('cardsGrid');
+            grid.innerHTML = '';
+            for(let i = 1; i <= 5; i++) {
+                const card = document.createElement('div');
+                card.className = "h-40 bg-gradient-to-b from-purple-800 to-indigo-900 rounded-2xl p-4 cursor-pointer hover:scale-105 transition shadow-lg border-2 border-purple-400 flex flex-col items-center justify-center text-amber-200 select-none";
+                card.onclick = () => selectTarotCard(i - 1);
+                card.innerHTML = `
+                    <i class="fa-solid fa-wand-magic-sparkles text-3xl mb-2 text-purple-300 animate-pulse"></i>
+                    <span class="font-bold text-xs">कार्ड #${i}</span>
+                    <span class="text-[10px] text-purple-200 mt-1">चयन करें</span>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        function selectTarotCard(idx) {
+            const cardData = TAROT_CARDS[idx];
+            document.getElementById('tarotCardTitle').innerText = cardData.title;
+            document.getElementById('tarotCardGuidance').innerText = `"${cardData.guidance}"`;
+            document.getElementById('tarotRemedy').innerText = cardData.remedy;
+
+            document.getElementById('cardsGrid').classList.add('hidden');
+            document.getElementById('tarotAnswerBox').classList.remove('hidden');
+        }
+
+        function resetTarot() {
+            document.getElementById('cardsGrid').classList.remove('hidden');
+            document.getElementById('tarotAnswerBox').classList.add('hidden');
+        }
+
+        // --- Digital Jaap Mala & Streak Tracker ---
+        function countMalaBead() {
+            malaCount++;
+            if(malaCount >= malaTarget) {
+                malaCount = 0;
+                malaCompleted++;
+                document.getElementById('completedMalaCount').innerText = malaCompleted;
+                alert("🎉 आपकी 1 माला पूर्ण हुई! ईश्वर की कृपा आप पर बनी रहे।");
+            }
+
+            document.getElementById('malaCountDisplay').innerText = malaCount;
+            document.getElementById('currBeadNum').innerText = malaCount;
+
+            const percent = Math.floor((malaCount / malaTarget) * 100);
+            document.getElementById('percentDisplay').innerText = percent;
+            document.getElementById('malaProgressBar').style.width = `${percent}%`;
+
+            // Vibration feedback if supported
+            if (navigator.vibrate) navigator.vibrate(40);
+        }
+
+        function setTarget(target) {
+            malaTarget = target;
+            document.getElementById('targetDisplay').innerText = target;
+            resetMala();
+        }
+
+        function resetMala() {
             malaCount = 0;
-            malaNum.innerText = 0;
-            malaStatus.innerText = "जप रीसेट हो गया है।";
-          });
-
-          return;
+            document.getElementById('malaCountDisplay').innerText = "0";
+            document.getElementById('currBeadNum').innerText = "0";
+            document.getElementById('percentDisplay').innerText = "0";
+            document.getElementById('malaProgressBar').style.width = "0%";
         }
 
-        if (modalType === "aarti") {
-          modalContent.innerHTML = `
-            <div style="text-align:center;">
-              <h2 style="color:var(--primary-dark); margin-top:0;">📖 आरती एवं चालीसा संग्रह</h2>
-              <div style="display:flex; gap:6px; justify-content:center; margin-bottom:14px; flex-wrap:wrap;">
-                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px;" onclick="showAarti('hanuman_chalisa')">हनुमान चालीसा</button>
-                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px; background:#c2410c;" onclick="showAarti('ganesh_aarti')">गणेश आरती</button>
-                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px; background:#047857;" onclick="showAarti('lakshmi_aarti')">लक्ष्मी आरती</button>
-                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px; background:#4338ca;" onclick="showAarti('shiv_aarti')">शिव आरती</button>
-              </div>
-              <div id="aartiBox" class="text-content-scroll">
-                ऊपर दिए गए बटन पर क्लिक करके हनुमान चालीसा या अपनी पसंदीदा आरती पढ़ें।
-              </div>
-            </div>
-          `;
-          modal.classList.add("active");
-          showAarti('hanuman_chalisa');
-          return;
+        function initStreakGrid() {
+            const grid = document.getElementById('streakDaysGrid');
+            grid.innerHTML = '';
+            const days = ['सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि', 'रवि'];
+
+            days.forEach((day, idx) => {
+                const dayBox = document.createElement('div');
+                const isCompleted = idx < saddhanaStreak;
+                dayBox.className = `p-2 rounded-xl text-xs font-bold ${isCompleted ? 'bg-saffron-500 text-white shadow' : 'bg-stone-200 dark:bg-stone-800 text-stone-500'}`;
+                dayBox.innerHTML = `
+                    <span>${day}</span>
+                    <i class="fa-solid fa-check text-[10px] block mt-1 ${isCompleted ? 'opacity-100' : 'opacity-20'}"></i>
+                `;
+                grid.appendChild(dayBox);
+            });
+
+            document.getElementById('headerStreak').innerText = saddhanaStreak;
         }
 
-        if (modalType === "puja") {
-          modalContent.innerHTML = `
-            <div style="text-align:center;">
-              <img src="${todaysPujaImage}" alt="Today Puja" class="puja-custom-img">
-              <h2 style="color:var(--primary-dark); margin-bottom:4px;">🪔 ${currentTodayData.festival}</h2>
-              <small style="color:var(--sub-text); font-weight:bold;">${currentTodayData.tithi}</small>
-              
-              <div style="background:var(--bg-cream); padding:12px; border-radius:8px; margin:12px 0; border-left:4px solid var(--primary-color); text-align:left;">
-                <b>भगवत्/पूजन मंत्र:</b>
-                <p style="font-size:15px; color:var(--primary-color); margin:6px 0 0 0; font-weight:bold; line-height:1.4;">${currentTodayData.mantra}</p>
-              </div>
-
-              <div style="text-align:left; font-size:13px; color:var(--text-color); line-height:1.6;">
-                <b style="color:var(--primary-dark); font-size:14px;">संपूर्ण पूजा विधि:</b>
-                <p style="margin-top:6px;">${currentTodayData.vidhi}</p>
-              </div>
-            </div>
-          `;
-          modal.classList.add("active");
-          return;
+        function toggleTodaySadhana() {
+            const chk = document.getElementById('todaySadhanaCheck').checked;
+            if(chk) {
+                saddhanaStreak++;
+                localStorage.setItem('sadhana_streak', saddhanaStreak);
+                initStreakGrid();
+            }
         }
 
-        if (sadhanaData[modalType]) {
-          const item = sadhanaData[modalType];
-          modalContent.innerHTML = `
-            <div style="text-align:center;">
-              <img src="${item.image}" alt="${item.title}" class="puja-custom-img">
-              <h2 style="color:var(--primary-dark); margin-top:6px;">🕉️ ${item.title}</h2>
-              <div style="background:var(--bg-cream); padding:12px; border-radius:8px; margin:14px 0; border-left:4px solid var(--primary-color); text-align:left;">
-                <b>संपूर्ण मंत्र:</b>
-                <p style="font-size:15px; color:var(--primary-color); margin:6px 0 0 0; font-weight:bold;">${item.mantra}</p>
-              </div>
-              <p style="text-align:left; font-size:13px; color:var(--text-color); line-height:1.5;">${item.desc}</p>
-            </div>
-          `;
-          modal.classList.add("active");
-          return;
+        // --- Gita Shlokas ---
+        function randomGitaShloka() {
+            const idx = Math.floor(Math.random() * GITA_SHLOKAS.length);
+            const item = GITA_SHLOKAS[idx];
+            document.getElementById('gitaChapter').innerText = item.chapter;
+            document.getElementById('gitaSanskrit').innerText = item.sanskrit;
+            document.getElementById('gitaHindi').innerText = item.hindi;
+            document.getElementById('gitaEnglish').innerText = item.english;
+            document.getElementById('gitaLesson').innerText = item.lesson;
         }
-      });
 
-      closeModal.addEventListener("click", function() { modal.classList.remove("active"); });
-      window.addEventListener("click", function(e) { if (e.target === modal) modal.classList.remove("active"); });
-    });
+        // --- Vrat Kathas ---
+        function initVratKathas() {
+            const list = document.getElementById('vratTitlesList');
+            list.innerHTML = '';
+            VRAT_KATHAS.forEach((vrat, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-3 rounded-xl text-left text-sm font-bold bg-amber-100/60 dark:bg-stone-900 hover:bg-saffron-500 hover:text-white transition flex items-center justify-between";
+                btn.onclick = () => showVratDetails(idx);
+                btn.innerHTML = `<span>${vrat.title}</span> <i class="fa-solid fa-chevron-right text-xs"></i>`;
+                list.appendChild(btn);
+            });
+            showVratDetails(0);
+        }
 
-    function showAarti(key) {
-      const item = aartiCollection[key];
-      if (item) {
-        document.getElementById("aartiBox").innerHTML = `<h3 style="color:var(--primary-dark); margin-top:0; text-align:center;">${item.title}</h3>${item.text}`;
-      }
-    }
-  </script>
+        function showVratDetails(idx) {
+            const data = VRAT_KATHAS[idx];
+            document.getElementById('vratTitleDisplay').innerText = data.title;
+            document.getElementById('vratBodyDisplay').innerText = data.body;
+        }
+
+        // --- Stotras ---
+        function initStotras() {
+            const list = document.getElementById('stotraTitlesList');
+            list.innerHTML = '';
+            STOTRAS.forEach((stotra, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-3 rounded-xl text-left text-sm font-bold bg-amber-100/60 dark:bg-stone-900 hover:bg-saffron-500 hover:text-white transition flex items-center justify-between";
+                btn.onclick = () => showStotraDetails(idx);
+                btn.innerHTML = `<span>${stotra.title}</span> <i class="fa-solid fa-chevron-right text-xs"></i>`;
+                list.appendChild(btn);
+            });
+            showStotraDetails(0);
+        }
+
+        function showStotraDetails(idx) {
+            const data = STOTRAS[idx];
+            document.getElementById('stotraTitleDisplay').innerText = data.title;
+            document.getElementById('stotraBodyDisplay').innerText = data.body;
+        }
+
+        // --- Baby Name Finder ---
+        function initBabyNames() {
+            filterBabyNames();
+        }
+
+        function filterBabyNames() {
+            const rashi = document.getElementById('nameRashiSelect').value;
+            const gender = document.getElementById('nameGenderSelect').value;
+            const letter = document.getElementById('nameLetterInput').value.trim();
+
+            const tbody = document.getElementById('babyNamesTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = BABY_NAMES.filter(item => {
+                if(rashi !== 'ALL' && item.rashi !== rashi) return false;
+                if(gender !== 'ALL' && item.gender !== gender) return false;
+                if(letter && !item.name.startsWith(letter)) return false;
+                return true;
+            });
+
+            filtered.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-saffron-800 dark:text-amber-200">${item.name}</td>
+                    <td class="p-3">${item.meaning}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded text-xs ${item.gender === 'बालक' ? 'bg-blue-100 text-blue-800' : 'bg-pink-100 text-pink-800'}">${item.gender}</span></td>
+                    <td class="p-3 text-xs text-stone-500">${item.rashi}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // --- Wallpapers ---
+        function initWallpapers() {
+            const grid = document.getElementById('wallpapersGrid');
+            grid.innerHTML = '';
+            WALLPAPERS.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-2xl overflow-hidden shadow-lg flex flex-col justify-between";
+                card.innerHTML = `
+                    <img src="${item.img}" class="w-full h-48 object-cover" alt="${item.title}" onerror="this.src='https://placehold.co/500x300/f59e0b/ffffff?text=अध्यात्मिक+ज्ञान'">
+                    <div class="p-4 space-y-2">
+                        <h4 class="font-bold text-base text-saffron-800 dark:text-amber-200">${item.title}</h4>
+                        <p class="text-xs text-stone-600 dark:text-stone-400 italic">"${item.quote}"</p>
+                        <button onclick="alert('इमेज डाउनलोड हो रही है...')" class="w-full py-2 bg-saffron-600 hover:bg-saffron-500 text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1">
+                            <i class="fa-solid fa-download"></i> <span>डाउनलोड करें</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- Festival Countdowns ---
+        function initFestivalCountdowns() {
+            const grid = document.getElementById('festivalCountdownsGrid');
+            grid.innerHTML = '';
+
+            FESTIVALS.forEach(fest => {
+                const targetDate = new Date(fest.date);
+                const diffTime = targetDate - new Date();
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                const card = document.createElement('div');
+                card.className = "glass-card p-4 rounded-2xl shadow border-l-4 border-amber-500 flex justify-between items-center";
+                card.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-sm text-stone-800 dark:text-amber-100">${fest.name}</h4>
+                        <span class="text-[10px] text-stone-500">${fest.date}</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xl font-bold text-saffron-600 dark:text-amber-300 block">${diffDays > 0 ? diffDays : 0}</span>
+                        <span class="text-[10px] text-stone-400">दिन शेष</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- PWA Notifications & Sharing ---
+        function toggleNotifications() {
+            notificationsEnabled = !notificationsEnabled;
+            const icon = document.getElementById('notifIcon');
+            if(notificationsEnabled) {
+                icon.className = "fa-solid fa-bell text-amber-300 animate-bounce";
+                alert("🔔 दैनिक शुभ मुहूर्त व संध्या आरती रिमाइंडर्स चालू कर दिए गए हैं!");
+            } else {
+                icon.className = "fa-solid fa-bell-slash";
+                alert("🔕 रिमाइंडर्स बंद कर दिए गए हैं।");
+            }
+        }
+
+        function shareApp() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'अध्यात्मिक ज्ञान',
+                    text: 'दैनिक पंचांग, चौघड़िया, जन्म कुंडली और डिजिटल जाप माला के लिए अध्यात्मिक ज्ञान ऐप देखें:',
+                    url: window.location.href,
+                });
+            } else {
+                document.execCommand('copy');
+                alert("लिंक कॉपी हो गया है! आप इसे WhatsApp पर शेयर कर सकते हैं।");
+            }
+        }
+    </script>
 </body>
 </html>
