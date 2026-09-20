@@ -191,7 +191,7 @@
     }
 
     .yt-btn {
-      background: #cc181e;
+      background: #ff0000;
       color: #fff;
       text-decoration: none;
       padding: 10px 18px;
@@ -200,7 +200,32 @@
       font-size: 14px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      box-shadow: 0 2px 5px rgba(255, 0, 0, 0.3);
+      transition: background 0.2s ease;
+    }
+
+    .yt-btn:hover {
+      background: #cc0000;
+    }
+
+    .yt-icon {
+      width: 20px;
+      height: 14px;
+      background: #fff;
+      border-radius: 4px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .yt-icon::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 7px;
+      border-style: solid;
+      border-width: 4px 0 4px 7px;
+      border-color: transparent transparent transparent #ff0000;
     }
 
     /* Modal Styling */
@@ -241,7 +266,7 @@
       font-weight: bold;
     }
 
-    /* Today's Puja Custom Attached Image */
+    /* Today's Puja Custom Image */
     .puja-custom-img {
       width: 100%;
       max-width: 320px;
@@ -324,7 +349,7 @@
       <p style="margin: 0; font-size: 13px; color: #555;">नई पूजा, व्रत, वास्तु और धार्मिक वीडियो देखें।</p>
     </div>
     <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
-      ▶ YouTube देखें
+      <span class="yt-icon"></span> YouTube चैनल देखें
     </a>
   </section>
 
@@ -337,8 +362,8 @@
   </div>
 
   <script>
-    // User Provided Attached Image URL for Today's Puja
-    const todaysPujaImage = "33649c5d1add4b415ec2a00ebcd1407c.jpg";
+    // Image Path for Today's Puja Modal
+    const todaysPujaImage = "puja.jpg";
 
     // Day Wise Grah, Mantra, Remedies & Planet Background Images
     const dayGrahInfo = {
@@ -399,29 +424,65 @@
         tithi: "भाद्रपद शुक्ल एकादशी", 
         festival: "परिवर्तिनी एकादशी व्रत", 
         deityName: "भगवान श्री हरि विष्णु",
-        mantra: "ॐ नमो भगवते वासुदेवाय",
+        mantra: "ॐ नमो भगवते वासुदेवाय नमः",
         vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें। पीले फल, फूल, तुलसी दल और पंचामृत अर्पित करें। विष्णु सहस्रनाम का पाठ करें। पूरे दिन निराहार या फलाहार व्रत रखकर संध्या समय आरती करें। अगले दिन पारण करें।"
       },
       "2026-09-24": { 
         tithi: "भाद्रपद शुक्ल चतुर्दशी", 
         festival: "अनंत चतुर्दशी / गणेश विसर्जन", 
         deityName: "श्री गणेश एवं अनंत देव",
-        mantra: "ॐ गं गणपतये नमः",
+        mantra: "ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः",
         vidhi: "अनंत चतुर्दशी के दिन भगवान गणेश तथा अनंत भगवान की विधि-विधान से पूजा करें। कच्चे सूत के १४ गांठों वाले अनन्त डोरे की पूजा करके बाजू पर बांधें। इसके पश्चात गणपति प्रतिमा का आदरपूर्वक मोदक और दूर्वा से अंतिम पूजन करके विसर्जन करें।"
       }
     };
 
-    // Deity Sadhana Data for Bottom Chips (Without Images)
+    // Deity Sadhana Data with FULL Mantras
     const sadhanaData = {
-      "ganesh": { title: "श्री गणेश पूजा एवं मंत्र", mantra: "ॐ गं गणपतये नमः", desc: "समस्त विघ्न दूर करने हेतु गणेश साधना करें।" },
-      "lakshmi": { title: "मां लक्ष्मी पूजा एवं मंत्र", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद", desc: "धन, धान्य और समृद्धि हेतु लक्ष्मी पूजन करें।" },
-      "shiv": { title: "भगवान शिव पूजा एवं मंत्र", mantra: "ॐ नमः शिवाय", desc: "शिव आराधना से आरोग्यता और शांति मिलती है।" },
-      "hanuman": { title: "श्री हनुमान साधना", mantra: "ॐ हं हनुमते नमः", desc: "हनुमान चालीसा पाठ से संकट दूर होते हैं।" },
-      "krishna": { title: "श्री कृष्ण भक्ति", mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे", desc: "भगवान श्रीकृष्ण के ध्यान से आनंद मिलता है।" },
-      "durga": { title: "मां दुर्गा साधना", mantra: "ॐ दुं दुर्गायै नमः", desc: "दुर्गा मंत्र से शक्ति और सुरक्षा मिलती है।" },
-      "vishnu": { title: "भगवान विष्णु पूजा", mantra: "ॐ नमो भगवते वासुदेवाय", desc: "श्री हरि विष्णु की भक्ति से सुख-शांति मिलती है।" },
-      "tulsi": { title: "तुलसी पूजन विधि", mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी...", desc: "तुलसी पूजन से घर का वास्तु दोष दूर होता है।" },
-      "mantra": { title: "गायत्री मंत्र संग्रह", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं...", desc: "गायत्री मंत्र का नित्य जप करें।" }
+      "ganesh": { 
+        title: "श्री गणेश पूजा एवं मंत्र", 
+        mantra: "ॐ श्रीमं महागणाधिपतये नमः। ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः अष्टविनायक नमो नमः गणपति बाप्पा मोरया।", 
+        desc: "समस्त विघ्नों के नाश और कार्यों में सफलता हेतु श्री गणेश जी की नित्य पूजा करें।" 
+      },
+      "lakshmi": { 
+        title: "मां लक्ष्मी पूजा एवं मंत्र", 
+        mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद श्रीं ह्रीं श्रीं ॐ महालक्ष्मै नमः।", 
+        desc: "धन, धान्य, ऐश्वर्य और घर में सुख-समृद्धि के लिए मां लक्ष्मी की उपासना करें।" 
+      },
+      "shiv": { 
+        title: "भगवान शिव पूजा एवं मंत्र", 
+        mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥", 
+        desc: "आरोग्यता, भय मुक्ति और आत्मिक शांति के लिए महामृत्युंजय एवं शिव मंत्र का पाठ करें।" 
+      },
+      "hanuman": { 
+        title: "श्री हनुमान साधना", 
+        mantra: "ॐ हं हनुमते रुद्रात्मकाय हुं फट्। मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्। वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये॥", 
+        desc: "बल, बुद्धि, विद्या और संकटों के निवारण हेतु श्री हनुमान साधना एवं चालीसा का पाठ करें।" 
+      },
+      "krishna": { 
+        title: "श्री कृष्ण भक्ति", 
+        mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे। हरे राम हरे राम, राम राम हरे हरे॥ ॐ क्लीं कृष्णाय नमः।", 
+        desc: "भगवान श्रीकृष्ण के ध्यान और नाम जप से मन को असीम शांति और भक्ति रस की प्राप्ति होती है।" 
+      },
+      "durga": { 
+        title: "मां दुर्गा साधना", 
+        mantra: "सर्वमंगल मांगल्ये शिवे सर्वार्थ साधिके। शरण्ये त्र्यंबके गौरि नारायणि नमोऽस्तु ते॥ ॐ दुं दुर्गायै नमः।", 
+        desc: "शक्ति, सुरक्षा और सर्व मनोकामना पूर्ति हेतु भगवती दुर्गा की आराधना करें।" 
+      },
+      "vishnu": { 
+        title: "भगवान विष्णु पूजा", 
+        mantra: "ॐ नमो भगवते वासुदेवाय। शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं विश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गम्।", 
+        desc: "संसार के पालनहार श्री हरि विष्णु की भक्ति से जीवन में सुख, शांति और मोक्ष की प्राप्ति होती है।" 
+      },
+      "tulsi": { 
+        title: "तुलसी पूजन विधि", 
+        mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी, आधि व्याधि हरा नित्यं तुलसी त्वं नमोस्तुते।", 
+        desc: "नित्य प्रातः तुलसी जी में जल अर्पित करने और पूजन से घर का वातावरण पवित्र एवं वास्तु दोष मुक्त रहता है।" 
+      },
+      "mantra": { 
+        title: "गायत्री मंत्र संग्रह", 
+        mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥", 
+        desc: "गायत्री मंत्र के नित्य जाप से बुद्धि कुशाग्र होती है और शरीर में सकारात्मक ऊर्जा का संचार होता है।" 
+      }
     };
 
     // 50 Vastu Tips List
@@ -549,17 +610,17 @@
 
         const modalType = btn.getAttribute("data-modal");
 
-        // 1. Today's Puja Modal Click (Shows Attached Image Only Here)
+        // 1. Today's Puja Modal Click
         if (modalType === "puja") {
           modalContent.innerHTML = `
             <div style="text-align:center;">
-              <img src="${todaysPujaImage}" alt="Today Puja Image" class="puja-custom-img">
+              <img src="${todaysPujaImage}" alt="Today Puja" class="puja-custom-img">
               <h2 style="color:var(--primary-dark); margin-bottom:4px;">🪔 ${currentTodayData.festival}</h2>
               <small style="color:#666; font-weight:bold;">${currentTodayData.tithi}</small>
               
-              <div style="background:#fff8ed; padding:10px 12px; border-radius:8px; margin:12px 0; border-left:4px solid var(--primary-color); text-align:left;">
+              <div style="background:#fff8ed; padding:12px; border-radius:8px; margin:12px 0; border-left:4px solid var(--primary-color); text-align:left;">
                 <b>भगवत्/पूजन मंत्र:</b>
-                <p style="font-size:16px; color:var(--primary-color); margin:4px 0 0 0; font-weight:bold;">${currentTodayData.mantra}</p>
+                <p style="font-size:15px; color:var(--primary-color); margin:6px 0 0 0; font-weight:bold; line-height:1.4;">${currentTodayData.mantra}</p>
               </div>
 
               <div style="text-align:left; font-size:13px; color:#444; line-height:1.6;">
@@ -567,9 +628,10 @@
                 <p style="margin-top:6px;">${currentTodayData.vidhi}</p>
               </div>
 
-              <div style="margin-top:16px;">
-                <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="btn" style="display:inline-block; text-decoration:none; width:auto;">
-                  ▶ YouTube पर विधि देखें
+              <div style="margin-top:16px; padding-top:10px; border-top:1px dashed #fed7aa;">
+                <p style="font-size:13px; color:#555; margin-bottom:8px; font-weight:bold;">सही मंत्र जाप विधि के लिए हमारे YouTube पेज से जुड़ें</p>
+                <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
+                  <span class="yt-icon"></span> YouTube चैनल देखें
                 </a>
               </div>
             </div>
@@ -578,21 +640,25 @@
           return;
         }
 
-        // 2. Deity Sadhana Chips Click (NO IMAGES HERE NOW)
+        // 2. Deity Sadhana Chips Click (With Full Mantras & YouTube Callout)
         if (sadhanaData[modalType]) {
           const item = sadhanaData[modalType];
 
           modalContent.innerHTML = `
             <div style="text-align:center;">
-              <h2 style="color:var(--primary-dark); margin-top:10px;">🕉️ ${item.title}</h2>
-              <div style="background:#fff8ed; padding:10px 12px; border-radius:8px; margin:14px 0; border-left:4px solid var(--primary-color); text-align:left;">
-                <b>मूल मंत्र:</b>
-                <p style="font-size:16px; color:var(--primary-color); margin:4px 0 0 0; font-weight:bold;">${item.mantra}</p>
+              <h2 style="color:var(--primary-dark); margin-top:6px;">🕉️ ${item.title}</h2>
+              
+              <div style="background:#fff8ed; padding:12px; border-radius:8px; margin:14px 0; border-left:4px solid var(--primary-color); text-align:left;">
+                <b>संपूर्ण मंत्र:</b>
+                <p style="font-size:15px; color:var(--primary-color); margin:6px 0 0 0; font-weight:bold; line-height:1.5;">${item.mantra}</p>
               </div>
+
               <p style="text-align:left; font-size:13px; color:#444; line-height:1.5;">${item.desc}</p>
-              <div style="margin-top:20px;">
-                <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="btn" style="display:inline-block; text-decoration:none; width:auto;">
-                  ▶ YouTube पर वीडियो देखें
+
+              <div style="margin-top:18px; padding-top:12px; border-top:1px dashed #fed7aa;">
+                <p style="font-size:13px; color:#555; margin-bottom:10px; font-weight:bold;">सही मंत्र जाप विधि के लिए हमारे YouTube पेज से जुड़ें</p>
+                <a href="https://www.youtube.com/@AdhyatmikGyan24x7?sub_confirmation=1" target="_blank" class="yt-btn">
+                  <span class="yt-icon"></span> YouTube चैनल देखें
                 </a>
               </div>
             </div>
