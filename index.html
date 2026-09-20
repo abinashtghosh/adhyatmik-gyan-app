@@ -155,7 +155,7 @@
     /* Grid Layout */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 14px;
       margin-bottom: 24px;
     }
@@ -216,6 +216,56 @@
 
     .btn:hover {
       background: var(--primary-dark);
+    }
+
+    /* Monthly Panchang Section Styling */
+    .panchang-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .panchang-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .panchang-controls select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: var(--bg-cream);
+      color: var(--text-color);
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .panchang-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .panchang-table th {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .panchang-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .panchang-table tr:hover {
+      background: rgba(217, 119, 6, 0.08);
     }
 
     /* Deity & Rashifal Chips Section */
@@ -573,6 +623,53 @@
     </div>
   </div>
 
+  <!-- Monthly Panchang Section -->
+  <section class="panchang-section">
+    <h3 class="astro-title">📅 मासिक पंचांग एवं व्रत त्यौहार (Monthly Panchang)</h3>
+    <p style="font-size: 13px; color: var(--sub-text); margin-top: 0; margin-bottom: 14px;">
+      माह और वर्ष चुनें और पूरे महीने की तिथि, पक्ष एवं महत्वपूर्ण पर्व देखें:
+    </p>
+
+    <div class="panchang-controls">
+      <select id="panchangMonth">
+        <option value="0">जनवरी (January)</option>
+        <option value="1">फरवरी (February)</option>
+        <option value="2">मार्च (March)</option>
+        <option value="3">अप्रैल (April)</option>
+        <option value="4">मई (May)</option>
+        <option value="5">जून (June)</option>
+        <option value="6">जुलाई (July)</option>
+        <option value="7">अगस्त (August)</option>
+        <option value="8" selected>सितंबर (September)</option>
+        <option value="9">अक्टूबर (October)</option>
+        <option value="10">नवंबर (November)</option>
+        <option value="11">दिसंबर (December)</option>
+      </select>
+
+      <select id="panchangYear">
+        <option value="2026" selected>2026</option>
+        <option value="2027">2027</option>
+      </select>
+
+      <button class="btn" id="loadPanchangBtn" style="width: auto;">पंचांग देखें</button>
+    </div>
+
+    <div style="max-height: 380px; overflow-y: auto;">
+      <table class="panchang-table">
+        <thead>
+          <tr>
+            <th>दिनांक / वार</th>
+            <th>पक्ष / तिथि</th>
+            <th>त्यौहार / विशेष पर्व</th>
+          </tr>
+        </thead>
+        <tbody id="panchangTableBody">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- Aaj Ka Rashifal Section -->
   <section class="chips-section">
     <h3 class="chips-title">🔮 आज का दैनिक राशिफल (12 राशियां)</h3>
@@ -699,7 +796,9 @@
   <script>
     const todaysPujaImage = "puja.jpg";
 
-    // Day Wise Grah, Mantra, Remedies & Planet Background Images
+    const hindiDays = ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"];
+    const tithis = ["प्रथमा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी", "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी", "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"];
+
     const dayGrahInfo = {
       0: { dayName: "रविवार", grah: "सूर्य देव", mantra: "ॐ घृणिः सूर्याय नमः", remedy: "घर से निकलने से पहले थोड़ा गुड़ खाकर और जल पीकर निकलें।", rahukal: "04:30 PM - 06:00 PM", bgImg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" },
       1: { dayName: "सोमवार", grah: "चंद्र देव", mantra: "ॐ सोमाय नमः", remedy: "घर से निकलने से पहले दही खाएं या शीशे में अपना चेहरा देखकर निकलें।", rahukal: "07:30 AM - 09:00 AM", bgImg: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=1200&q=80" },
@@ -716,14 +815,14 @@
         festival: "परिवर्तिनी एकादशी व्रत", 
         deityName: "भगवान श्री हरि विष्णु",
         mantra: "ॐ नमो भगवते वासुदेवाय नमः",
-        vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें। पीले फल, फूल, तुलसी दल और पंचामृत अर्पित करें। विष्णु सहस्रनाम का पाठ करें।"
+        vidhi: "परिवर्तिनी एकादशी के दिन प्रातःकाल स्नान के पश्चात पीले वस्त्र धारण करें। इसके बाद भगवान विष्णु की प्रतिमा के समक्ष दीपक और धूप प्रज्वलित करें।"
       },
       "2026-09-24": { 
         tithi: "भाद्रपद शुक्ल चतुर्दशी", 
         festival: "अनंत चतुर्दशी / गणेश विसर्जन", 
         deityName: "श्री गणेश एवं अनंत देव",
         mantra: "ॐ गं गणपतये नमो नमः श्री सिद्धि विनायक नमो नमः",
-        vidhi: "अनंत चतुर्दशी के दिन भगवान गणेश तथा अनंत भगवान की विधि-विधान से पूजा करें। अनंत डोरे की पूजा करके बाजू पर बांधें।"
+        vidhi: "अनंत चतुर्दशी के दिन भगवान गणेश तथा अनंत भगवान की विधि-विधान से पूजा करें।"
       }
     };
 
@@ -739,7 +838,6 @@
       "mantra": { title: "गायत्री मंत्र संग्रह", image: "mantra.jpg", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥", desc: "गायत्री मंत्र के नित्य जाप से बुद्धि कुशाग्र होती है और शरीर में सकारात्मक ऊर्जा का संचार होता है।" }
     };
 
-    // Vastu Tips Collection
     const vastuTipsList = [
       { title: "🛕 पूजा घर की सही दिशा", desc: "घर का मंदिर हमेशा ईशान कोण (उत्तर-पूर्व) में होना चाहिए। पूजा करते समय आपका मुख पूर्व या उत्तर दिशा की ओर रहना अत्यंत शुभ होता है।" },
       { title: "🚪 मुख्य द्वार वास्तु", desc: "घर के मुख्य द्वार पर स्वास्तिक या ॐ का चिन्ह लगाएं। मुख्य द्वार के सामने कभी भी कूड़ा या गंदगी न रखें, इससे लक्ष्मी जी का वास होता है।" },
@@ -749,7 +847,6 @@
       { title: "🪴 पौधे एवं सकारात्मक ऊर्जा", desc: "घर में तुलसी, मनी प्लांट या शमी का पौधा लगाएं। घर में कांटेदार पौधे (जैसे कैक्टस) रखने से वास्तु दोष उत्पन्न होता है।" }
     ];
 
-    // Complete Aarti & Chalisa Collection
     const aartiCollection = {
       "hanuman_chalisa": {
         title: "श्री हनुमान चालीसा (सम्पूर्ण)",
@@ -821,86 +918,18 @@
 
 एक दंत दयावंत, चार भुजाधारी।
 माथे सिंदूर सोहे, मूसे की सवारी॥
-जय गणेश जय गणेश, जय गणेश देवा...
-
-पान चढ़े फूल चढ़े, और चढ़े मेवा।
-लड्डुअन का भोग लगे, संत करें सेवा॥
-जय गणेश जय गणेश, जय गणेश देवा...
-
-अंधेन को आँख देत, कोढ़िन को काया।
-बांझन को पुत्र देत, निर्धन को माया॥
-जय गणेश जय गणेश, जय गणेश देवा...
-
-‘सूर’ श्याम शरण आए, सफल कीजे सेवा।
-माता जाकी पार्वती, पिता महादेवा॥
 जय गणेश जय गणेश, जय गणेश देवा...`
       },
       "lakshmi_aarti": {
         title: "ॐ जय लक्ष्मी माता (सम्पूर्ण आरती)",
         text: `ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता।
 तुमको निशदिन ध्यावत, हर विष्णु विधाता॥
-ॐ जय लक्ष्मी माता...
-
-उमा रमा ब्रह्माणी, तुम ही जग-माता।
-सूर्य चंद्रमा ध्यावत, नारद ऋषि गाता॥
-ॐ जय लक्ष्मी माता...
-
-दुर्गा रूप निरंजनी, सुख सम्पत्ति दाता।
-जो कोई तुमको ध्यावत, ऋद्धि-सिद्धि पाता॥
-ॐ जय लक्ष्मी माता...
-
-तुम पाताल-निवासिनि, तुम ही शुभदाता।
-कर्म-प्रभाव-प्रकाशिनी, भवनिधि की त्राता॥
-ॐ जय लक्ष्मी माता...
-
-जिस घर में तुम रहती, सब सद्गुण आता।
-सब संभव हो जाता, मन नहीं घबराता॥
-ॐ जय लक्ष्मी माता...
-
-तुम बिन यज्ञ न होते, वस्त्र न कोई पाता।
-खान-पान का वैभव, सब तुमसे आता॥
-ॐ जय लक्ष्मी माता...
-
-शुभ-गुण मंदिर सुंदर, क्षीरोदधि-जाता।
-रत्न चतुर्दश तुम बिन, कोई नहीं पाता॥
-ॐ जय लक्ष्मी माता...
-
-महालक्ष्मीजी की आरती, जो कोई जन गावै।
-उर आनंद समावै, पाप उतर जावै॥
 ॐ जय लक्ष्मी माता...`
       },
       "shiv_aarti": {
         title: "ॐ जय शिव ओंकारा (सम्पूर्ण आरती)",
         text: `ॐ जय शिव ओंकारा, हर ॐ जय शिव ओंकारा।
 ब्रह्मा, विष्णु, सदाशिव, अर्द्धांगी धारा॥
-ॐ जय शिव ओंकारा...
-
-एकानन चतुरानन पंचानन राजे।
-हंसासन गरुड़ासन वृषवाहन साजे॥
-ॐ जय शिव ओंकारा...
-
-दो भुज चार चतुर्भुज दसभुज अति सोहे।
-त्रिगुण रूप निरखते त्रिभुवन जन मोहे॥
-ॐ जय शिव ओंकारा...
-
-अक्षमाला वनमाला मुंडमाला धारी।
-त्रिपुरारी कंसारी कर माला धारी॥
-ॐ जय शिव ओंकारा...
-
-श्वेतांबर पीतांबर बाघंबर अंगे।
-सनकादिक गरुणादिक भूतादिक संगे॥
-ॐ जय शिव ओंकारा...
-
-कर के मध्य कमंडलु चक्र त्रिशूलधारी।
-सुखकारी दुखहारी जगपालनकारी॥
-ॐ जय शिव ओंकारा...
-
-ब्रह्मा विष्णु सदाशिव जानत अविवेका।
-प्रणवाक्षर में शोभित ये तीनों एका॥
-ॐ जय शिव ओंकारा...
-
-त्रिगुणस्वामी जी की आरती जो कोई नर गावे।
-कहत शिवानंद स्वामी सुख संपति पावे॥
 ॐ जय शिव ओंकारा...`
       }
     };
@@ -925,6 +954,35 @@
 
     let currentTodayData = {};
     let malaCount = 0;
+
+    function generateMonthlyPanchang(month, year) {
+      const tbody = document.getElementById("panchangTableBody");
+      tbody.innerHTML = "";
+
+      const daysInMonth = new Date(year, parseInt(month) + 1, 0).getDate();
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateObj = new Date(year, month, d);
+        const dayOfWeek = dateObj.getDay();
+        const hindiDay = hindiDays[dayOfWeek];
+
+        const dateStr = `${year}-${String(parseInt(month) + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const paksha = d <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+        const tithiIdx = (d - 1) % 15;
+        const currentTithi = tithis[tithiIdx];
+
+        const special = accuratePanchangData[dateStr];
+        const festivalText = special ? `<b style="color:var(--primary-dark);">${special.festival}</b>` : (d % 7 === 0 ? "रविप्रदोष/विशेष योग" : "नित्य पूजा");
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><b>${d} तारीख</b> (${hindiDay})</td>
+          <td>${paksha} - ${currentTithi}</td>
+          <td>${festivalText}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
 
     function initPanchangAndGrah() {
       const today = new Date();
@@ -966,6 +1024,8 @@
 
       const shareMsg = encodeURIComponent(`🕉️ *आज का अध्यात्मिक ज्ञान & पंचांग* 🕉️\n\n📌 *पर्व/पूजा:* ${document.getElementById("heroTitle").innerText}\n✨ *शुभ मंत्र:* ${grahInfo.mantra}\n💡 *आज का उपाय:* ${grahInfo.remedy}\n\nआज का पूरा पंचांग एवं राशिफल देखने के लिए यहाँ क्लिक करें: ${window.location.href}`);
       document.getElementById("whatsappShareBtn").setAttribute("onclick", `window.open('https://api.whatsapp.com/send?text=${shareMsg}', '_blank')`);
+
+      generateMonthlyPanchang(today.getMonth(), today.getFullYear());
     }
 
     function renderRashifalChips() {
@@ -1005,6 +1065,13 @@
       const modal = document.getElementById("modal");
       const modalContent = document.getElementById("modalContent");
       const closeModal = document.getElementById("closeModal");
+
+      // Monthly Panchang Button Event
+      document.getElementById("loadPanchangBtn").addEventListener("click", function() {
+        const m = document.getElementById("panchangMonth").value;
+        const y = document.getElementById("panchangYear").value;
+        generateMonthlyPanchang(m, y);
+      });
 
       // Dark Mode Toggle
       document.getElementById("darkModeBtn").addEventListener("click", function() {
@@ -1096,7 +1163,6 @@
 
         const modalType = btn.getAttribute("data-modal");
 
-        // 1. VASTU TIPS MODAL FIX
         if (modalType === "vastu") {
           let vastuHTML = `<h2 style="color:var(--primary-dark); margin-top:0; text-align:center;">🏠 महत्वपूर्ण वास्तु टिप्स</h2>`;
           vastuTipsList.forEach(tip => {
@@ -1112,7 +1178,6 @@
           return;
         }
 
-        // 2. JAAP MALA COUNTER MODAL
         if (modalType === "mala") {
           malaCount = 0;
           modalContent.innerHTML = `
@@ -1164,7 +1229,6 @@
           return;
         }
 
-        // 3. AARTI & CHALISA MODAL
         if (modalType === "aarti") {
           modalContent.innerHTML = `
             <div style="text-align:center;">
@@ -1181,12 +1245,10 @@
             </div>
           `;
           modal.classList.add("active");
-          // Default Hanuman Chalisa Show
           showAarti('hanuman_chalisa');
           return;
         }
 
-        // 4. TODAY'S PUJA MODAL
         if (modalType === "puja") {
           modalContent.innerHTML = `
             <div style="text-align:center;">
@@ -1209,7 +1271,6 @@
           return;
         }
 
-        // 5. DEITY CHIPS MODAL
         if (sadhanaData[modalType]) {
           const item = sadhanaData[modalType];
           modalContent.innerHTML = `
@@ -1232,7 +1293,6 @@
       window.addEventListener("click", function(e) { if (e.target === modal) modal.classList.remove("active"); });
     });
 
-    // Helper Function to Show Aarti / Chalisa
     function showAarti(key) {
       const item = aartiCollection[key];
       if (item) {
