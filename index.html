@@ -30,7 +30,16 @@
   </section>
 
   <section class="section"><div class="sectionHead"><h2>पूजा एवं साधना</h2></div>
-    <div class="chips"><button data-modal="ganesh">गणेश</button><button data-modal="lakshmi">लक्ष्मी</button><button data-modal="shiv">शिव</button><button data-modal="hanuman">हनुमान</button><button data-modal="krishna">कृष्ण</button><button data-modal="durga">दुर्गा</button><button data-modal="vishnu">विष्णु</button><button data-modal="tulsi">तुलसी</button><button data-modal="mantra">मंत्र</button>
+    <div class="chips">
+      <button data-modal="ganesh">गणेश</button>
+      <button data-modal="lakshmi">लक्ष्मी</button>
+      <button data-modal="shiv">शिव</button>
+      <button data-modal="hanuman">हनुमान</button>
+      <button data-modal="krishna">कृष्ण</button>
+      <button data-modal="durga">दुर्गा</button>
+      <button data-modal="vishnu">विष्णु</button>
+      <button data-modal="tulsi">तुलसी</button>
+      <button data-modal="mantra">मंत्र</button>
     </div>
   </section>
 
@@ -244,6 +253,64 @@
     { topic: "सामान्य नियम", tip: "घर में सकारात्मक ऊर्जा बनाए रखने के लिए प्रतिदिन सुबह-शाम धूप या अगरबत्ती जलाएँ।" }
   ];
 
+  // 3. YouTube Connected Sadhana Data for Chips
+  const sadhanaYouTubeData = {
+    "ganesh": {
+      title: "श्री गणेश पूजा एवं मंत्र",
+      mantra: "ॐ गं गणपतये नमः",
+      desc: "रिद्धि-सिद्धिदाता भगवान श्री गणेश की उपासना से समस्त विघ्न दूर होते हैं।",
+      ytSearch: "Ganesh"
+    },
+    "lakshmi": {
+      title: "मां लक्ष्मी पूजा एवं मंत्र",
+      mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद",
+      desc: "धन, धान्य और समृद्धि प्राप्ति हेतु माता लक्ष्मी की पूजा की जाती है।",
+      ytSearch: "Lakshmi"
+    },
+    "shiv": {
+      title: "भगवान शिव पूजा एवं महामृत्युंजय मंत्र",
+      mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिववर्धनम्। उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥",
+      desc: "शिव आराधना से मानसिक शांति और आरोग्यता प्राप्त होती है।",
+      ytSearch: "Shiv"
+    },
+    "hanuman": {
+      title: "श्री हनुमान साधना एवं पाठ",
+      mantra: "ॐ हं हनुमते नमः",
+      desc: "हनुमान चालीसा और बजरंग बाण का पाठ भय और संकट दूर करता है।",
+      ytSearch: "Hanuman"
+    },
+    "krishna": {
+      title: "श्री कृष्ण भक्ति एवं मंत्र",
+      mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे। हरे राम हरे राम, राम राम हरे हरे॥",
+      desc: "भगवान श्रीकृष्ण के ध्यान से जीवन में आनंद और प्रेम का संचार होता है।",
+      ytSearch: "Krishna"
+    },
+    "durga": {
+      title: "मां दुर्गा साधना एवं मंत्र",
+      mantra: "ॐ दुं दुर्गायै नमः",
+      desc: "दुर्गा शप्तशती पाठ एवं मंत्र जप से शक्ति और सकारात्मक ऊर्जा मिलती है।",
+      ytSearch: "Durga"
+    },
+    "vishnu": {
+      title: "भगवान विष्णु एवं सत्यनारायण पूजा",
+      mantra: "ॐ नमो भगवते वासुदेवाय",
+      desc: "श्री हरि विष्णु की भक्ति से मोक्ष और सुख-शांति की प्राप्ति होती है।",
+      ytSearch: "Vishnu"
+    },
+    "tulsi": {
+      title: "तुलसी पूजन विधि एवं महिमा",
+      mantra: "महाप्रसाद जननी सर्व सौभाग्यवर्धिनी। आधि व्याधि हरा नित्यं तुलसी त्वं नमोस्तुते॥",
+      desc: "घर में तुलसी सेवा और जल अर्पित करने से वास्तु दोष और नकारात्मकता दूर होती है।",
+      ytSearch: "Tulsi"
+    },
+    "mantra": {
+      title: "दैनिक प्रभावशाली मंत्र संग्रह",
+      mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥",
+      desc: "गायत्री मंत्र और दैनिक प्रभावशाली मंत्रों का शुद्ध उच्चारण के साथ पाठ करें।",
+      ytSearch: "Mantra"
+    }
+  };
+
   function autoUpdateDailyInfo() {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -280,6 +347,27 @@
       const dd = String(today.getDate()).padStart(2, '0');
       const todayStr = `${yyyy}-${mm}-${dd}`;
       const currentData = festivalCalendarData[todayStr];
+
+      // Handle Puja & Sadhana Chips (Ganesh, Shiv, Lakshmi etc.)
+      if (sadhanaYouTubeData[modalType]) {
+        const item = sadhanaYouTubeData[modalType];
+        const ytLink = `https://www.youtube.com/@AdhyatmikGyan24x7/search?query=${encodeURIComponent(item.ytSearch)}`;
+        
+        modalContent.innerHTML = `
+          <h2>🕉️ ${item.title}</h2>
+          <div style="background:#fff8ed; padding:12px; border-radius:8px; margin:12px 0; border-left:4px solid #d97706;">
+            <b>मूल मंत्र:</b>
+            <p style="font-size:16px; color:#d97706; margin-top:5px; font-weight:bold;">${item.mantra}</p>
+          </div>
+          <p>${item.desc}</p>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="${ytLink}" target="_blank" rel="noopener" class="primary" style="display:inline-block; padding:10px 18px; text-decoration:none; background:#cc0000; color:#fff; border-radius:6px; font-weight:bold;">
+              ▶ YouTube पर वीडियो देखें
+            </a>
+          </div>
+        `;
+        return;
+      }
 
       if (modalType === "puja") {
         if (currentData) {
