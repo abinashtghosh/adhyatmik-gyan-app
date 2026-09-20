@@ -378,7 +378,7 @@
     /* Jaap Mala Counter Styling */
     .mala-counter-box {
       text-align: center;
-      padding: 20px;
+      padding: 10px 0;
     }
 
     .mala-circle {
@@ -429,7 +429,7 @@
       padding: 20px;
       border-radius: 14px;
       width: 90%;
-      max-width: 460px;
+      max-width: 520px;
       position: relative;
       max-height: 85vh;
       overflow-y: auto;
@@ -468,6 +468,28 @@
 
     .dosh-present { background: #fee2e2; color: #991b1b; }
     .dosh-absent { background: #dcfce7; color: #166534; }
+
+    .text-content-scroll {
+      background: var(--bg-cream);
+      padding: 16px;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.8;
+      max-height: 360px;
+      overflow-y: auto;
+      border: 1px solid var(--card-border);
+      white-space: pre-line;
+    }
+
+    .vastu-item {
+      background: var(--bg-cream);
+      border-left: 4px solid var(--primary-color);
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -520,7 +542,7 @@
       <button class="btn" data-modal="puja">विधि देखें</button>
     </div>
 
-    <!-- Jaap Mala Counter Card (NEW) -->
+    <!-- Jaap Mala Counter Card -->
     <div class="card">
       <div class="icon-container">📿</div>
       <div>
@@ -530,7 +552,7 @@
       <button class="btn" data-modal="mala">जप शुरू करें</button>
     </div>
 
-    <!-- Aarti & Chalisa Card (NEW) -->
+    <!-- Aarti & Chalisa Card -->
     <div class="card">
       <div class="icon-container">📖</div>
       <div>
@@ -540,7 +562,7 @@
       <button class="btn" data-modal="aarti">पाठ चुनें</button>
     </div>
 
-    <!-- Vastu & Panchang Card -->
+    <!-- Vastu Tips Card -->
     <div class="card">
       <div class="icon-container">🏠</div>
       <div>
@@ -551,7 +573,7 @@
     </div>
   </div>
 
-  <!-- Aaj Ka Rashifal Section (NEW) -->
+  <!-- Aaj Ka Rashifal Section -->
   <section class="chips-section">
     <h3 class="chips-title">🔮 आज का दैनिक राशिफल (12 राशियां)</h3>
     <div class="chips" id="rashifalChips">
@@ -717,7 +739,175 @@
       "mantra": { title: "गायत्री मंत्र संग्रह", image: "mantra.jpg", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्॥", desc: "गायत्री मंत्र के नित्य जाप से बुद्धि कुशाग्र होती है और शरीर में सकारात्मक ऊर्जा का संचार होता है।" }
     };
 
-    // Daily Rashifal Data
+    // Vastu Tips Collection
+    const vastuTipsList = [
+      { title: "🛕 पूजा घर की सही दिशा", desc: "घर का मंदिर हमेशा ईशान कोण (उत्तर-पूर्व) में होना चाहिए। पूजा करते समय आपका मुख पूर्व या उत्तर दिशा की ओर रहना अत्यंत शुभ होता है।" },
+      { title: "🚪 मुख्य द्वार वास्तु", desc: "घर के मुख्य द्वार पर स्वास्तिक या ॐ का चिन्ह लगाएं। मुख्य द्वार के सामने कभी भी कूड़ा या गंदगी न रखें, इससे लक्ष्मी जी का वास होता है।" },
+      { title: "🍳 रसोईघर (Kitchen) वास्तु", desc: "रसोईघर आग्नेय कोण (दक्षिण-पूर्व) में होना चाहिए। खाना बनाते समय गृहिणी का मुख पूर्व दिशा की ओर होना स्वास्थ्य और समृद्धि प्रदान करता है।" },
+      { title: "🛌 बेडरूम एवं सोने की दिशा", desc: "सोते समय सिर हमेशा दक्षिण या पूर्व दिशा में होना चाहिए। उत्तर दिशा की ओर सिर करके सोने से मानसिक तनाव और अनिद्रा की समस्या हो सकती है।" },
+      { title: "💰 तिजोरी व धन स्थान", desc: "धन रखने की अलमारी या तिजोरी को घर के उत्तर या उत्तर-पूर्व दिशा में रखें। तिजोरी का दरवाजा उत्तर दिशा की ओर खुलना चाहिए।" },
+      { title: "🪴 पौधे एवं सकारात्मक ऊर्जा", desc: "घर में तुलसी, मनी प्लांट या शमी का पौधा लगाएं। घर में कांटेदार पौधे (जैसे कैक्टस) रखने से वास्तु दोष उत्पन्न होता है।" }
+    ];
+
+    // Complete Aarti & Chalisa Collection
+    const aartiCollection = {
+      "hanuman_chalisa": {
+        title: "श्री हनुमान चालीसा (सम्पूर्ण)",
+        text: `<b>|| दोहा ||</b>
+श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि।
+बरनउँ रघुबर बिमल जसु जो दायकु फल चारि॥
+बुद्धिहीन तनु जानिके सुमिरौ पवन-कुमार।
+बल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार॥
+
+<b>|| चौपाई ||</b>
+जय हनुमान ज्ञान गुन सागर। जय कपीस तिहुँ लोक उजागर॥ १ ॥
+रामदूत अतुलित बल धामा। अंजनि-पुत्र पवनसुत नामा॥ २ ॥
+महाबीर बिक्रम बजरंगी। कुमति निवार सुमति के संगी॥ ३ ॥
+कंचन बरन बिराज सुबेसा। कानन कुंडल कुंचित केसा॥ ४ ॥
+
+हाथ बज्र औ ध्वजा बिराजै। काँधे मूँज जनेऊ साजै॥ ५ ॥
+संकर सुवन केसरीनंदन। तेज प्रताप महा जग बन्दन॥ ६ ॥
+विद्यावान गुनी अति चातुर। राम काज करिबे को आतुर॥ ७ ॥
+प्रभु चरित्र सुनिबे को रसिया। राम लखन सीता मन बसिया॥ ८ ॥
+
+सूक्ष्म रूप धरि सियहिं दिखावा। बिकट रूप धरि लंक जरावा॥ ९ ॥
+भीम रूप धरि असुर सँहारे। रामचंद्र के काज संवारे॥ १० ॥
+लाय सजीवन लखन जियाये। श्रीरघुबीर हरषि उर लाये॥ ११ ॥
+रघुपति कीह्नी बहुत बड़ाई। तुम मम प्रिय भरतहि सम भाई॥ १२ ॥
+
+सहस बदन तुम्हरो जस गावैं। अस कहि श्रीपति कंठ लगावैं॥ १३ ॥
+सनकादिक ब्रह्मादि मुनीसा। नारद सारद सहित अहीसा॥ १४ ॥
+जम कुबेर दिगपाल जहाँ ते। कबि कोबिद कहि सके कहाँ ते॥ १५ ॥
+तुम उपकार सुग्रीवहिं कीह्ना। राम मिलाय राज पद दीह्ना॥ १६ ॥
+
+तुम्हरो मंत्र बिभीषन माना। लंकेस्वर भय सब जग जाना॥ १७ ॥
+जुग सहस्र जोजन पर भानू। लील्यो ताहि मधुर फल जानू॥ १८ ॥
+प्रभु मुद्रिका मेलि मुख माहीं। जलधि लांघि गये अचरज नाहीं॥ १९ ॥
+दुर्गम काज जगत के जेते। सुगम अनुग्रह तुम्हरे तेते॥ २० ॥
+
+राम दुआरे तुम रखवारे। होत न आज्ञा बिनु पैसारे॥ २१ ॥
+सब सुख लहै तुम्हारी सरना। तुम रक्षक काहू को डर ना॥ २२ ॥
+आपन तेज सम्हारो आपै। तीनों लोक हाँक तें काँपै॥ २३ ॥
+भूत पिसाच निकट नहिं आवै। महाबीर जब नाम सुनावै॥ २४ ॥
+
+नासै रोग हरै सब पीरा। जपत निरंतर हनुमत बीरा॥ २५ ॥
+संकट तें हनुमान छुड़ावै। मन क्रम बचन ध्यान जो लावै॥ २६ ॥
+सब पर राम तपस्वी राजा। तिन के काज सकल तुम साजा॥ २७ ॥
+और मनोरथ जो कोई लावै। सोइ अमित जीवन फल पावै॥ २८ ॥
+
+चारों जुग परताप तुम्हारा। है परसिद्ध जगत उजियारा॥ २९ ॥
+साधु संत के तुम रखवारे। असुर निकंदन राम दुलारे॥ ३० ॥
+अष्ट सिद्धि नौ निधि के दाता। अस बर दीन्ह जानकी माता॥ ३१ ॥
+राम रसायन तुम्हरे पासा। सदा रहो रघुपति के दासा॥ ३२ ॥
+
+तुम्हरे भजन राम को पावै। जनम जनम के दुख बिसरावै॥ ३३ ॥
+अन्त काल रघुबर पुर जाई। जहाँ जन्म हरि-भक्त कहाई॥ ३४ ॥
+और देवता चित्त न धरई। हनुमत सेइ सर्ब सुख करई॥ ३५ ॥
+संकट कटै मिटै सब पीरा। जो सुमिरै हनुमत बलबीरा॥ ३६ ॥
+
+जै जै जै हनुमान गोसाईं। कृपा करहु गुरुदेव की नाईं॥ ३७ ॥
+जो सत बार पाठ कर कोई। छूटहि बंदि महा सुख होई॥ ३८ ॥
+जो यह पढ़े हनुमान चालीसा। होय सिद्धि साखी गौरीसा॥ ३९ ॥
+तुलसीदास सदा हरि चेरा। कीजै नाथ हृदय मँह डेरा॥ ४० ॥
+
+<b>|| दोहा ||</b>
+पवनतनय संकट हरन मंगल मूरति रूप।
+राम लखन सीता सहित हृदय बसहु सुर भूप॥`
+      },
+      "ganesh_aarti": {
+        title: "जय गणेश जय गणेश देवा (सम्पूर्ण आरती)",
+        text: `जय गणेश जय गणेश, जय गणेश देवा।
+माता जाकी पार्वती, पिता महादेवा॥
+
+एक दंत दयावंत, चार भुजाधारी।
+माथे सिंदूर सोहे, मूसे की सवारी॥
+जय गणेश जय गणेश, जय गणेश देवा...
+
+पान चढ़े फूल चढ़े, और चढ़े मेवा।
+लड्डुअन का भोग लगे, संत करें सेवा॥
+जय गणेश जय गणेश, जय गणेश देवा...
+
+अंधेन को आँख देत, कोढ़िन को काया।
+बांझन को पुत्र देत, निर्धन को माया॥
+जय गणेश जय गणेश, जय गणेश देवा...
+
+‘सूर’ श्याम शरण आए, सफल कीजे सेवा।
+माता जाकी पार्वती, पिता महादेवा॥
+जय गणेश जय गणेश, जय गणेश देवा...`
+      },
+      "lakshmi_aarti": {
+        title: "ॐ जय लक्ष्मी माता (सम्पूर्ण आरती)",
+        text: `ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता।
+तुमको निशदिन ध्यावत, हर विष्णु विधाता॥
+ॐ जय लक्ष्मी माता...
+
+उमा रमा ब्रह्माणी, तुम ही जग-माता।
+सूर्य चंद्रमा ध्यावत, नारद ऋषि गाता॥
+ॐ जय लक्ष्मी माता...
+
+दुर्गा रूप निरंजनी, सुख सम्पत्ति दाता।
+जो कोई तुमको ध्यावत, ऋद्धि-सिद्धि पाता॥
+ॐ जय लक्ष्मी माता...
+
+तुम पाताल-निवासिनि, तुम ही शुभदाता।
+कर्म-प्रभाव-प्रकाशिनी, भवनिधि की त्राता॥
+ॐ जय लक्ष्मी माता...
+
+जिस घर में तुम रहती, सब सद्गुण आता।
+सब संभव हो जाता, मन नहीं घबराता॥
+ॐ जय लक्ष्मी माता...
+
+तुम बिन यज्ञ न होते, वस्त्र न कोई पाता।
+खान-पान का वैभव, सब तुमसे आता॥
+ॐ जय लक्ष्मी माता...
+
+शुभ-गुण मंदिर सुंदर, क्षीरोदधि-जाता।
+रत्न चतुर्दश तुम बिन, कोई नहीं पाता॥
+ॐ जय लक्ष्मी माता...
+
+महालक्ष्मीजी की आरती, जो कोई जन गावै।
+उर आनंद समावै, पाप उतर जावै॥
+ॐ जय लक्ष्मी माता...`
+      },
+      "shiv_aarti": {
+        title: "ॐ जय शिव ओंकारा (सम्पूर्ण आरती)",
+        text: `ॐ जय शिव ओंकारा, हर ॐ जय शिव ओंकारा।
+ब्रह्मा, विष्णु, सदाशिव, अर्द्धांगी धारा॥
+ॐ जय शिव ओंकारा...
+
+एकानन चतुरानन पंचानन राजे।
+हंसासन गरुड़ासन वृषवाहन साजे॥
+ॐ जय शिव ओंकारा...
+
+दो भुज चार चतुर्भुज दसभुज अति सोहे।
+त्रिगुण रूप निरखते त्रिभुवन जन मोहे॥
+ॐ जय शिव ओंकारा...
+
+अक्षमाला वनमाला मुंडमाला धारी।
+त्रिपुरारी कंसारी कर माला धारी॥
+ॐ जय शिव ओंकारा...
+
+श्वेतांबर पीतांबर बाघंबर अंगे।
+सनकादिक गरुणादिक भूतादिक संगे॥
+ॐ जय शिव ओंकारा...
+
+कर के मध्य कमंडलु चक्र त्रिशूलधारी।
+सुखकारी दुखहारी जगपालनकारी॥
+ॐ जय शिव ओंकारा...
+
+ब्रह्मा विष्णु सदाशिव जानत अविवेका।
+प्रणवाक्षर में शोभित ये तीनों एका॥
+ॐ जय शिव ओंकारा...
+
+त्रिगुणस्वामी जी की आरती जो कोई नर गावे।
+कहत शिवानंद स्वामी सुख संपति पावे॥
+ॐ जय शिव ओंकारा...`
+      }
+    };
+
+    const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+    const lagnas = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+
     const rashifalData = {
       "मेष": "आज कार्यक्षेत्र में नए अवसर प्राप्त होंगे। आर्थिक मामलों में प्रगति होगी। परिवार का सहयोग मिलेगा।",
       "वृषभ": "आज धैर्य बनाए रखें। धन के लेन-देन में सावधानी बरतें। स्वास्थ्य अच्छा रहेगा।",
@@ -732,25 +922,6 @@
       "कुंभ": "अचानक धन लाभ का योग है। नई योजनाओं की शुरुआत कर सकते हैं। मित्र मददगार साबित होंगे।",
       "मीन": "मन प्रसन्न रहेगा। कार्यस्थल पर आपकी प्रशंसा होगी। प्रेम संबंधों में मधुरता आएगी।"
     };
-
-    // Aarti & Chalisa Collection
-    const aartiCollection = {
-      "hanuman_chalisa": {
-        title: "श्री हनुमान चालीसा",
-        text: `<b>|| दोहा ||</b><br>श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि। बरनउँ रघुबर बिमल जसु जो दायकु फल चारि॥<br>बुद्धिहीन तनु जानिके सुमिरौ पवन-कुमार। बल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार॥<br><br><b>|| चौपाई ||</b><br>जय हनुमान ज्ञान गुन सागर। जय कपीस तिहुँ लोक उजागर॥<br>रामदूत अतुलित बल धामा। अंजनि-पुत्र पवनसुत नामा॥<br>महाबीर बिक्रम बजरंगी। कुमति निवार सुमति के संगी॥<br>कंचन बरन बिराज सुबेसा। कानन कुंडल कुंचित केसा॥<br>हाथ बज्र औ ध्वजा बिराजै। काँधे मूँज जनेऊ साजै॥<br>संकर सुवन केसरीनंदन। तेज प्रताप महा जग बन्दन॥...`
-      },
-      "ganesh_aarti": {
-        title: "जय गणेश जय गणेश देवा",
-        text: `जय गणेश जय गणेश, जय गणेश देवा। माता जाकी पार्वती पिता महादेवा॥<br>एक दंत दयावंत, चार भुजाधारी। माथे सिंदूर सोहे, मूसे की सवारी॥<br>पान चढ़े फूल चढ़े, और चढ़े मेवा। लड्डुअन का भोग लगे, संत करें सेवा॥<br>जय गणेश जय गणेश, जय गणेश देवा। माता जाकी पार्वती पिता महादेवा॥`
-      },
-      "lakshmi_aarti": {
-        title: "ॐ जय लक्ष्मी माता",
-        text: `ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता। तुमको निशदिन ध्यावत, हर विष्णु विधाता॥<br>उमा रमा ब्रह्माणी, तुम ही जग-माता। सूर्य चंद्रमा ध्यावत, नारद ऋषि गाता॥<br>दुर्गा रूप निरंजनी, सुख सम्पत्ति दाता। जो कोई तुमको ध्यावत, ऋद्धि-सिद्धि पाता॥`
-      }
-    };
-
-    const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
-    const lagnas = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
 
     let currentTodayData = {};
     let malaCount = 0;
@@ -793,12 +964,10 @@
 
       document.getElementById("heroRemedy").innerHTML = `<b>गृह गमन शुभ उपाय (${grahInfo.grah}):</b> ${grahInfo.remedy}`;
 
-      // WhatsApp Share Link Generation
       const shareMsg = encodeURIComponent(`🕉️ *आज का अध्यात्मिक ज्ञान & पंचांग* 🕉️\n\n📌 *पर्व/पूजा:* ${document.getElementById("heroTitle").innerText}\n✨ *शुभ मंत्र:* ${grahInfo.mantra}\n💡 *आज का उपाय:* ${grahInfo.remedy}\n\nआज का पूरा पंचांग एवं राशिफल देखने के लिए यहाँ क्लिक करें: ${window.location.href}`);
       document.getElementById("whatsappShareBtn").setAttribute("onclick", `window.open('https://api.whatsapp.com/send?text=${shareMsg}', '_blank')`);
     }
 
-    // Render Rashifal Chips
     function renderRashifalChips() {
       const container = document.getElementById("rashifalChips");
       container.innerHTML = "";
@@ -885,7 +1054,7 @@
         modal.classList.add("active");
       });
 
-      // Milan Form
+      // Kundali Milan Form
       document.getElementById("milanForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const boyName = document.getElementById("boyName").value;
@@ -920,13 +1089,30 @@
         modal.classList.add("active");
       });
 
-      // Universal Modal Handler
+      // Universal Modal Event Click Handler
       document.addEventListener("click", function(e) {
         const btn = e.target.closest("[data-modal]");
         if (!btn) return;
 
         const modalType = btn.getAttribute("data-modal");
 
+        // 1. VASTU TIPS MODAL FIX
+        if (modalType === "vastu") {
+          let vastuHTML = `<h2 style="color:var(--primary-dark); margin-top:0; text-align:center;">🏠 महत्वपूर्ण वास्तु टिप्स</h2>`;
+          vastuTipsList.forEach(tip => {
+            vastuHTML += `
+              <div class="vastu-item">
+                <b style="color:var(--primary-dark); font-size:15px;">${tip.title}</b>
+                <p style="margin:4px 0 0 0; font-size:13px; color:var(--text-color);">${tip.desc}</p>
+              </div>
+            `;
+          });
+          modalContent.innerHTML = `<div style="max-height:75vh; overflow-y:auto;">${vastuHTML}</div>`;
+          modal.classList.add("active");
+          return;
+        }
+
+        // 2. JAAP MALA COUNTER MODAL
         if (modalType === "mala") {
           malaCount = 0;
           modalContent.innerHTML = `
@@ -957,9 +1143,7 @@
             malaCount++;
             malaNum.innerText = malaCount;
 
-            if (navigator.vibrate) {
-              navigator.vibrate(40);
-            }
+            if (navigator.vibrate) navigator.vibrate(40);
 
             if (malaCount === 108) {
               malaStatus.innerText = "🎉 बधाई हो! आपकी 1 माला (108 जप) पूरी हुई!";
@@ -980,24 +1164,29 @@
           return;
         }
 
+        // 3. AARTI & CHALISA MODAL
         if (modalType === "aarti") {
           modalContent.innerHTML = `
             <div style="text-align:center;">
               <h2 style="color:var(--primary-dark); margin-top:0;">📖 आरती एवं चालीसा संग्रह</h2>
-              <div style="display:flex; gap:8px; justify-content:center; margin-bottom:14px; flex-wrap:wrap;">
-                <button class="btn" style="width:auto;" onclick="showAarti('hanuman_chalisa')">हनुमान चालीसा</button>
-                <button class="btn" style="width:auto; background:#c2410c;" onclick="showAarti('ganesh_aarti')">गणेश आरती</button>
-                <button class="btn" style="width:auto; background:#047857;" onclick="showAarti('lakshmi_aarti')">लक्ष्मी आरती</button>
+              <div style="display:flex; gap:6px; justify-content:center; margin-bottom:14px; flex-wrap:wrap;">
+                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px;" onclick="showAarti('hanuman_chalisa')">हनुमान चालीसा</button>
+                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px; background:#c2410c;" onclick="showAarti('ganesh_aarti')">गणेश आरती</button>
+                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px; background:#047857;" onclick="showAarti('lakshmi_aarti')">लक्ष्मी आरती</button>
+                <button class="btn" style="width:auto; font-size:12px; padding:6px 10px; background:#4338ca;" onclick="showAarti('shiv_aarti')">शिव आरती</button>
               </div>
-              <div id="aartiBox" style="background:var(--bg-cream); padding:14px; border-radius:10px; text-align:left; font-size:14px; line-height:1.7; max-height:280px; overflow-y:auto; border:1px solid var(--card-border);">
-                ऊपर दिए गए बटन पर क्लिक करके चालीसा या आरती चुनें।
+              <div id="aartiBox" class="text-content-scroll">
+                ऊपर दिए गए बटन पर क्लिक करके हनुमान चालीसा या अपनी पसंदीदा आरती पढ़ें।
               </div>
             </div>
           `;
           modal.classList.add("active");
+          // Default Hanuman Chalisa Show
+          showAarti('hanuman_chalisa');
           return;
         }
 
+        // 4. TODAY'S PUJA MODAL
         if (modalType === "puja") {
           modalContent.innerHTML = `
             <div style="text-align:center;">
@@ -1020,6 +1209,7 @@
           return;
         }
 
+        // 5. DEITY CHIPS MODAL
         if (sadhanaData[modalType]) {
           const item = sadhanaData[modalType];
           modalContent.innerHTML = `
@@ -1042,11 +1232,11 @@
       window.addEventListener("click", function(e) { if (e.target === modal) modal.classList.remove("active"); });
     });
 
-    // Helper for Aarti Show
+    // Helper Function to Show Aarti / Chalisa
     function showAarti(key) {
       const item = aartiCollection[key];
       if (item) {
-        document.getElementById("aartiBox").innerHTML = `<h3 style="color:var(--primary-dark); margin-top:0;">${item.title}</h3>${item.text}`;
+        document.getElementById("aartiBox").innerHTML = `<h3 style="color:var(--primary-dark); margin-top:0; text-align:center;">${item.title}</h3>${item.text}`;
       }
     }
   </script>
