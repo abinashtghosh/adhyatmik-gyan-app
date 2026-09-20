@@ -57,35 +57,139 @@
 <script src="app.js"></script>
 
 <script>
-  // 1. Festival & Vrat Calendar Data (Aap isme aur dates bhi add kar sakte hain)
+  // PDF Data Integrated (Sep 2026 - Dec 2026)
   const festivalCalendarData = {
-    "2026-09-20": {
-      vratTitle: "इन्द्रा एकादशी व्रत (Indira Ekadashi)",
-      vratDesc: "आज इन्द्रा एकादशी का पावन व्रत है। यह व्रत पितरों की शांति और मोक्ष प्राप्ति के लिए रखा जाता है।",
-      pujaTitle: "भगवान विष्णु एवं शालिग्राम पूजा",
-      pujaDesc: "आज के दिन पीले फूल, तुलसी दल, और पंचामृत से भगवान विष्णु और शालिग्राम जी की पूजा करें। 'ॐ नमो भगवते वासुदेवाय' का जप करें।"
-    },
-    "2026-09-21": {
-      vratTitle: "सोमवार व्रत / प्रदोष व्रत तैयारी",
-      vratDesc: "आज सोमवार का दिन भगवान शिव की भक्ति के लिए विशेष उत्तम है।",
-      pujaTitle: "शिवलिंग जलाभिषेक एवं बेलपत्र पूजा",
-      pujaDesc: "प्रातःकाल स्नान के पश्चात शिवलिंग पर जल, दूध और बेलपत्र अर्पित करें। महामृत्युंजय मंत्र का 108 बार जप करें।"
-    },
-    "2026-09-22": {
-      vratTitle: "भौम प्रदोष व्रत",
-      vratDesc: "आज मंगलवार प्रदोष व्रत है। यह व्रत ऋण मुक्ति और संकट निवारण के लिए अत्यंत फलदायी है।",
-      pujaTitle: "हनुमान जी एवं शिव संध्या पूजा",
-      pujaDesc: "संध्या समय भगवान शिव का अभिषेक करें और हनुमान चालीसा का पाठ करें।"
-    },
-    "2026-09-25": {
-      vratTitle: "अनंत चतुर्दशी व्रत",
-      vratDesc: "आज अनंत चतुर्दशी है। 14 गांठों वाला अनंत सूत्र धारण करने से समस्त दुखों का नाश होता है।",
-      pujaTitle: "भगवान अनंत (विष्णु) पूजा एवं गणेश विसर्जन",
-      pujaDesc: "श्री हरि के अनंत रूप की पूजा करें और गणेश जी की विसर्जन आरती श्रद्धापूर्वक संपन्न करें।"
-    }
+    // September 2026
+    "2026-09-01": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
+    "2026-09-02": { tithi: "कृष्ण पंचमी", festival: "सामान्य पूजा" },
+    "2026-09-03": { tithi: "कृष्ण षष्ठी", festival: "मासिक कार्तिकाई" },
+    "2026-09-04": { tithi: "कृष्ण अष्टमी", festival: "श्रीकृष्ण जन्माष्टमी, कालाष्टमी" },
+    "2026-09-05": { tithi: "कृष्ण नवमी", festival: "कृष्ण पूजा" },
+    "2026-09-06": { tithi: "कृष्ण दशमी", festival: "विष्णु पूजा" },
+    "2026-09-07": { tithi: "कृष्ण एकादशी", festival: "अजा एकादशी व्रत" },
+    "2026-09-08": { tithi: "कृष्ण द्वादशी", festival: "भौम प्रदोष" },
+    "2026-09-09": { tithi: "कृष्ण त्रयोदशी", festival: "प्रदोष पूर्व पूजा" },
+    "2026-09-10": { tithi: "कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि" },
+    "2026-09-11": { tithi: "अमावस्या", festival: "भाद्रपद अमावस्या" },
+    "2026-09-12": { tithi: "शुक्ल प्रतिपदा", festival: "नवचंद्र पूजा" },
+    "2026-09-13": { tithi: "शुक्ल द्वितीया", festival: "सामान्य पूजा" },
+    "2026-09-14": { tithi: "शुक्ल तृतीया/चतुर्थी", festival: "हरितालिका तीज, गणेश चतुर्थी" },
+    "2026-09-15": { tithi: "चतुर्थी/पंचमी", festival: "ऋषि पंचमी" },
+    "2026-09-16": { tithi: "शुक्ल षष्ठी", festival: "स्कंद षष्ठी, बलराम जयंती" },
+    "2026-09-17": { tithi: "शुक्ल षष्ठी", festival: "विश्वकर्मा पूजा, कन्या संक्रांति" },
+    "2026-09-18": { tithi: "शुक्ल सप्तमी", festival: "सप्तमी पूजा" },
+    "2026-09-19": { tithi: "शुक्ल अष्टमी", festival: "राधाष्टमी, दुर्गाष्टमी" },
+    "2026-09-20": { tithi: "शुक्ल नवमी", festival: "परिवर्तिनी एकादशी व्रत" },
+    "2026-09-21": { tithi: "शुक्ल दशमी", festival: "विष्णु/दशमी पूजा" },
+    "2026-09-22": { tithi: "शुक्ल एकादशी", festival: "एकादशी पारण/विष्णु पूजा" },
+    "2026-09-23": { tithi: "शुक्ल द्वादशी", festival: "गुरु प्रदोष व्रत" },
+    "2026-09-24": { tithi: "शुक्ल त्रयोदशी", festival: "अनंत चतुर्दशी, गणेश विसर्जन" },
+    "2026-09-25": { tithi: "शुक्ल चतुर्दशी", festival: "सप्तमी / नवमी पूजा" },
+    "2026-09-26": { tithi: "पूर्णिमा", festival: "भाद्रपद पूर्णिमा" },
+    "2026-09-27": { tithi: "कृष्ण प्रतिपदा", festival: "पितृ पक्ष प्रारंभ" },
+    "2026-09-28": { tithi: "कृष्ण द्वितीया", festival: "पितृ श्राद्ध" },
+    "2026-09-29": { tithi: "कृष्ण तृतीया", festival: "संकष्टी चतुर्थी" },
+    "2026-09-30": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
+
+    // October 2026
+    "2026-10-01": { tithi: "कृष्ण पंचमी", festival: "सामान्य पूजा" },
+    "2026-10-02": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
+    "2026-10-03": { tithi: "कृष्ण सप्तमी", festival: "कालाष्टमी" },
+    "2026-10-04": { tithi: "कृष्ण नवमी", festival: "पितृ पूजा" },
+    "2026-10-05": { tithi: "कृष्ण दशमी", festival: "शिव पूजा" },
+    "2026-10-06": { tithi: "कृष्ण एकादशी", festival: "इंद्रा एकादशी" },
+    "2026-10-07": { tithi: "कृष्ण द्वादशी", festival: "एकादशी पारण" },
+    "2026-10-08": { tithi: "कृष्ण त्रयोदशी", festival: "गुरु प्रदोष" },
+    "2026-10-09": { tithi: "कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि" },
+    "2026-10-10": { tithi: "अमावस्या", festival: "सर्वपितृ अमावस्या / महालया" },
+    "2026-10-11": { tithi: "शुक्ल प्रतिपदा", festival: "शारदीय नवरात्रा प्रारंभ, घटस्थापना" },
+    "2026-10-12": { tithi: "शुक्ल द्वितीया", festival: "नवरात्रा द्वितीया" },
+    "2026-10-13": { tithi: "शुक्ल तृतीया", festival: "दुर्गा पूजा" },
+    "2026-10-14": { tithi: "शुक्ल चतुर्थी", festival: "विनायक चतुर्थी" },
+    "2026-10-15": { tithi: "शुक्ल पंचमी", festival: "नवरात्रा पूजा" },
+    "2026-10-16": { tithi: "शुक्ल षष्ठी", festival: "स्कंद षष्ठी / सरस्वती आवाहन" },
+    "2026-10-17": { tithi: "शुक्ल सप्तमी", festival: "सरस्वती पूजा / दुर्गा सप्तमी" },
+    "2026-10-18": { tithi: "शुक्ल सप्तमी", festival: "महा सप्तमी" },
+    "2026-10-19": { tithi: "शुक्ल अष्टमी", festival: "महाष्टमी / दुर्गाष्टमी" },
+    "2026-10-20": { tithi: "शुक्ल नवमी/दशमी", festival: "महानवमी / विजयादशमी-दशहरा" },
+    "2026-10-21": { tithi: "शुक्ल दशमी", festival: "दशमी पूजा" },
+    "2026-10-22": { tithi: "शुक्ल एकादशी", festival: "पापांकुशा एकादशी" },
+    "2026-10-23": { tithi: "शुक्ल द्वादशी", festival: "शुक्र प्रदोष" },
+    "2026-10-24": { tithi: "शुक्ल त्रयोदशी", festival: "शिव पूजा" },
+    "2026-10-25": { tithi: "शुक्ल चतुर्दशी", festival: "पूर्णिमा पूर्व पूजा" },
+    "2026-10-26": { tithi: "पूर्णिमा", festival: "शरद पूर्णिमा / कोजागरी पूजा" },
+    "2026-10-27": { tithi: "कृष्ण प्रतिपदा", festival: "कार्तिक मास प्रारंभ" },
+    "2026-10-28": { tithi: "कृष्ण तृतीया", festival: "सामान्य पूजा" },
+    "2026-10-29": { tithi: "कृष्ण चतुर्थी", festival: "करवा चौथ / संकष्टी चतुर्थी" },
+    "2026-10-30": { tithi: "कृष्ण पंचमी", festival: "करवा चौथ संबंधित पूजा" },
+    "2026-10-31": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
+
+    // November 2026
+    "2026-11-01": { tithi: "कृष्ण सप्तमी", festival: "कालाष्टमी" },
+    "2026-11-02": { tithi: "कृष्ण अष्टमी", festival: "शिव/कृष्ण पूजा" },
+    "2026-11-03": { tithi: "कृष्ण नवमी", festival: "सामान्य पूजा" },
+    "2026-11-04": { tithi: "कृष्ण दशमी", festival: "विष्णु पूजा" },
+    "2026-11-05": { tithi: "कृष्ण एकादशी", festival: "इंद्रा एकादशी" },
+    "2026-11-06": { tithi: "कृष्ण द्वादशी", festival: "धनतेरस, धन्वंतरि पूजा" },
+    "2026-11-07": { tithi: "कृष्ण त्रयोदशी", festival: "धनतेरस संबंधित पूजा" },
+    "2026-11-08": { tithi: "कृष्ण चतुर्दशी", festival: "दीपावली / लक्ष्मी पूजा / मासिक शिवरात्रि" },
+    "2026-11-09": { tithi: "अमावस्या", festival: "सोमवती अमावस्या" },
+    "2026-11-10": { tithi: "शुक्ल प्रतिपदा", festival: "गोवर्धन पूजा / अन्नकूट" },
+    "2026-11-11": { tithi: "शुक्ल द्वितीया", festival: "भाई दूज" },
+    "2026-11-12": { tithi: "शुक्ल तृतीया", festival: "सामान्य पूजा" },
+    "2026-11-13": { tithi: "शुक्ल चतुर्थी", festival: "विनायक चतुर्थी" },
+    "2026-11-14": { tithi: "शुक्ल पंचमी", festival: "पंचमी पूजा" },
+    "2026-11-15": { tithi: "शुक्ल षष्ठी", festival: "स्कंद षष्ठी / छठ पूजा" },
+    "2026-11-16": { tithi: "शुक्ल सप्तमी", festival: "सूर्य पूजा" },
+    "2026-11-17": { tithi: "शुक्ल अष्टमी", festival: "मासिक दुर्गाष्टमी" },
+    "2026-11-18": { tithi: "शुक्ल नवमी", festival: "नवमी पूजा" },
+    "2026-11-19": { tithi: "शुक्ल नवमी", festival: "विष्णु पूजा" },
+    "2026-11-20": { tithi: "शुक्ल एकादशी", festival: "देवउठनी/प्रबोधनी एकादशी" },
+    "2026-11-21": { tithi: "शुक्ल द्वादशी", festival: "तुलसी विवाह / विष्णु पूजा" },
+    "2026-11-22": { tithi: "शुक्ल त्रयोदशी", festival: "रवि प्रदोष" },
+    "2026-11-23": { tithi: "शुक्ल चतुर्दशी", festival: "शिव पूजा" },
+    "2026-11-24": { tithi: "पूर्णिमा", festival: "कार्तिक पूर्णिमा / देव दीपावली" },
+    "2026-11-25": { tithi: "कृष्ण प्रतिपदा", festival: "कार्तिक मास समापन" },
+    "2026-11-26": { tithi: "कृष्ण द्वितीया", festival: "सामान्य पूजा" },
+    "2026-11-27": { tithi: "कृष्ण तृतीया", festival: "गणाधिप संकष्टी चतुर्थी" },
+    "2026-11-28": { tithi: "कृष्ण पंचमी", festival: "गणेश पूजा" },
+    "2026-11-29": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
+    "2026-11-30": { tithi: "कृष्ण सप्तमी", festival: "शिव पूजा" },
+
+    // December 2026
+    "2026-12-01": { tithi: "कृष्ण अष्टमी", festival: "भैरव / शिव पूजा" },
+    "2026-12-02": { tithi: "कृष्ण नवमी", festival: "कालभैरव जयंती" },
+    "2026-12-03": { tithi: "कृष्ण दशमी", festival: "विष्णु पूजा" },
+    "2026-12-04": { tithi: "कृष्ण एकादशी", festival: "उत्पन्ना एकादशी" },
+    "2026-12-05": { tithi: "कृष्ण द्वादशी", festival: "एकादशी पारण" },
+    "2026-12-06": { tithi: "कृष्ण त्रयोदशी", festival: "रवि प्रदोष" },
+    "2026-12-07": { tithi: "कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि" },
+    "2026-12-08": { tithi: "अमावस्या", festival: "दर्श अमावस्या" },
+    "2026-12-09": { tithi: "शुक्ल प्रतिपदा", festival: "मार्गशीर्ष मास प्रारंभ" },
+    "2026-12-10": { tithi: "शुक्ल प्रतिपदा", festival: "चंद्र दर्शन" },
+    "2026-12-11": { tithi: "शुक्ल द्वितीया", festival: "सामान्य पूजा" },
+    "2026-12-12": { tithi: "शुक्ल तृतीया", festival: "गौरी / देवी पूजा" },
+    "2026-12-13": { tithi: "शुक्ल चतुर्थी", festival: "विनायक चतुर्थी" },
+    "2026-12-14": { tithi: "शुक्ल पंचमी", festival: "विवाह पंचमी" },
+    "2026-12-15": { tithi: "शुक्ल षष्ठी", festival: "चंपा षष्ठी / स्कंद षष्ठी" },
+    "2026-12-16": { tithi: "शुक्ल सप्तमी", festival: "धनु संक्रांति" },
+    "2026-12-17": { tithi: "शुक्ल अष्टमी", festival: "मासिक दुर्गाष्टमी" },
+    "2026-12-18": { tithi: "शुक्ल नवमी", festival: "देवी पूजा" },
+    "2026-12-19": { tithi: "शुक्ल दशमी", festival: "विष्णु पूजा" },
+    "2026-12-20": { tithi: "शुक्ल एकादशी", festival: "गीता जयंती / मोक्षदा एकादशी / वैकुंठ एकादशी" },
+    "2026-12-21": { tithi: "शुक्ल द्वादशी", festival: "सोम प्रदोष" },
+    "2026-12-22": { tithi: "शुक्ल त्रयोदशी", festival: "शिव पूजा" },
+    "2026-12-23": { tithi: "शुक्ल चतुर्दशी", festival: "दत्तात्रेय जयंती" },
+    "2026-12-24": { tithi: "पूर्णिमा", festival: "मार्गशीर्ष पूर्णिमा / सत्यनारायण पूजा" },
+    "2026-12-25": { tithi: "कृष्ण द्वितीया", festival: "सामान्य पूजा" },
+    "2026-12-26": { tithi: "कृष्ण तृतीया", festival: "संकष्टी चतुर्थी" },
+    "2026-12-27": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
+    "2026-12-28": { tithi: "कृष्ण पंचमी", festival: "शिव/गणेश पूजा" },
+    "2026-12-29": { tithi: "कृष्ण षष्ठी", festival: "षष्ठी पूजा" },
+    "2026-12-30": { tithi: "कृष्ण सप्तमी", festival: "कालाष्टमी" },
+    "2026-12-31": { tithi: "कृष्ण अष्टमी", festival: "अष्टमी पूजा" }
   };
 
-  // 2. Date Checking Logic
   function autoUpdateDailyInfo() {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -97,22 +201,19 @@
     const vratSub = document.getElementById("todayVratSubText");
 
     if (festivalCalendarData[todayStr]) {
-      const data = festivalCalendarData[todayStr];
-      if (vratSub) vratSub.innerText = data.vratTitle;
-      if (pujaSub) pujaSub.innerText = data.pujaTitle;
+      const item = festivalCalendarData[todayStr];
+      if (vratSub) vratSub.innerText = `${item.festival} (${item.tithi})`;
+      if (pujaSub) pujaSub.innerText = `आज की पूजा: ${item.festival}`;
     } else {
-      if (vratSub) vratSub.innerText = "आज का नित्य व्रत एवं नियम";
-      if (pujaSub) pujaSub.innerText = "नित्य संध्या एवं प्रातः पूजा विधि";
+      if (vratSub) vratSub.innerText = "आज का नित्य नियम एवं व्रत";
+      if (pujaSub) pujaSub.innerText = "नित्य दैनिक पूजा विधि";
     }
   }
 
-  // Run on page load
   document.addEventListener("DOMContentLoaded", function() {
     autoUpdateDailyInfo();
 
-    // 3. Dynamic Modal Content Interceptor
     const modalContent = document.getElementById("modalContent");
-    const modal = document.getElementById("modal");
 
     document.addEventListener("click", function(e) {
       const btn = e.target.closest("[data-modal]");
@@ -128,21 +229,21 @@
 
       if (modalType === "puja") {
         if (currentData) {
-          modalContent.innerHTML = `<h2>🪔 ${currentData.pujaTitle}</h2><p style="margin-top:10px;">${currentData.pujaDesc}</p>`;
+          modalContent.innerHTML = `<h2>🪔 ${currentData.festival}</h2><p style="margin-top:10px;"><b>तिथि:</b> ${currentData.tithi}</p><p style="margin-top:10px;">आज के दिन स्नान करके संकल्प लें और श्री गणेश, शिव एवं विष्णु जी का ध्यान करते हुए धूप, दीप एवं पुष्प अर्पित करें।</p>`;
         } else {
-          modalContent.innerHTML = `<h2>🪔 आज की पूजा विधि</h2><p style="margin-top:10px;">आज प्रातः स्नान के बाद सूर्य देव को जल अर्पित करें, तदोपरांत अपने इष्ट देव का ध्यान कर आरती उतारें।</p>`;
+          modalContent.innerHTML = `<h2>🪔 आज की पूजा विधि</h2><p style="margin-top:10px;">आज प्रातः स्नान के बाद सूर्य देव को अर्घ्य दें एवं अपने इष्ट देव की नित्य पूजा करें।</p>`;
         }
       } else if (modalType === "vrat") {
         if (currentData) {
-          modalContent.innerHTML = `<h2>🌙 ${currentData.vratTitle}</h2><p style="margin-top:10px;">${currentData.vratDesc}</p>`;
+          modalContent.innerHTML = `<h2>🌙 ${currentData.festival}</h2><p style="margin-top:10px;"><b>तिथि:</b> ${currentData.tithi}</p><p style="margin-top:10px;">आज के पर्व पर सात्विक विचार रखें, उपवास का पालन करें और शाम को आरती के बाद प्रसाद वितरण करें।</p>`;
         } else {
-          modalContent.innerHTML = `<h2>🌙 आज का व्रत एवं नियम</h2><p style="margin-top:10px;">आज सात्विक आहार ग्रहण करें, असत्य भाषण से बचें और संध्या काल में प्रभु स्मरण करें।</p>`;
+          modalContent.innerHTML = `<h2>🌙 आज का व्रत एवं नियम</h2><p style="margin-top:10px;">आज का दिन सात्विक आहार और ईश्वर स्मरण के लिए उत्तम है।</p>`;
         }
       } else if (modalType === "calendar") {
-        let calHtml = `<h2>📅 पर्व एवं व्रत कैलेंडर</h2><ul style="list-style:none; padding:0; margin-top:15px;">`;
+        let calHtml = `<h2>📅 पर्व एवं व्रत कैलेंडर (2026)</h2><ul style="list-style:none; padding:0; margin-top:15px; max-height:350px; overflow-y:auto;">`;
         for (let dateKey in festivalCalendarData) {
           const item = festivalCalendarData[dateKey];
-          calHtml += `<li style="padding:10px 0; border-bottom:1px solid #eee;"><b>${dateKey}:</b> ${item.vratTitle}</li>`;
+          calHtml += `<li style="padding:8px 0; border-bottom:1px solid #eee;"><b>${dateKey}:</b> ${item.festival} <small style="color:#d97706;">(${item.tithi})</small></li>`;
         }
         calHtml += `</ul>`;
         modalContent.innerHTML = calHtml;
