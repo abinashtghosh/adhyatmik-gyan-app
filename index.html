@@ -4,34 +4,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#d97706">
-  <meta name="description" content="Adhyatmik Gyan – Puja, Vastu, Dharmik Upay, Vrat, Mantra और Festival Calendar.">
+  <meta name="description" content="Adhyatmik Gyan – Accurate Hindu Panchang, Daily Puja, Vrat & Festival Calendar.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="logo.png">
   <link rel="stylesheet" href="style.css">
-  <title>अध्यात्मिक ज्ञान | Puja, Vastu & Dharmik Upay</title>
+  <title>अध्यात्मिक ज्ञान | Hindu Panchang, Puja & Vrat Calendar</title>
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><img src="logo.png" alt="Adhyatmik Gyan logo"><div><h1>अध्यात्मिक ज्ञान</h1><p>Puja • Vastu • Dharmik Upay</p></div></div>
+  <div class="brand"><img src="logo.png" alt="Adhyatmik Gyan logo"><div><h1>अध्यात्मिक ज्ञान</h1><p>Puja • Vastu • Panchang</p></div></div>
   <button class="lang" id="langBtn" aria-label="Change language">EN</button>
 </header>
 <main>
-  <!-- Dynamic Dynamic Banner Section -->
-  <section class="hero" id="heroBanner" style="background-size: cover; background-position: center; transition: background 0.5s ease; border-radius: 16px; min-height: 200px; display: flex; align-items: center; padding: 20px; position: relative; overflow: hidden;">
-    <div style="background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px); padding: 18px; border-radius: 12px; width: 100%; color: #fff; border: 1px solid rgba(255,255,255,0.2);">
-      <span class="pill" id="heroPill" style="background: rgba(217, 119, 6, 0.85); color: #fff; font-weight: bold;">ॐ • आज का विशेष संदेश</span>
-      <h2 id="heroTitle" style="color: #ffffff; font-size: 22px; margin: 8px 0 4px 0; font-weight: 700;">आज का आध्यात्मिक संदेश</h2>
-      <p id="heroText" style="color: #fff8ed; font-size: 15px; margin: 0 0 8px 0; line-height: 1.4;">श्रद्धा, सेवा और सकारात्मक कर्म को अपने जीवन का हिस्सा बनाएं।</p>
-      <div id="heroMantra" style="font-size: 14px; font-weight: 600; color: #fde68a; background: rgba(0,0,0,0.3); padding: 6px 10px; border-radius: 6px; display: inline-block;"></div>
+  <!-- Dynamic Dynamic Hero Section -->
+  <section class="hero" id="heroBanner" style="background-size: cover; background-position: center; transition: background 0.5s ease; border-radius: 16px; min-height: 220px; display: flex; align-items: center; padding: 20px; position: relative; overflow: hidden;">
+    <div style="background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(3px); padding: 18px; border-radius: 12px; width: 100%; color: #fff; border: 1px solid rgba(255,255,255,0.2);">
+      <span class="pill" id="heroPill" style="background: rgba(217, 119, 6, 0.9); color: #fff; font-weight: bold;">ॐ • पंचांग अनुसार आज का विशेष</span>
+      <h2 id="heroTitle" style="color: #ffffff; font-size: 22px; margin: 8px 0 4px 0; font-weight: 700;">आज का दैनिक पंचांग</h2>
+      <p id="heroText" style="color: #fff8ed; font-size: 15px; margin: 0 0 8px 0; line-height: 1.4;">शुभ मुहूर्त और दैनिक तिथि के अनुसार भगवान की पूजा करें।</p>
+      <div id="heroMantra" style="font-size: 14px; font-weight: 600; color: #fde68a; background: rgba(0,0,0,0.4); padding: 6px 10px; border-radius: 6px; display: inline-block;"></div>
     </div>
   </section>
 
-  <section class="section"><div class="sectionHead"><h2>आज की जानकारी</h2></div>
+  <!-- Today's Automatic Dynamic Cards with Live Gods Images -->
+  <section class="section">
+    <div class="sectionHead"><h2>आज का दैनिक पंचांग एवं पूजा</h2></div>
     <div class="grid cards">
-      <button class="card" id="pujaCardBtn" data-modal="puja"><span>🪔</span><b>Today's Puja</b><small id="todayPujaSubText">आज की पूजा विधि</small></button>
-      <button class="card" id="vratCardBtn" data-modal="vrat"><span>🌙</span><b>Today's Vrat</b><small id="todayVratSubText">व्रत एवं धार्मिक जानकारी</small></button>
-      <button class="card" id="calendarCardBtn" data-modal="calendar"><span>📅</span><b>Festival Calendar</b><small>पर्व और व्रत</small></button>
-      <button class="card" id="vastuCardBtn" data-modal="vastu"><span>🏠</span><b>Vastu Tips</b><small>50 महत्वपूर्ण वास्तु सुझाव</small></button>
+      <div class="card" id="pujaCard" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding:15px; background:#fff; border-radius:12px; border:1px solid #fed7aa; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+        <img id="pujaGodImg" src="" alt="Bhagwan Image" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #d97706; margin-bottom:8px;">
+        <b id="todayPujaTitle" style="font-size:16px; color:#92400e;">Today's Puja</b>
+        <small id="todayPujaSubText" style="color:#555; margin-top:4px;">Loading Daily Puja...</small>
+        <button class="primary" data-modal="puja" style="margin-top:10px; font-size:12px; padding:6px 12px;">विधि देखें</button>
+      </div>
+
+      <div class="card" id="vratCard" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding:15px; background:#fff; border-radius:12px; border:1px solid #fed7aa; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+        <img id="vratGodImg" src="" alt="Vrat Image" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #d97706; margin-bottom:8px;">
+        <b id="todayVratTitle" style="font-size:16px; color:#92400e;">Today's Vrat & Tithi</b>
+        <small id="todayVratSubText" style="color:#555; margin-top:4px;">Loading Daily Tithi...</small>
+        <button class="primary" data-modal="vrat" style="margin-top:10px; font-size:12px; padding:6px 12px;">नियम देखें</button>
+      </div>
+
+      <button class="card" id="calendarCardBtn" data-modal="calendar" style="justify-content:center; flex-direction:column; text-align:center;">
+        <span style="font-size:32px;">📅</span>
+        <b>Month-Wise Panchang</b>
+        <small>मासिक पंचांग एवं त्यौहार</small>
+      </button>
+
+      <button class="card" id="vastuCardBtn" data-modal="vastu" style="justify-content:center; flex-direction:column; text-align:center;">
+        <span style="font-size:32px;">🏠</span>
+        <b>Vastu Tips</b>
+        <small>50 महत्वपूर्ण वास्तु सुझाव</small>
+      </button>
     </div>
   </section>
 
@@ -51,7 +74,7 @@
 
   <section class="section youtube"><div><span class="pill">▶ Latest Videos</span><h2>हमारे YouTube चैनल से जुड़ें</h2><p>नई पूजा, व्रत, वास्तु और धार्मिक वीडियो देखें।</p></div><a class="primary" href="https://www.youtube.com/@AdhyatmikGyan24x7" target="_blank" rel="noopener">YouTube देखें</a></section>
 
-  <section class="section astrology"><div class="sectionHead"><h2>🔮 Free Kundali Consultation</h2></div><p class="muted">अपनी जन्म जानकारी भेजें। विस्तृत Kundali analysis को मैन्युअली तैयार करके आपके दिए गए ईमेल पर भेजा जाएगा।</p>
+  <section class="section astrology"><div class="sectionHead"><h2>🔮 Free Kundali Consultation</h2></div><p class="muted">अपनी जन्म जानकारी भेजें। विस्तृत Kundali analysis को मैन्युally तैयार करके आपके दिए गए ईमेल पर भेजा जाएगा।</p>
     <form id="kundaliForm">
       <input required name="name" placeholder="पूरा नाम / Full Name">
       <input required type="email" name="email" placeholder="ईमेल / Email">
@@ -64,95 +87,83 @@
     <p class="tiny">नोट: यह ऐप सामान्य आध्यात्मिक/ज्योतिषीय जानकारी के लिए है। व्यक्तिगत निर्णयों के लिए उचित विशेषज्ञ सलाह लें।</p>
   </section>
 
-  <section class="section contact"><div class="sectionHead"><h2>संपर्क करें</h2></div><div class="contactGrid"><a href="mailto:buzzjamshedpur@gmail.com">📧 Email</a><a id="phoneLink" href="#">📞 Phone</a><a id="waLink" href="#">💬 WhatsApp</a></div><p class="tiny">Phone और WhatsApp नंबर Admin Panel में बाद में जोड़े जा सकते हैं।</p></section>
+  <section class="section contact"><div class="sectionHead"><h2>संपर्क करें</h2></div><div class="contactGrid"><a href="mailto:buzzjamshedpur@gmail.com">📧 Email</a><a id="phoneLink" href="#">📞 Phone</a><a id="waLink" href="#">💬 WhatsApp</a></div></section>
 </main>
+
 <nav class="bottom"><button class="active" data-scroll="top">⌂<span>Home</span></button><button data-modal="puja">🪔<span>Puja</span></button><button data-modal="mantra">🕉️<span>Mantra</span></button><button data-scroll="astrology">🔮<span>Kundali</span></button></nav>
 <div class="modal" id="modal" aria-hidden="true"><div class="modalBox"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
 
 <script src="app.js"></script>
 
 <script>
-  // Dynamic Weekly Devotional Data
-  const dayWiseData = {
-    0: { // Sunday / रविवार
-      pill: "ॐ • रविवार विशेष",
-      title: "भगवान सूर्य देव आराधना",
-      text: "आरोग्यता, तेज और मान-सम्मान प्राप्ति हेतु आज सूर्य देव को अर्घ्य दें।",
-      mantra: "मंत्र: ॐ घृणिः सूर्याय नमः",
-      bgImg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
-    },
-    1: { // Monday / सोमवार
-      pill: "ॐ • सोमवार विशेष",
-      title: "भगवान शिव आराधना",
-      text: "शिव जी की कृपा से जीवन में शांति, समृद्धि और भय से मुक्ति मिलती है।",
-      mantra: "मंत्र: ॐ नमः शिवाय",
-      bgImg: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1000&q=80"
-    },
-    2: { // Tuesday / मंगलवार
-      pill: "ॐ • मंगलवार विशेष",
-      title: "श्री हनुमान जी साधना",
-      text: "संकटमोचन हनुमान जी का ध्यान करने से समस्त भय और बाधायें नष्ट होती हैं।",
-      mantra: "मंत्र: ॐ हं हनुमते नमः",
-      bgImg: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=1000&q=80"
-    },
-    3: { // Wednesday / बुधवार
-      pill: "ॐ • बुधवार विशेष",
-      title: "प्रथम पूज्य श्री गणेश पूजा",
-      text: "भगवान गणेश जी की उपासना से बुद्धि, विद्या और सिद्धि का आशीर्वाद मिलता है।",
-      mantra: "मंत्र: ॐ गं गणपतये नमः",
-      bgImg: "https://images.unsplash.com/photo-1567591377030-de198b9d5186?auto=format&fit=crop&w=1000&q=80"
-    },
-    4: { // Thursday / गुरुवार
-      pill: "ॐ • गुरुवार विशेष",
-      title: "श्री हरि विष्णु एवं गुरु पूजा",
-      text: "भगवान विष्णु और श्री हरि की कृपा से सुख, समृद्धि और ज्ञान प्राप्त होता है।",
-      mantra: "मंत्र: ॐ नमो भगवते वासुदेवाय",
-      bgImg: "https://images.unsplash.com/photo-1545232979-fbf592320781?auto=format&fit=crop&w=1000&q=80"
-    },
-    5: { // Friday / शुक्रवार
-      pill: "ॐ • शुक्रवार विशेष",
-      title: "माता लक्ष्मी एवं दुर्गा साधना",
-      text: "धन, वैभव और शक्ति की प्राप्ति हेतु मां लक्ष्मी और भगवती दुर्गा का ध्यान करें।",
-      mantra: "मंत्र: ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद",
-      bgImg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
-    },
-    6: { // Saturday / शनिवार
-      pill: "ॐ • शनिवार विशेष",
-      title: "श्री शनिदेव एवं हनुमान पूजा",
-      text: "न्याय के देवता शनिदेव की कृपा हेतु पीपल के वृक्ष तले दीप प्रज्वलित करें।",
-      mantra: "मंत्र: ॐ शं शनैश्चराय नमः",
-      bgImg: "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1000&q=80"
-    }
+  // High Resolution God Images Map
+  const godImages = {
+    "surya": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
+    "shiv": "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=400&q=80",
+    "hanuman": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=400&q=80",
+    "ganesh": "https://images.unsplash.com/photo-1567591377030-de198b9d5186?auto=format&fit=crop&w=400&q=80",
+    "vishnu": "https://images.unsplash.com/photo-1545232979-fbf592320781?auto=format&fit=crop&w=400&q=80",
+    "lakshmi": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80",
+    "durga": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80",
+    "shani": "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=400&q=80",
+    "krishna": "https://images.unsplash.com/photo-1545232979-fbf592320781?auto=format&fit=crop&w=400&q=80"
   };
 
-  const festivalCalendarData = {
-    "2026-09-01": { tithi: "कृष्ण चतुर्थी", festival: "गणेश पूजा" },
-    "2026-09-04": { tithi: "कृष्ण अष्टमी", festival: "श्रीकृष्ण जन्माष्टमी" },
-    "2026-09-07": { tithi: "कृष्ण एकादशी", festival: "अजा एकादशी व्रत" },
-    "2026-09-14": { tithi: "हरितालिका तीज", festival: "गणेश चतुर्थी" },
-    "2026-09-17": { tithi: "कन्या संक्रांति", festival: "विश्वकर्मा पूजा" },
-    "2026-09-24": { tithi: "अनंत चतुर्दशी", festival: "गणेश विसर्जन" },
-    "2026-10-11": { tithi: "प्रतिपदा", festival: "शारदीय नवरात्रा प्रारंभ" },
-    "2026-10-19": { tithi: "महाष्टमी", festival: "दुर्गाष्टमी" },
-    "2026-10-20": { tithi: "विजयादशमी", festival: "दशहरा" },
-    "2026-10-29": { tithi: "कार्तिक चतुर्थी", festival: "करवा चौथ" },
-    "2026-11-06": { tithi: "त्रयोदशी", festival: "धनतेरस पूजा" },
-    "2026-11-08": { tithi: "अमावस्या", festival: "दीपावली / लक्ष्मी पूजा" },
-    "2026-11-15": { tithi: "षष्ठी", festival: "छठ पूजा" },
-    "2026-11-20": { tithi: "एकादशी", festival: "देवउठनी एकादशी" }
+  // Day-wise default Panchang Mapping
+  const weeklyPanchangDefaults = {
+    0: { god: "surya", puja: "सूर्य देव पूजा एवं अर्घ्य", mantra: "ॐ घृणिः सूर्याय नमः", img: godImages.surya },
+    1: { god: "shiv", puja: "भगवान शिव अभिषेक एवं पूजा", mantra: "ॐ नमः शिवाय", img: godImages.shiv },
+    2: { god: "hanuman", puja: "हनुमान चालीसा एवं संकटमोचन पूजा", mantra: "ॐ हं हनुमते नमः", img: godImages.hanuman },
+    3: { god: "ganesh", puja: "श्री गणेश दूर्वा अर्पण एवं पूजा", mantra: "ॐ गं गणपतये नमः", img: godImages.ganesh },
+    4: { god: "vishnu", puja: "श्री हरि विष्णु एवं केला पूजन", mantra: "ॐ नमो भगवते वासुदेवाय", img: godImages.vishnu },
+    5: { god: "lakshmi", puja: "मां लक्ष्मी एवं वैभव पूजा", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद", img: godImages.lakshmi },
+    6: { god: "shani", puja: "शनिदेव तेल अर्पण एवं पीपल पूजा", mantra: "ॐ शं शनैश्चराय नमः", img: godImages.shani }
   };
 
-  const vastuTipsData = [
-    { topic: "मुख्य द्वार", tip: "मुख्य प्रवेश द्वार साफ, व्यवस्थित और अच्छी रोशनी वाला रखें।" },
-    { topic: "उत्तर-पूर्व", tip: "ईशान कोण को साफ-सुथरा और हल्का रखें।" },
-    { topic: "बेडरूम", tip: "मुख्य शयनकक्ष के लिए दक्षिण-पश्चिम दिशा को प्राथमिकता दी जाती है।" },
-    { topic: "रसोई", tip: "रसोई के लिए दक्षिण-पूर्व दिशा (अग्निकोण) सर्वोत्तम मानी जाती है।" },
-    { topic: "पूजा स्थान", tip: "पूजा स्थान हमेशा स्वच्छ, शांत और सकारात्मक ऊर्जा से परिपूर्ण रखें।" }
-  ];
+  // Detailed Hindu Calendar Data (Panchang engine with accurate dates)
+  const accuratePanchangData = {
+    "2026-09-01": { tithi: "भाद्रपद कृष्ण चतुर्थी", festival: "गणेश चतुर्थी व्रत", godKey: "ganesh" },
+    "2026-09-04": { tithi: "भाद्रपद कृष्ण अष्टमी", festival: "श्रीकृष्ण जन्माष्टमी", godKey: "krishna" },
+    "2026-09-07": { tithi: "भाद्रपद कृष्ण एकादशी", festival: "अजा एकादशी व्रत", godKey: "vishnu" },
+    "2026-09-11": { tithi: "भाद्रपद अमावस्या", festival: "पिठोरी अमावस्या / दर्श अमावस्या", godKey: "shiv" },
+    "2026-09-14": { tithi: "भाद्रपद शुक्ल तृतीया", festival: "हरितालिका तीज व्रत", godKey: "durga" },
+    "2026-09-15": { tithi: "भाद्रपद शुक्ल चतुर्थी", festival: "विनायक गणेश चतुर्थी", godKey: "ganesh" },
+    "2026-09-17": { tithi: "कन्या संक्रांति", festival: "विश्वकर्मा पूजा", godKey: "vishnu" },
+    "2026-09-20": { tithi: "भाद्रपद शुक्ल एकादशी", festival: "परिवर्तिनी एकादशी व्रत", godKey: "vishnu" },
+    "2026-09-24": { tithi: "भाद्रपद शुक्ल चतुर्दशी", festival: "अनंत चतुर्दशी / गणेश विसर्जन", godKey: "ganesh" },
+    "2026-09-26": { tithi: "भाद्रपद पूर्णिमा", festival: "सत्यनारायण व्रत / पितृ पक्ष प्रारंभ", godKey: "vishnu" },
+    
+    // October 2026
+    "2026-10-06": { tithi: "आश्विन कृष्ण एकादशी", festival: "इंद्रा एकादशी व्रत", godKey: "vishnu" },
+    "2026-10-10": { tithi: "आश्विन अमावस्या", festival: "सर्वपितृ अमावस्या / महालया", godKey: "shiv" },
+    "2026-10-11": { tithi: "आश्विन शुक्ल प्रतिपदा", festival: "शारदीय नवरात्रि प्रारंभ / घटस्थापना", godKey: "durga" },
+    "2026-10-19": { tithi: "आश्विन शुक्ल अष्टमी", festival: "महाष्टमी / दुर्गाष्टमी पूजन", godKey: "durga" },
+    "2026-10-20": { tithi: "आश्विन शुक्ल दशमी", festival: "महानवमी / विजयादशमी (दशहरा)", godKey: "durga" },
+    "2026-10-22": { tithi: "आश्विन शुक्ल एकादशी", festival: "पापांकुशा एकादशी व्रत", godKey: "vishnu" },
+    "2026-10-26": { tithi: "आश्विन पूर्णिमा", festival: "शरद पूर्णिमा / कोजागरी लक्ष्मी पूजा", godKey: "lakshmi" },
+    "2026-10-29": { tithi: "कार्तिक कृष्ण चतुर्थी", festival: "करवा चौथ / संकष्टी चतुर्थी", godKey: "ganesh" },
+
+    // November 2026
+    "2026-11-05": { tithi: "कार्तिक कृष्ण एकादशी", festival: "रमा एकादशी व्रत", godKey: "vishnu" },
+    "2026-11-06": { tithi: "कार्तिक कृष्ण त्रयोदशी", festival: "धनतेरस / धन्वंतरि पूजा", godKey: "lakshmi" },
+    "2026-11-08": { tithi: "कार्तिक अमावस्या", festival: "दीपावली / महालक्ष्मी पूजन", godKey: "lakshmi" },
+    "2026-11-10": { tithi: "कार्तिक शुक्ल प्रतिपदा", festival: "गोवर्धन पूजा / अन्नकूट", godKey: "krishna" },
+    "2026-11-11": { tithi: "कार्तिक शुक्ल द्वितीया", festival: "भाई दूज / यम द्वितीया", godKey: "vishnu" },
+    "2026-11-15": { tithi: "कार्तिक शुक्ल षष्ठी", festival: "छठ पूजा (संध्या अर्घ्य)", godKey: "surya" },
+    "2026-11-20": { tithi: "कार्तिक शुक्ल एकादशी", festival: "देवउठनी एकादशी / तुलसी विवाह", godKey: "vishnu" },
+    "2026-11-24": { tithi: "कार्तिक पूर्णिमा", festival: "देव दीपावली / कार्तिक पूर्णिमा स्नान", godKey: "shiv" },
+
+    // December 2026
+    "2026-12-04": { tithi: "मार्गशीर्ष कृष्ण एकादशी", festival: "उत्पन्ना एकादशी व्रत", godKey: "vishnu" },
+    "2026-12-07": { tithi: "मार्गशीर्ष कृष्ण चतुर्दशी", festival: "मासिक शिवरात्रि", godKey: "shiv" },
+    "2026-12-14": { tithi: "मार्गशीर्ष शुक्ल पंचमी", festival: "विवाह पंचमी (राम-सीता विवाह)", godKey: "vishnu" },
+    "2026-12-20": { tithi: "मार्गशीर्ष शुक्ल एकादशी", festival: "मोक्षदा एकादशी / श्रीमद्भगवद्गीता जयंती", godKey: "krishna" },
+    "2026-12-24": { tithi: "मार्गशीर्ष पूर्णिमा", festival: "दत्तात्रेय जयंती / पूर्णिमा व्रत", godKey: "vishnu" }
+  };
 
   const sadhanaYouTubeData = {
     "ganesh": { title: "श्री गणेश पूजा एवं मंत्र", mantra: "ॐ गं गणपतये नमः", desc: "समस्त विघ्न दूर करने हेतु गणेश साधना करें।", ytSearch: "Ganesh" },
-    "lakshmi": { title: "मां लक्ष्मी पूजा एवं मंत्र", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद प्रसीद", desc: "धन, धान्य और समृद्धि हेतु लक्ष्मी पूजन करें।", ytSearch: "Lakshmi" },
+    "lakshmi": { title: "मां लक्ष्मी पूजा एवं मंत्र", mantra: "ॐ श्रीं ह्रीं श्रीं कमले कमलालये प्रसीद", desc: "धन, धान्य और समृद्धि हेतु लक्ष्मी पूजन करें।", ytSearch: "Lakshmi" },
     "shiv": { title: "भगवान शिव पूजा एवं महामृत्युंजय मंत्र", mantra: "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिववर्धनम्...", desc: "शिव आराधना से आरोग्यता और शांति मिलती है।", ytSearch: "Shiv" },
     "hanuman": { title: "श्री हनुमान साधना एवं पाठ", mantra: "ॐ हं हनुमते नमः", desc: "हनुमान चालीसा पाठ से संकट दूर होते हैं।", ytSearch: "Hanuman" },
     "krishna": { title: "श्री कृष्ण भक्ति एवं मंत्र", mantra: "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे...", desc: "भगवान श्रीकृष्ण के ध्यान से आनंद मिलता है।", ytSearch: "Krishna" },
@@ -162,13 +173,16 @@
     "mantra": { title: "दैनिक प्रभावशाली मंत्र संग्रह", mantra: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं...", desc: "गायत्री मंत्र का नित्य जप करें।", ytSearch: "Mantra" }
   };
 
-  function updateDynamicHeroBanner() {
+  function renderAutoPanchangAndGods() {
     const today = new Date();
-    const dayOfWeek = today.getDay(); 
+    const dayOfWeek = today.getDay();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const dd = String(today.getDate()).padStart(2, '0');
-    const todayStr = `${yyyy}-${mm}-${dd}`;
+    const todayKey = `${yyyy}-${mm}-${dd}`;
+
+    const defaultDay = weeklyPanchangDefaults[dayOfWeek];
+    const specialFest = accuratePanchangData[todayKey];
 
     const heroBanner = document.getElementById("heroBanner");
     const heroPill = document.getElementById("heroPill");
@@ -176,39 +190,40 @@
     const heroText = document.getElementById("heroText");
     const heroMantra = document.getElementById("heroMantra");
 
-    const todayDayInfo = dayWiseData[dayOfWeek];
+    const pujaGodImg = document.getElementById("pujaGodImg");
+    const vratGodImg = document.getElementById("vratGodImg");
+    const todayPujaSubText = document.getElementById("todayPujaSubText");
+    const todayVratSubText = document.getElementById("todayVratSubText");
 
-    // Check if today is a special festival
-    if (festivalCalendarData[todayStr]) {
-      const fest = festivalCalendarData[todayStr];
-      heroPill.innerText = `ॐ • आज का विशेष पर्व (${fest.tithi})`;
-      heroTitle.innerText = fest.festival;
-      heroText.innerText = `आज ${fest.festival} के पावन अवसर पर विशेष पूजन एवं भक्ति भाव से दिन की शुरुआत करें।`;
-      heroMantra.innerText = todayDayInfo.mantra;
-      heroBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('${todayDayInfo.bgImg}')`;
-    } else {
-      // Regular Day Dynamic Data
-      heroPill.innerText = todayDayInfo.pill;
-      heroTitle.innerText = todayDayInfo.title;
-      heroText.innerText = todayDayInfo.text;
-      heroMantra.innerText = todayDayInfo.mantra;
-      heroBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('${todayDayInfo.bgImg}')`;
-    }
+    if (specialFest) {
+      const godImg = godImages[specialFest.godKey] || defaultDay.img;
+      
+      heroPill.innerText = `ॐ • आज का विशेष पर्व (${specialFest.tithi})`;
+      heroTitle.innerText = specialFest.festival;
+      heroText.innerText = `आज ${specialFest.festival} का पावन दिन है। विधि-विधान से पूजन करें।`;
+      heroMantra.innerText = `विशेष मंत्र: ${defaultDay.mantra}`;
+      heroBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url('${godImg}')`;
 
-    // Update Subtext in cards
-    const pujaSub = document.getElementById("todayPujaSubText");
-    const vratSub = document.getElementById("todayVratSubText");
-    if (festivalCalendarData[todayStr]) {
-      if (vratSub) vratSub.innerText = `${festivalCalendarData[todayStr].festival}`;
-      if (pujaSub) pujaSub.innerText = `आज की पूजा: ${festivalCalendarData[todayStr].festival}`;
+      pujaGodImg.src = godImg;
+      vratGodImg.src = godImg;
+      todayPujaSubText.innerText = `${specialFest.festival} विशेष पूजा`;
+      todayVratSubText.innerText = `${specialFest.tithi} - ${specialFest.festival}`;
     } else {
-      if (vratSub) vratSub.innerText = "आज का नित्य नियम एवं व्रत";
-      if (pujaSub) pujaSub.innerText = "नित्य दैनिक पूजा विधि";
+      heroPill.innerText = `ॐ • दैनिक पंचांग`;
+      heroTitle.innerText = defaultDay.puja;
+      heroText.innerText = `आज का दिन ${defaultDay.puja} के लिए अत्यंत शुभ माना गया है।`;
+      heroMantra.innerText = defaultDay.mantra;
+      heroBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url('${defaultDay.img}')`;
+
+      pujaGodImg.src = defaultDay.img;
+      vratGodImg.src = defaultDay.img;
+      todayPujaSubText.innerText = defaultDay.puja;
+      todayVratSubText.innerText = `नित्य नियम एवं साधना`;
     }
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-    updateDynamicHeroBanner();
+    renderAutoPanchangAndGods();
 
     const modalContent = document.getElementById("modalContent");
 
@@ -221,7 +236,6 @@
       if (sadhanaYouTubeData[modalType]) {
         const item = sadhanaYouTubeData[modalType];
         const ytLink = `https://www.youtube.com/@AdhyatmikGyan24x7/search?query=${encodeURIComponent(item.ytSearch)}`;
-        
         modalContent.innerHTML = `
           <h2>🕉️ ${item.title}</h2>
           <div style="background:#fff8ed; padding:12px; border-radius:8px; margin:12px 0; border-left:4px solid #d97706;">
@@ -239,20 +253,29 @@
       }
 
       if (modalType === "calendar") {
-        let calHtml = `<h2>📅 पर्व एवं व्रत कैलेंडर (2026)</h2><ul style="list-style:none; padding:0; margin-top:15px; max-height:350px; overflow-y:auto;">`;
-        for (let dateKey in festivalCalendarData) {
-          const item = festivalCalendarData[dateKey];
-          calHtml += `<li style="padding:8px 0; border-bottom:1px solid #eee;"><b>${dateKey}:</b> ${item.festival} <small style="color:#d97706;">(${item.tithi})</small></li>`;
+        let calHtml = `<h2>📅 Hindu Panchang & Festival Calendar (Month-Wise)</h2>
+        <div style="margin-top:10px; max-height:380px; overflow-y:auto;">`;
+        
+        let currentMonth = "";
+        for (let dateKey in accuratePanchangData) {
+          const item = accuratePanchangData[dateKey];
+          const mName = new Date(dateKey).toLocaleString('hi-IN', { month: 'long', year: 'numeric' });
+          
+          if (mName !== currentMonth) {
+            currentMonth = mName;
+            calHtml += `<h3 style="background:#fef3c7; color:#92400e; padding:6px 10px; border-radius:6px; margin-top:15px; font-size:15px;">🗓️ ${currentMonth}</h3>`;
+          }
+
+          calHtml += `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #fee2e2;">
+              <div>
+                <b>${dateKey}</b>: <span style="color:#d97706; font-weight:bold;">${item.festival}</span>
+                <br><small style="color:#666;">${item.tithi}</small>
+              </div>
+            </div>`;
         }
-        calHtml += `</ul>`;
+        calHtml += `</div>`;
         modalContent.innerHTML = calHtml;
-      } else if (modalType === "vastu") {
-        let vastuHtml = `<h2>🏠 महत्वपूर्ण वास्तु सुझाव</h2><ol style="padding-left:20px; margin-top:15px; max-height:350px; overflow-y:auto;">`;
-        vastuTipsData.forEach(item => {
-          vastuHtml += `<li style="margin-bottom:8px;"><b>[${item.topic}]</b>: ${item.tip}</li>`;
-        });
-        vastuHtml += `</ol>`;
-        modalContent.innerHTML = vastuHtml;
       }
     });
   });
