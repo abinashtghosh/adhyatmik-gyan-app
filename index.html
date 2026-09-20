@@ -540,6 +540,42 @@
       border-radius: 6px;
       text-align: left;
     }
+
+    /* CSS for New Features */
+    .choghadiya-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .choghadiya-item {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      text-align: center;
+    }
+    .choghadiya-shubh { background: rgba(34, 197, 94, 0.15); border-color: #22c55e; }
+    .choghadiya-ashubh { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
+    .streak-days {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    .streak-day-box {
+      text-align: center;
+      padding: 8px 4px;
+      border-radius: 8px;
+      background: var(--bg-cream);
+      border: 1px solid var(--card-border);
+      flex: 1;
+      margin: 0 2px;
+      font-size: 12px;
+    }
+    .streak-active {
+      background: var(--primary-color);
+      color: #fff;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -620,6 +656,57 @@
         <div class="card-desc">महत्वपूर्ण वास्तु सुझाव</div>
       </div>
       <button class="btn" data-modal="vastu">सुझाव देखें</button>
+    </div>
+
+    <!-- NEW FEATURE CARDS ADDED BELOW -->
+    <!-- Aaj Ka Choghadiya Card -->
+    <div class="card">
+      <div class="icon-container">☀️</div>
+      <div>
+        <div class="card-title">आज का चौघड़िया</div>
+        <div class="card-desc">अमृत, शुभ, लाभ, चर आदि समय</div>
+      </div>
+      <button class="btn" data-modal="choghadiya">चौघड़िया देखें</button>
+    </div>
+
+    <!-- Bhagavad Gita Sloka Card -->
+    <div class="card">
+      <div class="icon-container">📜</div>
+      <div>
+        <div class="card-title">गीता श्लोक of the Day</div>
+        <div class="card-desc">दैनिक श्लोक, अर्थ एवं सीख</div>
+      </div>
+      <button class="btn" data-modal="gita">श्लोक देखें</button>
+    </div>
+
+    <!-- Daily Sadhana Tracker Card -->
+    <div class="card">
+      <div class="icon-container">🔥</div>
+      <div>
+        <div class="card-title">Sadhana Tracker</div>
+        <div class="card-desc">7-Day Streak & Daily Progress</div>
+      </div>
+      <button class="btn" data-modal="streak">स्ट्रीक देखें</button>
+    </div>
+
+    <!-- Name Suggestion Tool Card -->
+    <div class="card">
+      <div class="icon-container">👶</div>
+      <div>
+        <div class="card-title">नामकरण सुझाव</div>
+        <div class="card-desc">राशि एवं नक्षत्र अनुसार बच्चों के नाम</div>
+      </div>
+      <button class="btn" data-modal="name_suggestion">नाम खोजें</button>
+    </div>
+
+    <!-- Notification / Daily Reminder Card -->
+    <div class="card">
+      <div class="icon-container">🔔</div>
+      <div>
+        <div class="card-title">पूजा रिमाइंडर (PWA)</div>
+        <div class="card-desc">अभिजित एवं संध्या आरती अलर्ट</div>
+      </div>
+      <button class="btn" data-modal="notifications">अलर्ट चालू करें</button>
     </div>
   </div>
 
@@ -952,8 +1039,68 @@
       "मीन": "मन प्रसन्न रहेगा। कार्यस्थल पर आपकी प्रशंसा होगी। प्रेम संबंधों में मधुरता आएगी।"
     };
 
+    // NEW DATA ADDITIONS FOR NEW FEATURES
+    const doshaRemedies = {
+      mangal: {
+        title: "🔥 मंगल दोष निवारण उपाय",
+        remedies: [
+          "प्रत्येक मंगलवार को हनुमान चालीसा या सुंदरकांड का पाठ करें।",
+          "मंगलवार को लाल वस्त्र, मसूर की दाल या तांबे के बर्तन का दान करें।",
+          "हनुमान जी को सिंदूर और चमेली का तेल चढ़ाएं।",
+          "ॐ अं अंगारकाय नमः मंत्र का नित्य 108 बार जाप करें।"
+        ]
+      },
+      kalsarp: {
+        title: "🐍 कालसर्प दोष निवारण उपाय",
+        remedies: [
+          "प्रत्येक सोमवार को शिवलिंग पर जल और दूध में काले तिल मिलाकर चढ़ाएं।",
+          "महामृत्युंजय मंत्र का रोजाना 108 बार जाप करें।",
+          "नाग पंचमी पर चांदी के नाग-नागिन का जोड़ा नदी में प्रवाहित करें।",
+          "घर में महामृत्युंजय यंत्र स्थापित करके पूजन करें।"
+        ]
+      },
+      pitra: {
+        title: "☀️ पितृ दोष निवारण उपाय",
+        remedies: [
+          "अमावस्या तिथि पर पितरों के नाम से जल, तिल और कुशा से तर्पण करें।",
+          "प्रत्येक शनिवार को पीपल के पेड़ पर जल चढ़ाएं और दीपक जलाएं।",
+          "गरीबों या ब्राह्मणों को भोजन व वस्त्र दान करें।",
+          "गाय को रोजाना पहली रोटी खिलाएं।"
+        ]
+      }
+    };
+
+    const gitaSlokas = [
+      {
+        sloka: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥",
+        meaning: "तुम्हारा अधिकार केवल कर्म करने पर है, उसके फलों पर कभी नहीं। इसलिए कर्म के फल की इच्छा मत करो और न ही कर्म न करने में तुम्हारी आसक्ति हो।",
+        lesson: "परिणाम की चिंता छोड़कर वर्तमान में अपने कर्तव्य पर पूरा ध्यान केंद्रित करें।"
+      },
+      {
+        sloka: "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥",
+        meaning: "हे भारत! जब-जब धर्म की हानि और अधर्म में वृद्धि होती है, तब-तब मैं स्वयं की रचना करता हूँ (अवतार लेता हूँ)।",
+        lesson: "सत्य और धर्म की हमेशा जीत होती है, संकट के समय धैर्य और नीति बनाए रखें।"
+      }
+    ];
+
+    const babyNames = {
+      "मेष": ["अयांश", "आरव", "अन्वी", "आद्या"],
+      "वृषभ": ["विहान", "वेदांत", "वामिका", "वृष्टि"],
+      "मिथुन": ["कयान", "काव्य", "कियारा", "कुहू"],
+      "कर्क": ["हर्षिल", "हिमांशु", "हंसिका", "हेतल"],
+      "सिंह": ["माधव", "मानव", "मीरा", "मानसी"],
+      "कन्या": ["पार्थ", "प्रणव", "पूर्वी", "पाखी"],
+      "तुला": ["रयान", "ऋषभ", "राधा", "रिया"],
+      "वृश्चिक": ["नक्ष", "नमन", "निष्ठा", "नव्या"],
+      "धनु": ["ध्रुव", "धैर्य", "ध्याना", "धृति"],
+      "मकर": ["जाग्रत", "जयंत", "जानवी", "जीया"],
+      "कुंभ": ["शौर्य", "शिवम", "श्रेया", "शिवानी"],
+      "मीन": ["देव", "दिव्यांश", "दीया", "दृष्टि"]
+    };
+
     let currentTodayData = {};
     let malaCount = 0;
+    let malaTarget = 108;
 
     function generateMonthlyPanchang(month, year) {
       const tbody = document.getElementById("panchangTableBody");
@@ -1058,6 +1205,35 @@
       return Math.abs(hash);
     }
 
+    // NEW HELPER FUNCTIONS FOR DOSHA & MALA
+    function showDoshaRemedy(type) {
+      const data = doshaRemedies[type];
+      let listHTML = data.remedies.map(r => `<li>${r}</li>`).join('');
+      document.getElementById("doshaRemedyBox").innerHTML = `
+        <h4 style="color:var(--primary-dark); margin-bottom:6px;">${data.title}</h4>
+        <ul style="padding-left:18px; margin:0; font-size:13px; line-height:1.6;">${listHTML}</ul>
+      `;
+    }
+
+    function updateStreakData() {
+      let streak = parseInt(localStorage.getItem('sadhana_streak') || '1');
+      let lastDate = localStorage.getItem('sadhana_last_date');
+      let todayStr = new Date().toDateString();
+
+      if (lastDate !== todayStr) {
+        if (lastDate) {
+          let prev = new Date(lastDate);
+          let curr = new Date(todayStr);
+          let diffDays = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+          if (diffDays === 1) streak++;
+          else if (diffDays > 1) streak = 1;
+        }
+        localStorage.setItem('sadhana_last_date', todayStr);
+        localStorage.setItem('sadhana_streak', streak);
+      }
+      return streak;
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
       initPanchangAndGrah();
       renderRashifalChips();
@@ -1079,7 +1255,7 @@
         this.innerText = document.body.classList.contains("dark-mode") ? "☀️ लाइट मोड" : "🌙 डार्क मोड";
       });
 
-      // Kundali Form
+      // Kundali Form (Updated with Dosha Remedies Feature)
       document.getElementById("kundaliForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const name = document.getElementById("kName").value;
@@ -1110,11 +1286,21 @@
               <div style="background:rgba(254, 243, 199, 0.4); padding:8px; border-radius:6px;"><b>लग्न राशि:</b> ${userLagna}</div>
             </div>
 
-            <h4 style="color:var(--primary-dark); margin-bottom:6px;">⚠️ कुण्डली दोष विश्लेषण:</h4>
+            <h4 style="color:var(--primary-dark); margin-bottom:6px;">⚠️ कुण्डली दोष विश्लेषण एवं उपाय:</h4>
             <div style="font-size:13px; margin-bottom:12px; line-height:1.6;">
-              <div>• <b>मंगल दोष:</b> ${hasMangalDosh ? '<span class="dosh-tag dosh-present">आंशिक मंगल दोष उपस्थित</span>' : '<span class="dosh-tag dosh-absent">निर्दोष (मंगल दोष नहीं है)</span>'}</div>
-              <div>• <b>कालसर्प दोष:</b> ${hasKalsarpDosh ? '<span class="dosh-tag dosh-present">कालसर्प योग उपस्थित</span>' : '<span class="dosh-tag dosh-absent">कालसर्प दोष नहीं है</span>'}</div>
-              <div>• <b>पितृ दोष:</b> ${hasPitraDosh ? '<span class="dosh-tag dosh-present">पितृ दोष प्रभाव</span>' : '<span class="dosh-tag dosh-absent">पितृ दोष मुक्त</span>'}</div>
+              <div>• <b>मंगल दोष:</b> ${hasMangalDosh ? '<span class="dosh-tag dosh-present">आंशिक मंगल दोष</span>' : '<span class="dosh-tag dosh-absent">निर्दोष</span>'}</div>
+              <div>• <b>कालसर्प दोष:</b> ${hasKalsarpDosh ? '<span class="dosh-tag dosh-present">कालसर्प योग</span>' : '<span class="dosh-tag dosh-absent">निर्दोष</span>'}</div>
+              <div>• <b>पितृ दोष:</b> ${hasPitraDosh ? '<span class="dosh-tag dosh-present">पितृ दोष प्रभाव</span>' : '<span class="dosh-tag dosh-absent">निर्दोष</span>'}</div>
+            </div>
+
+            <div style="display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap;">
+              <button class="btn" style="width:auto; font-size:11px; padding:6px 10px;" onclick="showDoshaRemedy('mangal')">मंगल दोष उपाय</button>
+              <button class="btn" style="width:auto; font-size:11px; padding:6px 10px; background:#c2410c;" onclick="showDoshaRemedy('kalsarp')">कालसर्प दोष उपाय</button>
+              <button class="btn" style="width:auto; font-size:11px; padding:6px 10px; background:#047857;" onclick="showDoshaRemedy('pitra')">पितृ दोष उपाय</button>
+            </div>
+
+            <div id="doshaRemedyBox" style="background:var(--bg-cream); padding:10px; border-radius:8px; border:1px solid var(--card-border);">
+              <small style="color:var(--sub-text);">ऊपर दिए गए बटन पर क्लिक करके सरल एवं सटीक उपाय देखें।</small>
             </div>
           </div>
         `;
@@ -1178,16 +1364,25 @@
           return;
         }
 
+        // Updated Digital Mala Modal with Custom Target & Streak Tracker
         if (modalType === "mala") {
           malaCount = 0;
           modalContent.innerHTML = `
             <div class="mala-counter-box">
-              <h2 style="color:var(--primary-dark); margin-top:0;">📿 डिजिटल जप माला</h2>
-              <p style="font-size:13px; color:var(--sub-text);">नीचे दिए गए चक्र पर स्पर्श करके मंत्र जप करें:</p>
-              
+              <h2 style="color:var(--primary-dark); margin-top:0;">📿 डिजिटल जप माला Counter</h2>
+              <div style="margin-bottom:12px; display:flex; justify-content:center; align-items:center; gap:8px;">
+                <label style="font-size:13px; font-weight:bold;">लक्ष्य (Target):</label>
+                <select id="malaTargetSelect" style="padding:4px 8px; border-radius:6px; border:1px solid var(--card-border);">
+                  <option value="108" selected>108 (1 माला)</option>
+                  <option value="1008">1008</option>
+                  <option value="custom">Custom Target</option>
+                </select>
+                <input type="number" id="customTargetInput" placeholder="उदा. 54" style="display:none; width:70px; padding:4px; border-radius:6px; border:1px solid var(--card-border);">
+              </div>
+
               <div class="mala-circle" id="malaBtn">
                 <div class="mala-count" id="malaNum">0</div>
-                <div style="font-size:11px; opacity:0.9;">/ 108 जप</div>
+                <div style="font-size:11px; opacity:0.9;" id="targetLabel">/ 108 जप</div>
               </div>
 
               <div id="malaStatus" style="font-size:14px; font-weight:bold; color:var(--primary-color); min-height:22px;">
@@ -1203,6 +1398,25 @@
           const malaBtn = document.getElementById("malaBtn");
           const malaNum = document.getElementById("malaNum");
           const malaStatus = document.getElementById("malaStatus");
+          const targetSelect = document.getElementById("malaTargetSelect");
+          const customInput = document.getElementById("customTargetInput");
+          const targetLabel = document.getElementById("targetLabel");
+
+          targetSelect.addEventListener("change", function() {
+            if (this.value === "custom") {
+              customInput.style.display = "inline-block";
+              malaTarget = parseInt(customInput.value) || 108;
+            } else {
+              customInput.style.display = "none";
+              malaTarget = parseInt(this.value);
+            }
+            targetLabel.innerText = `/ ${malaTarget} जप`;
+          });
+
+          customInput.addEventListener("input", function() {
+            malaTarget = parseInt(this.value) || 108;
+            targetLabel.innerText = `/ ${malaTarget} जप`;
+          });
 
           malaBtn.addEventListener("click", function() {
             malaCount++;
@@ -1210,13 +1424,14 @@
 
             if (navigator.vibrate) navigator.vibrate(40);
 
-            if (malaCount === 108) {
-              malaStatus.innerText = "🎉 बधाई हो! आपकी 1 माला (108 जप) पूरी हुई!";
+            if (malaCount === malaTarget) {
+              malaStatus.innerText = `🎉 बधाई हो! आपका ${malaTarget} जप का लक्ष्य पूरा हुआ!`;
+              updateStreakData();
               if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
-            } else if (malaCount > 108) {
-              malaStatus.innerText = `माला पूरी हो चुकी है। (कुल जप: ${malaCount})`;
+            } else if (malaCount > malaTarget) {
+              malaStatus.innerText = `लक्ष्य पूरा हो चुका है। (कुल जप: ${malaCount})`;
             } else {
-              malaStatus.innerText = `जप जारी रखें... (${108 - malaCount} बाकी)`;
+              malaStatus.innerText = `जप जारी रखें... (${malaTarget - malaCount} बाकी)`;
             }
           });
 
@@ -1226,6 +1441,137 @@
             malaStatus.innerText = "जप रीसेट हो गया है।";
           });
 
+          return;
+        }
+
+        // NEW FEATURE: Aaj ka Shubh Choghadiya Modal
+        if (modalType === "choghadiya") {
+          modalContent.innerHTML = `
+            <div>
+              <h2 style="color:var(--primary-dark); margin-top:0; text-align:center;">☀️ आज का शुभ चौघड़िया</h2>
+              <p style="font-size:12px; color:var(--sub-text); text-align:center;">दिन एवं रात के शुभ व अशुभ चौघड़िया मुहूर्त</p>
+              
+              <h4 style="color:var(--primary-dark); margin-bottom:6px;">☀️ दिन का चौघड़िया (Day):</h4>
+              <div class="choghadiya-grid">
+                <div class="choghadiya-item choghadiya-shubh"><b>अमृत</b><br><small>06:00 AM - 07:30 AM</small></div>
+                <div class="choghadiya-item choghadiya-shubh"><b>काल / शुभ</b><br><small>07:30 AM - 09:00 AM</small></div>
+                <div class="choghadiya-item choghadiya-shubh"><b>रोग / उद्वेग</b><br><small>09:00 AM - 10:30 AM</small></div>
+                <div class="choghadiya-item choghadiya-shubh"><b>चर / लाभ</b><br><small>10:30 AM - 12:00 PM</small></div>
+              </div>
+
+              <h4 style="color:var(--primary-dark); margin-top:14px; margin-bottom:6px;">🌙 रात का चौघड़िया (Night):</h4>
+              <div class="choghadiya-grid">
+                <div class="choghadiya-item choghadiya-shubh"><b>चर / लाभ</b><br><small>06:00 PM - 07:30 PM</small></div>
+                <div class="choghadiya-item choghadiya-shubh"><b>अमृत</b><br><small>07:30 PM - 09:00 PM</small></div>
+              </div>
+            </div>
+          `;
+          modal.classList.add("active");
+          return;
+        }
+
+        // NEW FEATURE: Bhagavad Gita Sloka of the Day
+        if (modalType === "gita") {
+          const item = gitaSlokas[0];
+          modalContent.innerHTML = `
+            <div style="text-align:center;">
+              <h2 style="color:var(--primary-dark); margin-top:0;">📖 श्रीमद्भगवद्गीता - आज का श्लोक</h2>
+              <div style="background:var(--bg-cream); padding:16px; border-radius:12px; border:1px solid var(--card-border); margin-top:12px;">
+                <p style="font-size:16px; font-weight:bold; color:var(--primary-dark); line-height:1.6; white-space:pre-line;">${item.sloka}</p>
+                <hr style="border:0; border-top:1px dashed var(--card-border); margin:12px 0;">
+                <p style="font-size:13px; text-align:left; color:var(--text-color);"><b>अर्थ (Meaning):</b> ${item.meaning}</p>
+                <div style="background:rgba(217,119,6,0.1); padding:10px; border-radius:6px; border-left:3px solid var(--primary-color); text-align:left; margin-top:8px; font-size:13px;">
+                  <b>💡 जीवन की सीख (Life Lesson):</b> ${item.lesson}
+                </div>
+              </div>
+            </div>
+          `;
+          modal.classList.add("active");
+          return;
+        }
+
+        // NEW FEATURE: Daily Sadhana Tracker / Habit Streak
+        if (modalType === "streak") {
+          let streak = updateStreakData();
+          modalContent.innerHTML = `
+            <div style="text-align:center;">
+              <h2 style="color:var(--primary-dark); margin-top:0;">🔥 दैनिक साधना ट्रैकर</h2>
+              <div style="font-size:48px; font-weight:bold; color:var(--primary-color); margin:10px 0;">
+                ${streak} <span style="font-size:20px; color:var(--text-color);">Days Streak</span>
+              </div>
+              <p style="font-size:13px; color:var(--sub-text);">आपने लगातार ${streak} दिनों से अपनी साधना/मंत्र जाप पूरा किया है!</p>
+
+              <div class="streak-days">
+                <div class="streak-day-box streak-active">Som<br>✓</div>
+                <div class="streak-day-box streak-active">Mangal<br>✓</div>
+                <div class="streak-day-box streak-active">Budh<br>✓</div>
+                <div class="streak-day-box streak-active">Guru<br>✓</div>
+                <div class="streak-day-box streak-active">Shukra<br>✓</div>
+                <div class="streak-day-box streak-active">Shani<br>✓</div>
+                <div class="streak-day-box streak-active">Ravi<br>✓</div>
+              </div>
+            </div>
+          `;
+          modal.classList.add("active");
+          return;
+        }
+
+        // NEW FEATURE: Notification / Daily Reminder (PWA)
+        if (modalType === "notifications") {
+          modalContent.innerHTML = `
+            <div style="text-align:center;">
+              <h2 style="color:var(--primary-dark); margin-top:0;">🔔 दैनिक पूजा एवं मुहूर्त रिमाइंडर</h2>
+              <p style="font-size:13px; color:var(--sub-text);">अभिजित मुहूर्त एवं संध्या आरती के लिए नोटिफिकेशन अलर्ट चालू करें:</p>
+
+              <button class="btn" id="enableNotifBtn" style="margin-top:12px;">🔔 Notification Permissions दें</button>
+              <div id="notifStatus" style="font-size:12px; margin-top:10px; color:var(--primary-color);"></div>
+            </div>
+          `;
+          modal.classList.add("active");
+
+          document.getElementById("enableNotifBtn").addEventListener("click", function() {
+            if ("Notification" in window) {
+              Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                  document.getElementById("notifStatus").innerText = "✅ नोटिफिकेशन सफलतापूर्वक चालू कर दिया गया है!";
+                  new Notification("अध्यात्मिक ज्ञान", { body: "आपको अभिजित मुहूर्त और संध्या आरती का रिमाइंडर मिलेगा।" });
+                } else {
+                  document.getElementById("notifStatus").innerText = "❌ अनुमति अस्वीकार की गई। Browser settings से अलाउ करें।";
+                }
+              });
+            } else {
+              document.getElementById("notifStatus").innerText = "⚠️ आपका ब्राउज़र नोटिफिकेशन सपोर्ट नहीं करता।";
+            }
+          });
+          return;
+        }
+
+        // NEW FEATURE: Name Suggestion Tool (Naamkaran)
+        if (modalType === "name_suggestion") {
+          let options = rashis.map(r => `<option value="${r}">${r}</option>`).join('');
+          modalContent.innerHTML = `
+            <div>
+              <h2 style="color:var(--primary-dark); margin-top:0; text-align:center;">👶 नामकरण (Name Suggestion Tool)</h2>
+              <div class="form-group">
+                <label>बच्चे की राशि चुनें:</label>
+                <select id="rashiNameSelect">${options}</select>
+              </div>
+              <button class="btn" id="searchNamesBtn">नाम खोजें</button>
+              <div id="nameResults" style="margin-top:14px;"></div>
+            </div>
+          `;
+          modal.classList.add("active");
+
+          document.getElementById("searchNamesBtn").addEventListener("click", function() {
+            let selectedRashi = document.getElementById("rashiNameSelect").value;
+            let names = babyNames[selectedRashi] || ["आरव", "अन्वी", "विहान"];
+            document.getElementById("nameResults").innerHTML = `
+              <h4 style="color:var(--primary-dark); margin-bottom:6px;">'${selectedRashi}' राशि के शुभ नाम:</h4>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                ${names.map(n => `<span style="background:var(--bg-cream); border:1px solid var(--card-border); padding:6px 12px; border-radius:16px; font-weight:bold; font-size:13px;">${n}</span>`).join('')}
+              </div>
+            `;
+          });
           return;
         }
 
